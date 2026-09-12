@@ -346,6 +346,8 @@
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     line-height: 1.12;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
   }
 
   .section-subtitle {

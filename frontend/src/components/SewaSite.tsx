@@ -47,10 +47,14 @@ import footerImage from "../assets/footer.jpeg";
 import dtuModel from "../assets/dtu-model.png";
 import satymevjayteLogo from "../assets/satymevjayte.svg";
 import govtofnctLogo from "../assets/govtofnctdelhi.svg";
-import sewaLogo from "../assets/sewalogo.png";
-import sewaWhiteLogo from "../assets/sewawhite.png";
+import sewaLogo from "../assets/sewalogo.svg";
+import sewaWhiteLogo from "../assets/sewawhite.svg";
 import timelineImg from "../assets/timeline.jpg";
 import benefitsSvg from "../assets/benefits.svg";
+import philosophySvg from "../assets/philosophy.svg";
+import objectiveSvg from "../assets/objective.svg";
+import uniqueFeaturesSvg from "../assets/unique_features.svg";
+import { SearchModal } from "./SearchModal";
 
 const heroImages = [
   {
@@ -82,21 +86,21 @@ export function Brand() {
       <img
         src={satymevjayteLogo}
         alt="Satyamev Jayate"
-        className="h-9 sm:h-11 md:h-13 w-auto object-contain shrink-0 dark:invert"
+        className="h-9 sm:h-11 md:h-13 w-auto object-contain shrink-0 dark:invert -mr-1 sm:-mr-1.5 md:-mr-2"
       />
 
       {/* 2. Text of Govt of National Capital Territory of Delhi */}
       <img
         src={govtofnctLogo}
         alt="Government of National Capital Territory of Delhi"
-        className="h-[19px] sm:h-[23px] md:h-[26px] w-auto object-contain shrink dark:invert"
+        className="h-[25px] sm:h-[30px] md:h-[34px] w-auto object-contain shrink dark:invert"
       />
 
       {/* 3. DTU Logo */}
       <img
         src={dtuLogo}
         alt="Delhi Technological University"
-        className="size-7 sm:size-8 md:size-9 object-contain shrink-0"
+        className="size-9 sm:size-12 md:size-13 object-contain shrink-0 mr-2 sm:mr-3 md:mr-4"
       />
 
       {/* 4. SEWA Logo */}
@@ -111,173 +115,263 @@ export function Brand() {
 
 export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" | "guidelines" | "about" | "problems" | "contact" | "faq" | "resources" | "signin" | "signup" | "team-register" | string } = {}) {
   const { user, isSignedIn, signOut } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Global Ctrl+K / Cmd+K shortcut to open search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <>
-      {/* Top utility bar (dtu.ac.in + social handles): scrolls away and hides naturally on scroll */}
-      <div className="top-bar bg-[#F3F3F3]">
-        <div className="site-shell flex h-9 items-center justify-between">
+      {/* Row 1: Light gray background - scrolls away naturally on scroll */}
+      <div className="w-full bg-[#F3F4F6] border-b border-gray-200/50 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between">
+        <Brand />
+        <div className="flex items-center gap-2.5 sm:gap-4 md:gap-5">
+          {/* dtu.ac.in link */}
           <a
             href="https://dtu.ac.in"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1 text-[#ff4d4f] font-bold text-xs underline underline-offset-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-1.5 text-[#ff4d4f] font-semibold text-xs sm:text-sm underline underline-offset-2 hover:opacity-80 transition-opacity"
           >
-            dtu.ac.in
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="inline-block">
-              <path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <span>dtu.ac.in</span>
+            <ExternalLink size={14} className="stroke-[2.2]" />
           </a>
-          <div className="flex items-center gap-3">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="text-[#ff4d4f] hover:opacity-80 transition-opacity">
-              <Facebook size={13} fill="currentColor" strokeWidth={0} />
+
+          {/* Social icons */}
+          <div className="flex items-center gap-2 sm:gap-2.5 text-[#ff4d4f]">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:opacity-80 transition-opacity">
+              <Facebook size={16} fill="currentColor" strokeWidth={0} />
             </a>
-            <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)" className="text-[#ff4d4f] hover:opacity-80 transition-opacity flex items-center">
-              <svg className="size-3" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)" className="hover:opacity-80 transition-opacity flex items-center">
+              <svg className="size-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[#ff4d4f] hover:opacity-80 transition-opacity">
-              <Instagram size={13} strokeWidth={1.8} />
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:opacity-80 transition-opacity">
+              <Instagram size={16} strokeWidth={2} />
             </a>
+          </div>
+
+          {/* Search Button in Row 1 */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-200/90 text-xs font-medium shadow-2xs hover:border-[#ff4d4f]/40 hover:shadow-xs transition-all cursor-pointer group"
+            title="Search SEWA portal (Ctrl+K)"
+            aria-label="Search portal"
+          >
+            <Search size={14} className="text-[#ff4d4f] group-hover:scale-110 transition-transform" />
+            <span className="hidden sm:inline text-gray-600 font-medium">Search</span>
+            <kbd className="hidden md:inline-block px-1.5 py-0.2 text-[9.5px] font-mono text-gray-400 bg-gray-100 rounded border border-gray-200">
+              ⌘K
+            </kbd>
+          </button>
+
+          {/* Login / Auth */}
+          {isSignedIn ? (
+            <div className="flex items-center gap-2">
+              <span
+                className="hidden max-w-[110px] truncate text-xs text-muted-foreground sm:inline"
+                title={user?.firstName}
+              >
+                Hi, {user?.firstName}
+              </span>
+              <button
+                type="button"
+                onClick={() => signOut()}
+                className="button button-outline shrink-0 cursor-pointer text-xs sm:text-sm"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/signin"
+              className="inline-flex items-center justify-center rounded-full bg-[#ff4d4f] px-5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-[#e03d3f] transition-colors sm:px-6 sm:py-2 sm:text-sm"
+            >
+              Login
+            </Link>
+          )}
+        </div>
+      </div>
+
+      {/* Row 2: Sticky navigation bar that transforms on scroll with increased height */}
+      <header
+        className={`sticky top-0 z-50 bg-white border-b border-gray-200/80 transition-all duration-300 ${!isScrolled
+            ? "hidden lg:block shadow-sm py-2.5 sm:py-3"
+            : "block shadow-md py-3.5 sm:py-4 min-h-[64px] sm:min-h-[72px]"
+          }`}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          {/* Left slot: SEWA FIRST Logo (appears on scroll like the screenshot) */}
+          <div className="flex items-center min-w-[140px] sm:min-w-[185px]">
+            <Link
+              to="/"
+              className={`flex items-center transition-all duration-300 ${isScrolled ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3 pointer-events-none"
+                }`}
+              aria-label="SEWA FIRST Home"
+            >
+              <img
+                src={sewaLogo}
+                alt="SEWA FIRST"
+                className="h-11 sm:h-13 md:h-14 w-auto object-contain shrink-0"
+              />
+            </Link>
+          </div>
+
+          {/* Center slot: Navigation menu */}
+          <nav
+            className="hidden lg:flex flex-1 items-center justify-center gap-x-5 lg:gap-x-7 xl:gap-x-9 text-[13px] font-semibold text-gray-800 lg:text-sm"
+            aria-label="Primary navigation"
+          >
+            <Link to="/" className={`nav-link ${activeNav === "home" ? "text-primary font-bold" : ""}`}>
+              Home
+            </Link>
+
+            {/* About dropdown */}
+            <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
+              <Link to="/about" className={`nav-link ${activeNav === "about" ? "text-primary font-bold" : ""}`}>
+                About
+              </Link>
+              <ChevronDown size={14} className="text-gray-500 mt-0.5" />
+              <div className="nav-dropdown-menu">
+                <Link to="/about">About SEWA</Link>
+                <a href="https://dtu.ac.in" target="_blank" rel="noreferrer">About DTU</a>
+                <a href="/#committee">Our Team</a>
+              </div>
+            </div>
+
+            {/* Guidelines dropdown */}
+            <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
+              <a href="/#benefits" className={`nav-link ${activeNav === "guidelines" ? "text-primary font-bold" : ""}`}>
+                Guidelines
+              </a>
+              <ChevronDown size={14} className="text-gray-500 mt-0.5" />
+              <div className="nav-dropdown-menu">
+                <a href="/#benefits">Benefits</a>
+                <Link to="/faq">Eligibility</Link>
+                <Link to="/events" hash="stages">Submission Rules</Link>
+              </div>
+            </div>
+
+            {/* Problem Statements dropdown */}
+            <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
+              <a href="/#themes" className={`nav-link ${activeNav === "problems" ? "text-primary font-bold" : ""}`}>
+                Problem Statements
+              </a>
+              <ChevronDown size={14} className="text-gray-500 mt-0.5" />
+              <div className="nav-dropdown-menu">
+                <a href="/#themes">All Themes</a>
+                <a href="/#national-themes">National Level Priorities</a>
+                <a href="/#community-themes">Local Community Challenges</a>
+              </div>
+            </div>
+
+            {/* Events dropdown */}
+            <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
+              <Link to="/events" className={`nav-link ${activeNav === "events" ? "text-primary font-bold" : ""}`}>
+                Events
+              </Link>
+              <ChevronDown size={14} className="text-gray-500 mt-0.5" />
+              <div className="nav-dropdown-menu">
+                <Link to="/events">All Events</Link>
+                <Link to="/events" hash="stages">Competition Stages</Link>
+                <a href="/#timeline">100-Day Timeline</a>
+                <a href="/#announcements">Announcements</a>
+              </div>
+            </div>
+
+            <Link to="/resources" className={`nav-link ${activeNav === "resources" ? "text-primary font-bold" : ""}`}>
+              Resources
+            </Link>
+            <Link to="/faq" className={`nav-link ${activeNav === "faq" ? "text-primary font-bold" : ""}`}>FAQ</Link>
+            <Link to="/contact" className={`nav-link ${activeNav === "contact" ? "text-primary font-bold" : ""}`}>Contact Us</Link>
+          </nav>
+
+          {/* Right slot: Search & Login button (appears on scroll) */}
+          <div className="flex items-center justify-end min-w-[140px] sm:min-w-[185px]">
+            <div
+              className={`flex items-center gap-2 sm:gap-3 transition-all duration-300 ${isScrolled ? "opacity-100 translate-x-0" : "opacity-0 translate-x-3 pointer-events-none"
+                }`}
+            >
+              {/* Search button in sticky navbar */}
+              <button
+                type="button"
+                onClick={() => setSearchOpen(true)}
+                className="flex items-center justify-center size-8 sm:size-9 rounded-full bg-gray-100/90 hover:bg-red-50 text-gray-700 hover:text-[#ff4d4f] border border-gray-200/80 shadow-2xs hover:border-[#ff4d4f]/40 hover:scale-105 active:scale-95 transition-all cursor-pointer group shrink-0"
+                title="Search SEWA portal (Ctrl+K)"
+                aria-label="Search portal"
+              >
+                <Search size={15} className="text-[#ff4d4f] group-hover:scale-110 transition-transform" />
+              </button>
+
+              {isSignedIn ? (
+                <div className="flex items-center gap-2">
+                  <span
+                    className="hidden max-w-[110px] truncate text-xs text-muted-foreground sm:inline"
+                    title={user?.firstName}
+                  >
+                    Hi, {user?.firstName}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => signOut()}
+                    className="button button-outline shrink-0 cursor-pointer text-xs sm:text-sm"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/signin"
+                  className="inline-flex items-center justify-center rounded-full bg-[#ff4d4f] px-4 sm:px-5 py-1.5 sm:py-2 text-xs font-semibold text-white shadow-sm hover:bg-[#e03d3f] transition-colors sm:text-sm shrink-0"
+                >
+                  Login
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Row 3: Live updates ticker - scrolls away with the page */}
+      <div className="live-updates-bar flex h-10 overflow-hidden bg-[#e0e0e0] text-xs">
+        <div className="live-updates-label flex shrink-0 items-center bg-[#ff5d5d] px-6 font-bold text-white shadow-[2px_0_8px_rgba(0,0,0,0.12)] relative z-10">
+          Live Updates
+        </div>
+        <div className="live-updates-ticker-wrap min-w-0 flex-1 overflow-hidden">
+          <div className="ticker flex h-full items-center whitespace-nowrap font-medium text-gray-800">
+            <span>
+              SEWA 2026 / SEWA Youth Innovation Challenge officially launched at Delhi Technological University on 19 September 2026.
+            </span>
+            <span aria-hidden="true">
+              SEWA 2026 / SEWA Youth Innovation Challenge officially launched at Delhi Technological University on 19 September 2026.
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Main navigation bar + Live updates ticker: ALWAYS sticky at top */}
-      <div className="sticky top-0 z-50">
-        <header className="border-b border-gray-100 bg-white shadow-sm">
-          <div className="site-shell py-2.5 sm:py-3">
-            {/* Row 1: the logo lockup, centered. The auth control is
-                absolutely positioned at the right rather than laid out as a
-                flex sibling, so the logo block stays visually centered
-                regardless of whether it's showing "Login" or "Hi, <name> /
-                Sign Out" -- a flex `justify-between` would re-center the
-                logo every time that content's width changed. */}
-            <div className="relative flex items-center justify-center">
-              <Brand />
-              <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center">
-                {isSignedIn ? (
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="hidden max-w-[110px] truncate text-xs text-muted-foreground sm:inline"
-                      title={user?.firstName}
-                    >
-                      Hi, {user?.firstName}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => signOut()}
-                      className="button button-outline shrink-0 cursor-pointer text-xs sm:text-sm"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                ) : (
-                  <Link
-                    to="/signin"
-                    className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-1.5 text-xs font-bold text-white hover:bg-primary/90 transition-colors sm:px-5 sm:py-2 sm:text-sm"
-                  >
-                    Login
-                  </Link>
-                )}
-              </div>
-            </div>
-
-            {/* Row 2: primary nav. This used to share row 1 with the logo
-                lockup on one line -- once every dropdown label was
-                accounted for, the combined width ran past the viewport
-                ("nav bar out of visible range"). Splitting it onto its own
-                row, and letting it wrap (`flex-wrap` instead of the old
-                `whitespace-nowrap`/`shrink-0`) rather than forcing a single
-                line, keeps it on screen at every width it's shown at.
-                Still hidden below `lg`, unchanged from before: there's no
-                mobile nav/hamburger menu yet, so small screens fall back to
-                just the logo + auth control from row 1. */}
-            <nav
-              className="mt-2.5 hidden flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[13px] font-semibold lg:flex lg:text-sm xl:gap-x-5"
-              aria-label="Primary navigation"
-            >
-              <Link to="/" className={`nav-link ${activeNav === "home" ? "text-primary font-bold" : ""}`}>
-                Home
-              </Link>
-
-              {/* About dropdown */}
-              <div className="nav-dropdown flex items-center gap-0.5 cursor-pointer">
-                <a href="/#about" className={`nav-link ${activeNav === "about" ? "text-primary font-bold" : ""}`}>
-                  About
-                </a>
-                <ChevronDown size={14} className="text-muted-foreground mt-0.5" />
-                <div className="nav-dropdown-menu">
-                  <a href="/#about">About SEWA</a>
-                  <a href="https://dtu.ac.in" target="_blank" rel="noreferrer">About DTU</a>
-                  <a href="/#committee">Our Team</a>
-                </div>
-              </div>
-
-              {/* Events dropdown */}
-              <div className="nav-dropdown flex items-center gap-0.5 cursor-pointer">
-                <Link to="/events" className={`nav-link ${activeNav === "events" ? "text-primary font-bold" : ""}`}>
-                  Events
-                </Link>
-                <ChevronDown size={14} className="text-muted-foreground mt-0.5" />
-                <div className="nav-dropdown-menu">
-                  <Link to="/events">All Events</Link>
-                  <a href="/#steps">Timeline</a>
-                  <a href="/#announcements">Announcements</a>
-                </div>
-              </div>
-
-              {/* Problem Statements dropdown */}
-              <div className="nav-dropdown flex items-center gap-0.5 cursor-pointer">
-                <a href="/#themes" className={`nav-link ${activeNav === "problems" ? "text-primary font-bold" : ""}`}>
-                  Problem Statements
-                </a>
-                <ChevronDown size={14} className="text-muted-foreground mt-0.5" />
-                <div className="nav-dropdown-menu">
-                  <a href="/#themes">All Themes</a>
-                  <a href="/#themes">National Level Priorities</a>
-                  <a href="/#themes">Local Community Challenges</a>
-                </div>
-              </div>
-
-              {/* Guidelines dropdown */}
-              <div className="nav-dropdown flex items-center gap-0.5 cursor-pointer">
-                <a href="/#benefits" className={`nav-link ${activeNav === "guidelines" ? "text-primary font-bold" : ""}`}>
-                  Guidelines
-                </a>
-                <ChevronDown size={14} className="text-muted-foreground mt-0.5" />
-                <div className="nav-dropdown-menu">
-                  <a href="/#benefits">Benefits</a>
-                  <a href="/#steps">Eligibility</a>
-                  <a href="/#steps">Submission Rules</a>
-                </div>
-              </div>
-
-              <Link to="/resources" className={`nav-link ${activeNav === "resources" ? "text-primary font-bold" : ""}`}>
-                Additional Resources
-              </Link>
-              <Link to="/faq" className={`nav-link ${activeNav === "faq" ? "text-primary font-bold" : ""}`}>FAQ</Link>
-              <Link to="/contact" className={`nav-link ${activeNav === "contact" ? "text-primary font-bold" : ""}`}>Contact Us</Link>
-            </nav>
-          </div>
-        </header>
-        <div className="live-updates-bar flex h-10 overflow-hidden bg-muted text-xs">
-          <div className="live-updates-label flex shrink-0 items-center bg-primary px-6 font-bold text-primary-foreground">
-            Live Updates
-          </div>
-          <div className="live-updates-ticker-wrap min-w-0 flex-1 overflow-hidden">
-            <div className="ticker flex h-full items-center whitespace-nowrap font-medium">
-              <span>
-                SEWA 2026 / SEWA Youth Innovation Challenge officially launched at Delhi Technological University on 19 September 2026.
-              </span>
-              <span aria-hidden="true">
-                SEWA 2026 / SEWA Youth Innovation Challenge officially launched at Delhi Technological University on 19 September 2026.
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>{/* end sticky wrapper */}
+      {/* Spotlight Command Search Modal */}
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
@@ -288,7 +382,7 @@ export function SubscribeSection() {
       <div className="site-shell">
         <div className="rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-[0_16px_45px_rgba(0,0,0,0.07)] px-6 py-6 sm:px-10 sm:py-7 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <h3 className="text-2xl sm:text-[28px] font-bold text-gray-900 tracking-tight">
+            <h3 className="text-2xl sm:text-[28px] font-bold text-gray-900 tracking-tight uppercase">
               Subscribe For Updates
             </h3>
             <p className="mt-1 text-xs sm:text-sm text-gray-500 font-medium">
@@ -389,9 +483,9 @@ export function Footer() {
           <h3 className="mb-4 text-base font-bold text-gray-900 tracking-tight">Navigation</h3>
 
           <div className="space-y-2.5 text-sm text-gray-800 font-medium footer-options">
-            <a className="block hover:text-primary transition-colors" href="/#about">
+            <Link className="block hover:text-primary transition-colors" to="/about">
               About Challenge
-            </a>
+            </Link>
             <a className="block hover:text-primary transition-colors" href="/#steps">
               5 National Themes
             </a>
@@ -412,21 +506,43 @@ export function Footer() {
 
         {/* Column 3: DTU Delhi Interactive Map Card */}
         <div className="md:col-span-4 flex justify-start md:justify-end">
-          <div className="relative w-full max-w-[280px] h-[190px] rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-slate-100">
-            {/* DTU Delhi pin label matching screenshot */}
-            <div className="absolute top-3 left-3 z-10 pointer-events-none text-left">
-              <div className="text-xs font-bold text-gray-900 leading-none flex items-center gap-1">
+          <div className="relative w-full max-w-[340px] sm:max-w-[360px] h-[225px] sm:h-[235px] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#ff4d4f] shadow-md hover:shadow-xl hover:shadow-red-500/10 bg-slate-100 group transition-all duration-300">
+            {/* DTU Delhi location hyperlink directly over map (no background card) */}
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Delhi+Technological+University"
+              target="_blank"
+              rel="noreferrer"
+              className="absolute top-3 left-3 z-10 text-left group/dtu hover:opacity-85 transition-opacity"
+              title="Open DTU location in Google Maps"
+            >
+              <div className="text-xs font-bold text-gray-900 leading-none flex items-center gap-1 drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)]">
                 DTU
                 <svg width="10" height="13" viewBox="0 0 24 32" fill="none" className="inline-block text-[#ff4d4f]">
-                  <path d="M12 0C5.37258 0 0 5.37258 0 12C0 19.5 12 32 12 32C12 32 24 19.5 24 12C24 5.37258 18.6274 0 12 0Z" fill="currentColor"/>
+                  <path d="M12 0C5.37258 0 0 5.37258 0 12C0 19.5 12 32 12 32C12 32 24 19.5 24 12C24 5.37258 18.6274 0 12 0Z" fill="currentColor" />
                 </svg>
               </div>
-              <div className="text-[11px] font-bold text-gray-900 leading-tight">Delhi</div>
-            </div>
+              <div className="text-[11px] font-bold text-gray-900 leading-tight drop-shadow-[0_1px_3px_rgba(255,255,255,0.95)]">
+                Delhi
+              </div>
+            </a>
 
-              <iframe
-                title="DTU Delhi Map"
-                srcDoc={`<!DOCTYPE html>
+            {/* Single Directions Button */}
+            <a
+              href="https://www.google.com/maps/dir//Delhi+Technological+University,+Bawana+Rd,+Shahbad+Daulatpur,+Village+Badli,+Rohini,+Delhi,+110042"
+              target="_blank"
+              rel="noreferrer"
+              className="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-1.5 bg-[#ff4d4f] hover:bg-[#e03b40] text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-md hover:shadow-lg transition-all cursor-pointer group"
+              title="Get Directions on Google Maps"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-12 transition-transform">
+                <polygon points="3 11 22 2 13 21 11 13 3 11" />
+              </svg>
+              <span>Directions</span>
+            </a>
+
+            <iframe
+              title="DTU Delhi Map"
+              srcDoc={`<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -437,9 +553,8 @@ export function Footer() {
     * { box-sizing: border-box; }
     html, body, #map { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #f8fafc; }
     .leaflet-control-attribution { display: none !important; }
-    .leaflet-bar { border-radius: 8px !important; overflow: hidden; border: 1px solid rgba(0,0,0,0.12) !important; box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important; }
-    .leaflet-bar a { width: 28px !important; height: 28px !important; line-height: 28px !important; color: #374151 !important; }
-    .custom-red-pin { filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35)); }
+    .leaflet-control-zoom { display: none !important; }
+    .custom-red-pin { filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35)); cursor: pointer; }
   </style>
 </head>
 <body>
@@ -448,28 +563,27 @@ export function Footer() {
     const map = L.map('map', {
       center: [28.7501, 77.1177],
       zoom: 15,
-      zoomControl: true,
+      zoomControl: false,
       scrollWheelZoom: true
     });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
 
     const redIcon = L.divIcon({
       className: 'custom-red-pin',
-      html: '<svg width="30" height="40" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37258 0 0 5.37258 0 12C0 19.5 12 32 12 32C12 32 24 19.5 24 12C24 5.37258 18.6274 0 12 0Z" fill="#ff4d4f"/><circle cx="12" cy="11.5" r="4.5" fill="white"/></svg>',
-      iconSize: [30, 40],
-      iconAnchor: [15, 40],
-      popupAnchor: [0, -38]
+      html: '<a href="https://www.google.com/maps/dir//Delhi+Technological+University,+Bawana+Rd,+Shahbad+Daulatpur,+Village+Badli,+Rohini,+Delhi,+110042" target="_blank"><svg width="32" height="42" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37258 0 0 5.37258 0 12C0 19.5 12 32 12 32C12 32 24 19.5 24 12C24 5.37258 18.6274 0 12 0Z" fill="#ff4d4f"/><circle cx="12" cy="11.5" r="4.5" fill="white"/></svg></a>',
+      iconSize: [32, 42],
+      iconAnchor: [16, 42]
     });
 
     L.marker([28.7501, 77.1177], { icon: redIcon }).addTo(map);
   </script>
 </body>
 </html>`}
-                className="w-full h-full border-0"
-                loading="lazy"
-              />
-            </div>
+              className="w-full h-full border-0"
+              loading="lazy"
+            />
           </div>
+        </div>
 
         {/* Bottom copyright line without top border */}
         <p className="mt-14 sm:mt-20 text-center text-xs text-gray-700 font-medium md:col-span-12">
@@ -1368,12 +1482,12 @@ export function HomePage() {
                 />
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-extrabold leading-tight text-white drop-shadow-lg whitespace-nowrap">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-extrabold leading-tight text-white drop-shadow-lg whitespace-nowrap uppercase tracking-tight">
                 Rashtriya Youth Innovation Challenge 2026
               </h1>
 
-              <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-bold text-white/90 tracking-wide">
-                Observe. Ideate. Innovate. Impact
+              <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-bold text-white/90 tracking-wider uppercase">
+                Observe. Ideate. Innovate. Impact.
               </p>
 
               <p className="mt-5 max-w-2xl text-base sm:text-lg leading-7 font-semibold text-white/85">
@@ -1394,13 +1508,13 @@ export function HomePage() {
         </section>
         <section id="about" className="pt-36 sm:pt-[200px] pb-0">
           <div className="site-shell grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-16 items-start">
-            {/* Heading - unchanged */}
-            <h2 className="text-4xl font-extrabold leading-[1.15]">
+            {/* Heading */}
+            <h2 className="text-4xl font-extrabold leading-[1.15] uppercase tracking-tight">
               What
               <br />
               <span className="text-primary">is SEWA FIRST</span>
               <br />
-              <span className="text-xl font-bold text-muted-foreground leading-snug block mt-1">Rashtriya Youth Innovation Challenge 2026?</span>
+              <span className="text-xl font-bold text-muted-foreground leading-snug block mt-1 uppercase">Rashtriya Youth Innovation Challenge 2026?</span>
             </h2>
 
             {/* Description spans remaining 3 columns */}
@@ -1440,11 +1554,11 @@ export function HomePage() {
             </p>
 
             <div className="space-y-7 sm:space-y-8 text-sm sm:text-base md:text-[16px] leading-relaxed sm:leading-[1.75] text-black">
-              <p>
+              <p id="national-themes" className="scroll-mt-28">
                 <strong className="font-bold text-black">National Level</strong> Innovations addressing critical national priorities in Defence, Space &amp; National Security, Disaster Management, AI, Robotics, Manufacturing, Energy, Environment, Infrastructure and Future Mobility
               </p>
 
-              <p>
+              <p id="community-themes" className="scroll-mt-28">
                 <strong className="font-bold text-black">Local Community</strong> Level Innovations addressing grassroots challenges in Agriculture &amp; Rural Development, Education, Healthcare, Urban Problems, Environment, Sports, Employment &amp; Livelihood, Women &amp; Child Safety, Disaster Management, Transport, Energy and Tourism. The themes encourage youth to develop innovative, affordable, sustainable, scalable and implementable solutions that transform real-world problems into meaningful impact.
               </p>
             </div>
@@ -1452,7 +1566,7 @@ export function HomePage() {
         </section>
 
         {/* ── Timeline of 100 Day Journey ── */}
-        <section id="timeline" className="py-12 sm:py-20">
+        <section id="timeline" className="py-12 sm:py-20 scroll-mt-20">
           <div className="site-shell">
             <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-black tracking-[0.15em] uppercase text-gray-900 mb-8 sm:mb-12">
               Timeline of 100 Day Journey
@@ -1646,8 +1760,8 @@ export function HomePage() {
         {/* ── Organizing Committee ── */}
         <section id="committee" className="py-20 sm:py-28 scroll-mt-20">
           <div className="site-shell">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-950 tracking-tight text-center mb-14 sm:mb-20">
-              Organizing Comittee
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-950 tracking-tight text-center mb-14 sm:mb-20 uppercase">
+              Organizing Committee
             </h2>
 
             {/* 4 columns x 3 rows grid of 12 circular members */}
@@ -2590,7 +2704,7 @@ export function EventsPage() {
               <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#ff3b30] uppercase">
                 NATIONAL LAUNCH EVENT
               </span>
-              <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14]">
+              <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14] uppercase">
                 Kickstarting SEWA 2026<br />At Delhi Technological<br />University
               </h2>
               <p className="mt-5 text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
@@ -2619,7 +2733,7 @@ export function EventsPage() {
                 <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#ff3b30] uppercase">
                   COMPETITION ROADMAP
                 </span>
-                <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14]">
+                <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14] uppercase">
                   The 100-Day<br />Innovation Journey
                 </h2>
                 <p className="mt-5 text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
@@ -3166,39 +3280,6 @@ export function ContactPage() {
                         className="w-full p-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all resize-y"
                       />
                     </div>
-
-                    {/* Supporting Document / Screenshot */}
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-800 mb-1">
-                        Supporting Document / Screenshot <span className="font-normal text-gray-400">(PDF, PNG, JPG up to 10MB)</span>
-                      </label>
-                      <label className="border border-dashed border-gray-300 rounded-xl py-6 px-4 flex flex-col items-center justify-center text-center cursor-pointer hover:border-red-400 hover:bg-gray-50/50 transition-all bg-[#fafbfc]">
-                        <input
-                          type="file"
-                          className="hidden"
-                          accept=".pdf,.png,.jpg,.jpeg"
-                          onChange={(e) => {
-                            if (e.target.files?.[0]) {
-                              setFileName(e.target.files[0].name);
-                            }
-                          }}
-                        />
-                        <UploadCloud size={24} className="text-gray-400 mb-1" strokeWidth={1.8} />
-                        <span className="text-[11px] sm:text-xs text-gray-500 font-normal">
-                          {fileName ? fileName : "Click to select files or drag & drop here"}
-                        </span>
-                      </label>
-                      {/* Attachment upload isn't wired to the backend yet (the API
-                          takes a small JSON body only, no multipart handling) - say
-                          so rather than silently dropping whatever the user picked. */}
-                      {fileName && (
-                        <p className="mt-1.5 text-[11px] text-amber-600">
-                          Attachments aren't sent yet - please describe the issue in the
-                          message field, or email it to sewa2026@dtu.ac.in.
-                        </p>
-                      )}
-                    </div>
-
                     {error && (
                       <p role="alert" className="text-xs font-semibold text-[#ff4d4f]">
                         {error}
@@ -3380,7 +3461,7 @@ export function FaqPage() {
         <Header activeNav="faq" />
         <main className="pt-10 sm:pt-14 pb-20 sm:pb-24">
           <div className="site-shell max-w-[760px]">
-            <h1 className="text-3xl sm:text-4xl md:text-[40px] font-black text-center text-[#0e1726] tracking-tight mb-2.5">
+            <h1 className="text-3xl sm:text-4xl md:text-[40px] font-black text-center text-[#0e1726] tracking-tight mb-2.5 uppercase">
               Frequently Asked Questions
             </h1>
             <p className="text-center text-sm sm:text-[15px] md:text-base text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12 font-normal leading-relaxed">
@@ -3403,9 +3484,8 @@ export function FaqPage() {
                       <ChevronDown
                         size={18}
                         strokeWidth={2}
-                        className={`text-slate-400 shrink-0 transition-transform duration-200 ${
-                          isOpen ? "rotate-180 text-primary" : ""
-                        }`}
+                        className={`text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-primary" : ""
+                          }`}
                       />
                     </div>
 
@@ -3418,6 +3498,154 @@ export function FaqPage() {
                 );
               })}
             </div>
+          </div>
+        </main>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
+
+export function AboutPage() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white flex flex-col justify-between">
+      <div>
+        <Header activeNav="about" />
+        <main className="pt-10 sm:pt-14 pb-20 sm:pb-28">
+          <div className="site-shell max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
+            {/* 1. VISION */}
+            <section aria-labelledby="vision-heading">
+              <h1
+                id="vision-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                VISION
+              </h1>
+              <p className="text-base sm:text-lg md:text-[20px] leading-relaxed sm:leading-[1.75] text-gray-900 font-medium">
+                Create a national culture in which young Indians transform real-world problems into practical innovations contributing to Viksit Bharat.
+              </p>
+            </section>
+
+            {/* 2. MISSION */}
+            <section aria-labelledby="mission-heading">
+              <h2
+                id="mission-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                MISSION
+              </h2>
+              <p className="text-base sm:text-lg md:text-[20px] leading-relaxed sm:leading-[1.75] text-gray-900 font-medium">
+                Provide a structured 100-day pathway from problem identification to concept, design, prototype, validation, deployment and impact.
+              </p>
+            </section>
+
+            {/* 3. PHILOSOPHY */}
+            <section aria-labelledby="philosophy-heading">
+              <h2
+                id="philosophy-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                PHILOSOPHY
+              </h2>
+              <div className="space-y-6 sm:space-y-7 text-base sm:text-lg md:text-[19px] leading-relaxed sm:leading-[1.75]">
+                <p className="font-semibold text-gray-900">
+                  &ldquo;The Challenge begins not with an idea, but with a problem observed by a young Indian in his or her own surroundings; and it does not end with an award, but with a solution that can reach the beneficiary.&rdquo;
+                </p>
+                <p className="text-gray-800 font-normal">
+                  The philosophy of SEWA FIRST – Rashtriya Youth Innovation Challenge 2026 is rooted in the belief that innovation should begin with service and end with impact. It encourages young Indians to observe real problems around them, understand the needs of people and communities, and transform these challenges into practical, affordable, sustainable and implementable solutions.
+                </p>
+              </div>
+              <div className="mt-8 sm:mt-12 flex justify-center">
+                <img
+                  src={philosophySvg}
+                  alt="Philosophy 8-Step Pathway: Observe, Identify, Understand, Innovate, Create, Demonstrate, Implement, Benefit"
+                  className="w-full max-w-4xl h-auto object-contain select-none"
+                />
+              </div>
+            </section>
+
+            {/* 4. AIM */}
+            <section aria-labelledby="aim-heading">
+              <h2
+                id="aim-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                AIM
+              </h2>
+              <div className="space-y-6 sm:space-y-7 text-base sm:text-lg md:text-[19px] leading-relaxed sm:leading-[1.75]">
+                <p className="text-gray-800 font-normal">
+                  To encourage the youth of India to observe and identify real problems in their own surroundings in their villages, towns, cities, districts and communities and to transform these problems into opportunities for innovation by developing sustainable, affordable and implementable solutions, culminating in the creation and demonstration of working prototypes.
+                </p>
+                <p className="font-semibold text-gray-900">
+                  &ldquo;The Challenge begins not with an idea, but with a problem observed by a young Indian in his or her own surroundings; and it does not end with an award, but with a solution that can reach the beneficiary.&rdquo;
+                </p>
+              </div>
+            </section>
+
+            {/* 5. OBJECTIVES */}
+            <section aria-labelledby="objectives-heading">
+              <h2
+                id="objectives-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                OBJECTIVES
+              </h2>
+              <div className="mt-6 sm:mt-10 flex justify-center">
+                <img
+                  src={objectiveSvg}
+                  alt="10 Core Objectives of SEWA FIRST RYIC 2026"
+                  className="w-full max-w-4xl h-auto object-contain select-none"
+                />
+              </div>
+            </section>
+
+            {/* 6. UNIQUE FEATURES */}
+            <section aria-labelledby="unique-features-heading">
+              <h2
+                id="unique-features-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                UNIQUE FEATURES
+              </h2>
+              <div className="space-y-5 sm:space-y-6 text-base sm:text-lg md:text-[18.5px] leading-relaxed sm:leading-[1.75] text-gray-800 font-normal">
+                <p>
+                  The Challenge focuses on converting real, locally identified problems into sustainable, affordable and implementable solutions, rather than merely generating ideas or concepts.
+                </p>
+                <p>
+                  Its unique feature is the emphasis on taking an innovation from the problem stage to real-world impact. Participants are expected to understand the identified problem, develop an appropriate solution, build a working prototype and validate it in a relevant environment.
+                </p>
+                <p>
+                  The Challenge further emphasizes affordability, sustainability, field validation, user feedback and scalability, ensuring that successful innovations are not limited to prototypes but have a clear pathway towards adoption, replication and deployment for the intended beneficiaries.
+                </p>
+              </div>
+              <div className="mt-10 sm:mt-14 flex flex-col items-center">
+                <img
+                  src={uniqueFeaturesSvg}
+                  alt="Unique Features - Complete Innovation Pathway"
+                  className="w-full max-w-3xl h-auto object-contain select-none"
+                />
+                <p className="text-center text-gray-800 font-medium text-base sm:text-lg mt-6">
+                  Every solution must demonstrate a complete pathway
+                </p>
+              </div>
+            </section>
+
+            {/* 7. PURPOSE & BENEFITS */}
+            <section aria-labelledby="purpose-benefits-heading" className="min-h-[200px] sm:min-h-[280px]">
+              <h2
+                id="purpose-benefits-heading"
+                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+              >
+                PURPOSE &amp; BENEFITS
+              </h2>
+              {/* Space reserved for content */}
+              <div className="py-8 sm:py-14" />
+            </section>
           </div>
         </main>
       </div>
