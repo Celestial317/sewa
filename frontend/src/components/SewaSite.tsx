@@ -16,22 +16,18 @@ import {
   FileEdit,
   FileText,
   Instagram,
-  Lightbulb,
   Mail,
   Map,
   MapPin,
   Phone,
   Play,
-  Rocket,
   Search,
   Send,
   ShieldCheck,
-  Trophy,
   Twitter,
   UploadCloud,
   User,
   Server,
-  Wrench,
   X,
 } from "lucide-react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
@@ -44,7 +40,6 @@ import campus4Image from "../assets/campus4.jpeg";
 import studentsImage from "../assets/sewa-students.jpg";
 import dtuLogo from "../assets/dtu_logo.png";
 import footerImage from "../assets/footer.jpeg";
-import dtuModel from "../assets/dtu-model.png";
 import satymevjayteLogo from "../assets/satymevjayte.svg";
 import govtofnctLogo from "../assets/govtofnctdelhi.svg";
 import sewaLogo from "../assets/sewalogo.svg";
@@ -1583,9 +1578,9 @@ export function HomePage() {
               scaled to fit this box, so a narrower frame both shrinks the
               diagram and widens the page margins. */}
           <div className="mx-auto w-[min(100%-6rem,1180px)]">
-            <h2 className="t-main-heading">
+            <h2 className="t-main-heading text-center">
               <span className="uppercase">Timeline</span>
-              <span className="t-subheading-2 block text-black">OF 100 DAY SEWA FIRST RYIC 2026 JOURNEY</span>
+              <span className="t-subheading-2 block text-center text-black">of 100 Day Journey</span>
             </h2>
             <TimelineRoadmap />
           </div>
@@ -2355,305 +2350,135 @@ function Field({
   );
 }
 
-const stagesData = [
-  {
-    number: "01",
-    name: "IDEATE",
-    badge: "Days 1–15 • 19 Sep – 1 Oct 2026",
-    description: "Launch of 50 National Problem Statements, online orientation, team registrations, and idea submissions.",
-    icon: Lightbulb,
-    color: "#ff6000",
-    gradient: "from-[#ff5e00] to-[#ff7800]",
-    shadow: "shadow-[0_16px_36px_rgba(255,94,0,0.35)]",
-    textColor: "text-[#ff6000]",
-    side: "left" as const,
-  },
-  {
-    number: "02",
-    name: "SCREEN",
-    badge: "Days 16–30 • 2 – 16 Oct 2026",
-    description: "Preliminary eligibility scrutiny, regional screening, and announcement of shortlisted teams on 2 October.",
-    icon: Search,
-    color: "#f59e0b",
-    gradient: "from-[#f59e0b] to-[#fbbf24]",
-    shadow: "shadow-[0_16px_36px_rgba(245,158,11,0.35)]",
-    textColor: "text-[#f59e0b]",
-    side: "right" as const,
-  },
-  {
-    number: "03",
-    name: "BUILD",
-    badge: "Days 31–60 • 17 Oct – 15 Nov 2026",
-    description: "Expert bootcamps, laboratory/maker-space access, design reviews, and working prototype fabrication.",
-    icon: Wrench,
-    color: "#00a86b",
-    gradient: "from-[#00a86b] to-[#10b981]",
-    shadow: "shadow-[0_16px_36px_rgba(0,168,107,0.35)]",
-    textColor: "text-[#00a86b]",
-    side: "left" as const,
-  },
-  {
-    number: "04",
-    name: "VALIDATE",
-    badge: "Days 61–80 • 16 Nov – 5 Dec 2026",
-    description: "Technical benchmarking, safety/reliability testing, and performance validation.",
-    icon: ShieldCheck,
-    color: "#00b4d8",
-    gradient: "from-[#00b4d8] to-[#0096c7]",
-    shadow: "shadow-[0_16px_36px_rgba(0,180,216,0.35)]",
-    textColor: "text-[#00b4d8]",
-    side: "right" as const,
-  },
-  {
-    number: "05",
-    name: "TEST",
-    badge: "Days 81–95 • 6 – 20 Dec 2026",
-    description: "Field demonstrations in real environments, usability testing, and cost/sustainability reviews.",
-    icon: Rocket,
-    color: "#1d4ed8",
-    gradient: "from-[#1d4ed8] to-[#2563eb]",
-    shadow: "shadow-[0_16px_36px_rgba(29,78,216,0.35)]",
-    textColor: "text-[#1d4ed8]",
-    side: "left" as const,
-  },
-  {
-    number: "06",
-    name: "SELECT",
-    badge: "Days 96–100 • 21 – 25 Dec 2026",
-    description: "Final report submissions and Regional Jury evaluations to nominate finalists for Delhi.",
-    icon: Trophy,
-    color: "#7c3aed",
-    gradient: "from-[#7c3aed] to-[#6d28d9]",
-    shadow: "shadow-[0_16px_36px_rgba(124,58,237,0.35)]",
-    textColor: "text-[#7c3aed]",
-    side: "right" as const,
-  },
+type EventStage = {
+  number: string;
+  name: string;
+  period: string;
+  days: string;
+  activity: string;
+  badgeBg: string;
+  badgeText: string;
+};
+
+/** Same 6-colour cycle used for the TRL badges on the Resources page. */
+const STAGE_BADGE_STYLES = [
+  { bg: "bg-[#eaf3fd]", text: "text-[#2e6fbf]" },
+  { bg: "bg-[#eafaf1]", text: "text-[#1f9e63]" },
+  { bg: "bg-[#fff6e0]", text: "text-[#c8930b]" },
+  { bg: "bg-[#ffe9de]", text: "text-[#d6602c]" },
+  { bg: "bg-[#ffe6e8]", text: "text-[#e0435a]" },
+  { bg: "bg-[#f0eefb]", text: "text-[#6f5fc9]" },
 ];
 
-export function StageTimeline() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [pathData, setPathData] = useState("");
+const eventStages: EventStage[] = [
+  {
+    number: "1",
+    name: "Stage-I (Ideate)",
+    period: "19 Sep – 1 Oct 2026",
+    days: "Day 1–15",
+    activity:
+      "Launch of 5 National Level Problem Statements and 10 areas of challenge for local level innovations for registration; awareness campaign; idea submission; local problem identification; online orientation sessions.",
+  },
+  {
+    number: "2",
+    name: "Stage-II (Screening)",
+    period: "2 Oct – 16 Oct 2026",
+    days: "Day 16–30",
+    activity:
+      "Announcement of Jury (02 Oct 26). Preliminary scrutiny; eligibility check; technical and innovation assessment; shortlisting of promising ideas; announcement of selected teams.",
+  },
+  {
+    number: "3",
+    name: "Stage-III (Build)",
+    period: "17 Oct – 15 Nov 2026",
+    days: "Day 31–60",
+    activity:
+      "Online mentoring; expert consultations; design development; engineering analysis; workshops/boot camps; access to laboratories/fabrication facilities; prototype development; interim design review.",
+  },
+  {
+    number: "4",
+    name: "Stage-IV (Validate)",
+    period: "16 Nov – 5 Dec 2026",
+    days: "Day 61–80",
+    activity:
+      "Prototype testing; technical evaluation; performance measurement; safety/reliability assessment; refinement of prototypes; validation against defined challenge parameters.",
+  },
+  {
+    number: "5",
+    name: "Stage-V (Test)",
+    period: "6 Dec – 20 Dec 2026",
+    days: "Day 81–95",
+    activity:
+      "Field trials; demonstrations in actual/relevant environments; user feedback; assessment of usability, cost, sustainability and scalability; final prototype refinement.",
+  },
+  {
+    number: "6",
+    name: "Stage-VI (Evaluation cum Winner Selection)",
+    period: "21 Dec – 25 Dec 2026",
+    days: "Day 95–100",
+    activity:
+      "Submission of final reports; final prototype demonstration; National Jury evaluation; selection of finalists/winners; preparation for Grand Finale.",
+  },
+  {
+    number: "7",
+    name: "Stage-VII Grand Finale",
+    period: "To be announced",
+    days: "",
+    activity:
+      "National Innovation Exhibition; finalist demonstrations; presentations before National Jury; interaction with industry/government; awards; recognition of outstanding innovations; identification of solutions for adoption/deployment.",
+  },
+].map((stage, i) => ({
+  ...stage,
+  badgeBg: STAGE_BADGE_STYLES[i % STAGE_BADGE_STYLES.length]!.bg,
+  badgeText: STAGE_BADGE_STYLES[i % STAGE_BADGE_STYLES.length]!.text,
+}));
 
-  useEffect(() => {
-    const computePath = () => {
-      if (!containerRef.current) return;
-      const cRect = containerRef.current.getBoundingClientRect();
-      const playEl = containerRef.current.querySelector<HTMLElement>("[data-play-node]");
-      const nodeEls = Array.from(containerRef.current.querySelectorAll<HTMLElement>("[data-node-idx]"));
-      const endEl = containerRef.current.querySelector<HTMLElement>("[data-end-node]");
-
-      if (!playEl || nodeEls.length !== 6 || !endEl) return;
-
-      const getPoint = (el: HTMLElement) => {
-        const r = el.getBoundingClientRect();
-        return {
-          x: r.left + r.width / 2 - cRect.left,
-          y: r.top + r.height / 2 - cRect.top,
-        };
-      };
-
-      const play = getPoint(playEl);
-      const nodes = nodeEls.map(getPoint);
-      const end = getPoint(endEl);
-
-      const firstNode = nodes[0];
-      const lastNode = nodes[nodes.length - 1];
-      if (!firstNode || !lastNode) return;
-
-      // Build smooth wide curvy S-path
-      let d = `M ${play.x} ${play.y} `;
-
-      // 1. Play button into Node 1
-      const dy0 = firstNode.y - play.y;
-      d += `C ${play.x + 25} ${play.y + dy0 * 0.4}, ${firstNode.x - 10} ${firstNode.y - dy0 * 0.4}, ${firstNode.x} ${firstNode.y} `;
-
-      // 2. Wide curvy wave between nodes
-      for (let i = 0; i < nodes.length - 1; i++) {
-        const p1 = nodes[i];
-        const p2 = nodes[i + 1];
-        if (!p1 || !p2) continue;
-        const dy = p2.y - p1.y;
-
-        if (i % 2 === 0) {
-          // From Right node (Stage 1, 3, 5) to Left node (Stage 2, 4, 6)
-          const cp1x = p1.x + 45;
-          const cp1y = p1.y + dy * 0.35;
-          const cp2x = p2.x - 45;
-          const cp2y = p2.y - dy * 0.35;
-          d += `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y} `;
-        } else {
-          // From Left node (Stage 2, 4) to Right node (Stage 3, 5)
-          const cp1x = p1.x - 45;
-          const cp1y = p1.y + dy * 0.35;
-          const cp2x = p2.x + 45;
-          const cp2y = p2.y - dy * 0.35;
-          d += `C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y} `;
-        }
-      }
-
-      // 3. Node 6 into End dot
-      const dyEnd = end.y - lastNode.y;
-      d += `C ${lastNode.x - 30} ${lastNode.y + dyEnd * 0.4}, ${end.x - 10} ${end.y - dyEnd * 0.4}, ${end.x} ${end.y}`;
-
-      setPathData(d);
-    };
-
-    computePath();
-    window.addEventListener("resize", computePath);
-    const t1 = setTimeout(computePath, 150);
-    const t2 = setTimeout(computePath, 500);
-    return () => {
-      window.removeEventListener("resize", computePath);
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, []);
-
+/**
+ * Timeline & Stages table. Built on the same shape as the eligibility table
+ * on the Guidelines page (light header bar, rounded rows, numbered circle
+ * badge, t-content throughout) so the two tables read as one system.
+ */
+function StagesTable() {
   return (
-    <div ref={containerRef} className="relative max-w-4xl mx-auto py-8 px-2 sm:px-4">
-      {/* SVG S-curve wavy connector line */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none -z-0 overflow-visible">
-        <path
-          d={
-            pathData ||
-            "M 430 40 C 455 75, 485 100, 490 132 C 535 170, 310 195, 345 231 C 310 265, 535 295, 490 330 C 535 365, 310 395, 345 426 C 310 460, 535 490, 490 526 C 535 560, 310 590, 345 623 C 320 645, 420 655, 430 675"
-          }
-          fill="none"
-          stroke="#94a3b8"
-          strokeWidth="2.5"
-          strokeDasharray="6 6"
-          strokeLinecap="round"
-        />
-      </svg>
+    <div className="mt-10 sm:mt-12 w-full max-w-[1180px] mx-auto flex flex-col gap-[14px]">
+      <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="min-w-[1160px] md:min-w-0 flex flex-col gap-[14px]">
+          {/* Column headers */}
+          <div className="w-full min-h-[58px] bg-[#EBF1F8] rounded-[16px] grid grid-cols-[80px_220px_380px_1fr] items-center py-2">
+            <div className="t-content flex items-center justify-center font-bold! text-[#334155]">#</div>
+            <div className="t-content pl-[24px] font-bold! text-[#1F2D48]">Stage</div>
+            <div className="t-content pl-[24px] font-bold! text-[#1F2D48]">Period</div>
+            <div className="t-content pl-[32px] pr-5 font-bold! text-[#1F2D48]">Activity</div>
+          </div>
 
-      {/* Top Play Button on centerline */}
-      <div className="flex justify-center mb-6">
-        <div
-          data-play-node
-          className="size-10 sm:size-11 rounded-full bg-gradient-to-r from-[#ff5e00] to-[#ff7800] flex items-center justify-center text-white shadow-[0_8px_22px_rgba(255,94,0,0.4)] hover:scale-110 transition-transform z-10 cursor-pointer"
-        >
-          <Play size={13} fill="currentColor" className="ml-0.5" />
-        </div>
-      </div>
-
-      <div className="space-y-10 sm:space-y-14">
-        {stagesData.map((stage, idx) => {
-          const Icon = stage.icon;
-          const isLeft = stage.side === "left";
-
-          return (
-            <div key={stage.number} className={`relative flex ${isLeft ? "justify-start" : "justify-end"}`}>
-              <div className="w-full max-w-[470px] sm:max-w-[505px]">
-                {/* Stage Label above Card */}
-                <div className={`mb-2 ${isLeft ? "text-left pl-3" : "text-right pr-3"}`}>
-                  <span className="text-[11px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest block">
-                    STAGE
-                  </span>
-                  <span className={`text-4xl sm:text-5xl font-black ${stage.textColor} leading-none`}>
-                    {stage.number}
-                  </span>
+          {/* Rows */}
+          {eventStages.map((stage, i) => (
+            <article
+              key={stage.number}
+              className={`w-full min-h-[96px] ${i % 2 === 0 ? "bg-white" : "bg-[#fafbfc]"} rounded-[16px] border border-[#eaecf0] grid grid-cols-[80px_220px_380px_1fr] items-center py-4`}
+            >
+              <div className="flex items-center justify-center">
+                <div
+                  className={`t-content inline-flex size-[40px] items-center justify-center rounded-full font-bold! ${stage.badgeBg} ${stage.badgeText}`}
+                >
+                  {stage.number}
                 </div>
-
-                {isLeft ? (
-                  /* Left Card: Card Content + White Circle + Triangle Arrow + Target Node */
-                  <div className="flex items-center">
-                    <div
-                      className={`relative flex-1 rounded-full bg-gradient-to-r ${stage.gradient} py-3 sm:py-3.5 pl-6 sm:pl-8 pr-2.5 ${stage.shadow} text-white flex items-center justify-between gap-3 sm:gap-4 transition-all hover:scale-[1.01]`}
-                    >
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-base sm:text-lg font-extrabold tracking-wide uppercase">
-                            {stage.name}
-                          </span>
-                          <span className="text-[10px] sm:text-[11px] font-semibold bg-white/25 backdrop-blur-xs px-2.5 py-0.5 rounded-full whitespace-nowrap text-white">
-                            {stage.badge}
-                          </span>
-                        </div>
-                        <p className="mt-1 text-xs sm:text-[13px] text-white/95 leading-relaxed font-normal">
-                          {stage.description}
-                        </p>
-                      </div>
-
-                      {/* White circular badge on right */}
-                      <div className="size-12 sm:size-14 rounded-full bg-white text-gray-900 shadow-md flex items-center justify-center shrink-0 mr-0.5">
-                        <Icon size={22} strokeWidth={2.2} />
-                      </div>
-                    </div>
-
-                    {/* Speech-bubble arrow pointer pointing RIGHT */}
-                    <div
-                      className="w-0 h-0 border-y-[9px] border-y-transparent shrink-0 -mr-0.5"
-                      style={{
-                        borderLeftWidth: "12px",
-                        borderLeftStyle: "solid",
-                        borderLeftColor: stage.color,
-                      }}
-                    />
-
-                    {/* Bullseye target node */}
-                    <div
-                      data-node-idx={idx}
-                      className="size-6 sm:size-7 rounded-full border-[2.5px] bg-white flex items-center justify-center shrink-0 shadow-xs z-10 ml-2"
-                      style={{ borderColor: stage.color }}
-                    >
-                      <div className="size-2 sm:size-2.5 rounded-full" style={{ backgroundColor: stage.color }} />
-                    </div>
-                  </div>
-                ) : (
-                  /* Right Card: Target Node + Triangle Arrow + White Circle + Card Content */
-                  <div className="flex items-center">
-                    {/* Bullseye target node */}
-                    <div
-                      data-node-idx={idx}
-                      className="size-6 sm:size-7 rounded-full border-[2.5px] bg-white flex items-center justify-center shrink-0 shadow-xs z-10 mr-2"
-                      style={{ borderColor: stage.color }}
-                    >
-                      <div className="size-2 sm:size-2.5 rounded-full" style={{ backgroundColor: stage.color }} />
-                    </div>
-
-                    {/* Speech-bubble arrow pointer pointing LEFT */}
-                    <div
-                      className="w-0 h-0 border-y-[9px] border-y-transparent shrink-0 -ml-0.5"
-                      style={{
-                        borderRightWidth: "12px",
-                        borderRightStyle: "solid",
-                        borderRightColor: stage.color,
-                      }}
-                    />
-
-                    <div
-                      className={`relative flex-1 rounded-full bg-gradient-to-r ${stage.gradient} py-3 sm:py-3.5 pr-6 sm:pr-8 pl-2.5 ${stage.shadow} text-white flex items-center gap-3 sm:gap-4 transition-all hover:scale-[1.01]`}
-                    >
-                      {/* White circular badge on left */}
-                      <div className="size-12 sm:size-14 rounded-full bg-white text-gray-900 shadow-md flex items-center justify-center shrink-0 ml-0.5">
-                        <Icon size={22} strokeWidth={2.2} />
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-base sm:text-lg font-extrabold tracking-wide uppercase">
-                            {stage.name}
-                          </span>
-                          <span className="text-[10px] sm:text-[11px] font-semibold bg-white/25 backdrop-blur-xs px-2.5 py-0.5 rounded-full whitespace-nowrap text-white">
-                            {stage.badge}
-                          </span>
-                        </div>
-                        <p className="mt-1 text-xs sm:text-[13px] text-white/95 leading-relaxed font-normal">
-                          {stage.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Ending Purple Dot on centerline */}
-      <div className="flex justify-center mt-8">
-        <div data-end-node className="size-3.5 rounded-full bg-[#7c3aed] shadow-xs z-10" />
+              <div className="pl-[24px] pr-4 h-full flex items-center border-r border-black/[0.04]">
+                <h3 className="t-content font-bold! text-[#112347]">{stage.name}</h3>
+              </div>
+              <div className="pl-[24px] pr-4 h-full flex items-center border-r border-black/[0.04]">
+                <p className="t-content whitespace-nowrap font-bold! text-[#14234B]">
+                  {stage.period}
+                  {stage.days && <span className="ml-1 font-normal! text-gray-500">({stage.days})</span>}
+                </p>
+              </div>
+              <div className="pl-[32px] pr-5 flex items-center">
+                <p className="t-content text-[#475569]">{stage.activity}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -2664,165 +2489,61 @@ export function EventsPage() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header activeNav="events" />
 
-      <main className="flex-1">
-        {/* Hero Section: Discover What's Happening */}
-        <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 border-b border-gray-100">
-          <div className="site-shell grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <div className="lg:col-span-7">
-              <h1 className="t-main-heading">
-                Discover What&apos;s
-                <span className="block text-[#ff3b30] mt-1.5 sm:mt-2">Happening</span>
-              </h1>
-              <p className="t-content mt-5 sm:mt-6 text-gray-600 max-w-lg">
-                Discover the key events of the SEWA Youth Innovation Challenge - from the launch and
-                innovation showcase to mentoring, prototype development, regional demonstrations, and
-                the Grand Finale.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a
-                  href="#launch-event"
-                  className="rounded-full bg-[#ff3b30] hover:bg-[#e03126] active:scale-95 text-white font-bold px-8 py-3.5 text-sm shadow-[0_12px_28px_rgba(255,59,48,0.32)] transition-all"
-                >
-                  Explore Events
-                </a>
-                <a
-                  href="#roadmap"
-                  className="rounded-full bg-white hover:bg-gray-50 active:scale-95 text-gray-800 border border-gray-300 font-semibold px-8 py-3.5 text-sm shadow-2xs transition-all"
-                >
-                  View Timeline
-                </a>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="relative rounded-[28px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-gray-100/60">
-                <img
-                  src={campusImage}
-                  alt="DTU Campus Aerial View"
-                  className="w-full h-[320px] sm:h-[380px] lg:h-[420px] object-cover"
-                  width={800}
-                  height={500}
-                />
-              </div>
-            </div>
-          </div>
+      <main className="t-section-stack flex-1 site-shell max-w-5xl py-12 sm:py-16">
+        {/* National Launch Event */}
+        <section id="launch-event" className="scroll-mt-16 text-center">
+          <h1 className="t-main-heading uppercase">
+            National
+            <br />
+            Launch Event
+          </h1>
+          <p className="t-subheading-2 mt-3 text-center text-gray-700">
+            SEWA FIRST 2026 National Launch Event at Delhi Technological University
+          </p>
+          <p className="t-content mx-auto mt-6 max-w-3xl text-gray-700">
+            Join us on 17 September 2026 for the grand inaugural ceremony and National Innovation
+            Festival at DTU. The launch brings together leadership from ministries, academia, and
+            industry to unveil the national innovation portal, release the 50 flagship problem
+            statements, and kick off the nationwide 100-day innovation journey toward Viksit Bharat.
+          </p>
         </section>
 
-        {/* Section 2: National Launch Event */}
-        <section id="launch-event" className="t-section-band bg-white scroll-mt-16 border-b border-gray-100">
-          <div className="site-shell grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left: Model Photo card on soft backdrop with glow */}
-            <div className="lg:col-span-6 order-2 lg:order-1">
-              <div className="relative max-w-md mx-auto lg:max-w-none flex items-center justify-center">
-                <div className="absolute -top-6 -right-6 w-52 h-52 rounded-full bg-rose-200/50 blur-2xl -z-10" />
-                <div className="w-full max-w-[440px] aspect-[4/3.4] rounded-[36px] bg-[#f8f9fa] border border-gray-100/70 p-5 flex items-center justify-center">
-                  <div className="rounded-[26px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.14)] border border-white w-full h-full">
-                    <img
-                      src={dtuModel}
-                      alt="DTU Amphitheatre Scale Architectural Model"
-                      className="w-full h-full object-cover"
-                      width={566}
-                      height={538}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Text details */}
-            <div className="lg:col-span-6 order-1 lg:order-2">
-              <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#ff3b30] uppercase">
-                NATIONAL LAUNCH EVENT
-              </span>
-              <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14] uppercase">
-                Kickstarting SEWA 2026<br />At Delhi Technological<br />University
-              </h2>
-              <p className="t-content mt-5 text-gray-600">
-                Join us on 19 September 2026 for the grand inaugural ceremony and National Innovation
-                Festival at DTU. The launch brings together leadership from ministries, academia, and
-                industry to unveil the national innovation portal, release the 50 flagship problem
-                statements, and kick off the nationwide 100-day innovation journey toward Viksit Bharat.
-              </p>
-              <a
-                href="#roadmap"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#ff3b30] hover:underline"
-              >
-                <span>View Launch Schedule</span>
-                <ArrowRight size={16} />
-              </a>
-            </div>
-          </div>
+        {/* Competition Roadmap */}
+        <section id="roadmap" className="scroll-mt-16 text-center">
+          <h2 className="t-main-heading uppercase">
+            Competition
+            <br />
+            Roadmap
+          </h2>
+          <p className="t-subheading-2 mt-3 text-center text-gray-700">The 100-Day Innovation Journey</p>
+          <p className="t-content mx-auto mt-6 max-w-3xl text-gray-700">
+            Following the national launch, participants embark on a rigorous, milestone-driven
+            pathway from September to December 2026. Moving from initial problem identification
+            through regional mentoring, prototyping, and rigorous field testing, the challenge
+            culminates in proven, deployable solutions ready for national impact.
+          </p>
         </section>
 
-        {/* Section 3: Competition Roadmap */}
-        <section id="roadmap" className="t-section-band bg-white scroll-mt-16">
-          <div className="site-shell">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left Column: Heading & Description */}
-              <div className="lg:col-span-6">
-                <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#ff3b30] uppercase">
-                  COMPETITION ROADMAP
-                </span>
-                <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14] uppercase">
-                  The 100-Day<br />Innovation Journey
-                </h2>
-                <p className="t-content mt-5 text-gray-600">
-                  Following the national launch, participants embark on a rigorous, milestone-driven
-                  pathway from September to December 2026. Moving from initial problem identification
-                  through regional mentoring, prototyping, and rigorous field testing, the challenge
-                  culminates in proven, deployable solutions ready for national impact.
-                </p>
-                <a
-                  href="#stages"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#ff3b30] hover:underline"
-                >
-                  <span>Explore the 6 Stages Below</span>
-                  <ArrowRight size={16} />
-                </a>
-              </div>
+        {/* Timeline & Stages */}
+        <section id="stages" className="scroll-mt-16">
+          <h2 className="t-main-heading text-center uppercase">Timeline &amp; Stages</h2>
+          <p className="t-subheading-2 mt-3 text-center text-gray-700">
+            Key phases, dates and activities for the national challenge.
+          </p>
 
-              {/* Right Column: 3-Image Collage on soft pink card */}
-              <div className="lg:col-span-6">
-                <div className="relative max-w-lg mx-auto lg:max-w-none">
-                  <div className="absolute -top-6 -right-6 w-52 h-52 rounded-full bg-rose-200/50 blur-2xl -z-10" />
-                  <div className="rounded-[36px] bg-[#fdf2f0] p-4 sm:p-5">
-                    <div className="grid grid-cols-12 gap-3.5 sm:gap-4 items-center">
-                      <div className="col-span-6 space-y-3.5 sm:space-y-4">
-                        <div className="rounded-[22px] overflow-hidden shadow-sm border border-white">
-                          <img
-                            src={studentsImage}
-                            alt="Students gathering at DTU amphitheatre"
-                            className="w-full h-36 sm:h-44 object-cover"
-                          />
-                        </div>
-                        <div className="rounded-[22px] overflow-hidden shadow-sm border border-white">
-                          <img
-                            src={dtuModel}
-                            alt="DTU Campus architectural model perspective"
-                            className="w-full h-40 sm:h-48 object-cover"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-span-6">
-                        <div className="rounded-[22px] overflow-hidden shadow-sm border border-white">
-                          <img
-                            src={campus4Image}
-                            alt="DTU Campus academic block sunset"
-                            className="w-full h-[310px] sm:h-[390px] object-cover"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <StagesTable />
+        </section>
 
-            {/* Section 4: 6-Stage Timeline */}
-            <div id="stages" className="mt-20 sm:mt-28 scroll-mt-20">
-              <StageTimeline />
-            </div>
-          </div>
+        {/* Result Announcement */}
+        <section id="results" className="scroll-mt-16 text-center">
+          <h2 className="t-main-heading uppercase">Result Announcement</h2>
+          <p className="t-subheading-2 mt-3 text-gray-700">
+            Results and winner felicitation of all problem statements will be announced on 25th
+            December 2026.
+          </p>
+          <p className="mt-6 text-[#ff3b30]" style={{ fontSize: 34, fontWeight: 800, lineHeight: 1.1 }}>
+            Coming Soon
+          </p>
         </section>
       </main>
 
@@ -2834,7 +2555,6 @@ export function EventsPage() {
     </div>
   );
 }
-
 
 export function ForgotPasswordPage() {
   // "request" collects the email; "reset" collects the code + new password.
