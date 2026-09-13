@@ -1585,7 +1585,7 @@ export function HomePage() {
           <div className="mx-auto w-[min(100%-6rem,1180px)]">
             <h2 className="t-main-heading">
               <span className="uppercase">Timeline</span>
-              <span className="t-subheading-2 block text-black">OF 100 DAY SEWA FIRST RYIC 2026 JOURNEY Journey</span>
+              <span className="t-subheading-2 block text-black">OF 100 DAY SEWA FIRST RYIC 2026 JOURNEY</span>
             </h2>
             <TimelineRoadmap />
           </div>
@@ -3220,10 +3220,19 @@ export function ContactPage() {
                       </div>
                     </div>
 
-                    {/* Full Name & Team ID */}
+                    {/*
+                      Full Name & Team ID. Team ID's label runs two lines
+                      ("(Optional)" on its own line below), Full Name's runs
+                      one — so with plain top-aligned columns the inputs would
+                      sit at different heights. Each column is a flex-col
+                      stretched to the row's full height (grid's default
+                      items-stretch) with mt-auto on the input, so both inputs
+                      pin to the bottom of the row and line up regardless of
+                      how tall either label is.
+                    */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                      <div>
-                        <label className="t-content block font-semibold! text-gray-800 mb-1">
+                      <div className="flex flex-col">
+                        <label className="t-content block font-semibold! text-gray-600 mb-1">
                           Full Name *
                         </label>
                         <input
@@ -3232,20 +3241,23 @@ export function ContactPage() {
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           placeholder="e.g. Aarav Sharma"
-                          className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                          className="t-content mt-auto w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                         />
                       </div>
 
-                      <div>
-                        <label className="t-content block font-semibold! text-gray-800 mb-1">
-                          Team ID / Affiliation ID <span className="t-content font-normal! text-gray-400">(Optional)</span>
+                      <div className="flex flex-col">
+                        <label className="t-content block font-semibold! text-gray-600 mb-1">
+                          Team ID / Affiliation ID
+                          <span className="mt-0.5 block text-[14px] font-normal! normal-case tracking-normal text-gray-400">
+                            (Optional)
+                          </span>
                         </label>
                         <input
                           type="text"
                           value={teamId}
                           onChange={(e) => setTeamId(e.target.value)}
                           placeholder="e.g. 2K23/CO/145"
-                          className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                          className="t-content mt-auto w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                         />
                       </div>
                     </div>
@@ -3253,7 +3265,7 @@ export function ContactPage() {
                     {/* Email & Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                       <div>
-                        <label className="t-content block font-semibold! text-gray-800 mb-1">
+                        <label className="t-content block font-semibold! text-gray-600 mb-1">
                           Registered Email *
                         </label>
                         <input
@@ -3267,7 +3279,7 @@ export function ContactPage() {
                       </div>
 
                       <div>
-                        <label className="t-content block font-semibold! text-gray-800 mb-1">
+                        <label className="t-content block font-semibold! text-gray-600 mb-1">
                           Contact Phone Number *
                         </label>
                         <input
@@ -3283,7 +3295,7 @@ export function ContactPage() {
 
                     {/* Subject / Matter */}
                     <div>
-                      <label className="t-content block font-semibold! text-gray-800 mb-1">
+                      <label className="t-content block font-semibold! text-gray-600 mb-1">
                         Subject / Matter *
                       </label>
                       <input
@@ -3298,7 +3310,7 @@ export function ContactPage() {
 
                     {/* Message / Grievance Description */}
                     <div>
-                      <label className="t-content block font-semibold! text-gray-800 mb-1">
+                      <label className="t-content block font-semibold! text-gray-600 mb-1">
                         Message / Grievance Description *
                       </label>
                       <textarea
