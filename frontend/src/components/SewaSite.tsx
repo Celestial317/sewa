@@ -1766,27 +1766,53 @@ export function HomePage() {
           </section>
         )}
 
-        {/* ── Organizing Committee ── */}
-        <section id="committee" className="t-section-band scroll-mt-20">
-          <div className="site-shell">
-            <h2 className="t-main-heading t-title-gap-wide uppercase">
-              Organizing Committee
-            </h2>
+        {/* ── Organizing Committee + Mentors ── */}
+        <section id="committee" className="t-section-band bg-white scroll-mt-20">
+          <div className="site-shell flex flex-col items-center">
 
-            {/* 4 columns x 3 rows grid of 12 circular members */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 sm:gap-x-12 md:gap-x-16 gap-y-10 sm:gap-y-12 md:gap-y-16 max-w-4xl mx-auto">
-              {Array.from({ length: 12 }).map((_, idx) => (
-                <div key={idx} className="flex flex-col items-center text-center">
-                  <div className="size-20 sm:size-24 md:size-28 rounded-full bg-[#d2d2d2] mb-3 sm:mb-3.5 transition-transform duration-200 hover:scale-105" />
-                  <h3 className="t-subheading-2 text-gray-900">
-                    Name
-                  </h3>
-                  <p className="t-content text-gray-500 mt-1">
-                    Designation
-                  </p>
-                </div>
-              ))}
+            {/* Organizing Committee */}
+            <div className="w-full">
+              {/* Accent line */}
+              <div className="w-8 h-[3px] rounded-full bg-gradient-to-r from-[#E85929] to-[#F1A914] mx-auto mb-6" />
+              <h2 className="t-main-heading t-title-gap-wide uppercase">
+                Organizing Committee
+              </h2>
+
+              {/* 4 × 3 grid — 12 members */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 sm:gap-x-12 md:gap-x-16 gap-y-10 sm:gap-y-12 md:gap-y-16 max-w-4xl mx-auto">
+                {Array.from({ length: 12 }).map((_, idx) => (
+                  <div key={idx} className="flex flex-col items-center text-center group">
+                    <div className="size-20 sm:size-24 md:size-28 rounded-full bg-[#d2d2d2] mb-3 sm:mb-3.5 transition-transform duration-200 group-hover:scale-105 ring-[3px] ring-transparent group-hover:ring-[#E85929]/30" />
+                    <h3 className="t-subheading-2 text-gray-900">Name</h3>
+                    <p className="t-content text-gray-500 mt-0.5">Designation</p>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gray-100 my-16 sm:my-20" />
+
+            {/* Mentors */}
+            <div className="w-full">
+              {/* Accent line */}
+              <div className="w-8 h-[3px] rounded-full bg-gradient-to-r from-[#2368B2] to-[#6C2582] mx-auto mb-6" />
+              <h2 className="t-main-heading t-title-gap-wide uppercase">
+                Mentors
+              </h2>
+
+              {/* 4 × 3 grid — 12 mentors */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 sm:gap-x-12 md:gap-x-16 gap-y-10 sm:gap-y-12 md:gap-y-16 max-w-4xl mx-auto">
+                {Array.from({ length: 12 }).map((_, idx) => (
+                  <div key={idx} className="flex flex-col items-center text-center group">
+                    <div className="size-20 sm:size-24 md:size-28 rounded-full bg-[#d2d2d2] mb-3 sm:mb-3.5 transition-transform duration-200 group-hover:scale-105 ring-[3px] ring-transparent group-hover:ring-[#2368B2]/30" />
+                    <h3 className="t-subheading-2 text-gray-900">Name</h3>
+                    <p className="t-content text-gray-500 mt-0.5">Designation</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </section>
       </main>

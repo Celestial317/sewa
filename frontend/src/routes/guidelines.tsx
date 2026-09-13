@@ -134,13 +134,13 @@ function GuidelinesPage() {
                       </div>
                     </div>
                     <div className="pl-[24px] pr-4 h-full flex items-center border-r border-black/[0.04]">
-                      <h3 className="font-bold text-[18px] leading-[28px] text-[#112347]">
+                      <h3 className="t-subheading-2 text-[#112347]">
                         {row.category}
                       </h3>
                     </div>
                     <div className="pl-[32px] pr-5 flex items-center">
                       <p
-                        className={`text-[16px] leading-[24px] ${row.boldDesc ? "font-bold text-[#14234B]" : "text-[#475569]"
+                        className={`t-content ${row.boldDesc ? "font-bold text-[#14234B]" : "text-[#475569]"
                           }`}
                       >
                         {row.participants}
@@ -164,10 +164,10 @@ function GuidelinesPage() {
                 </div>
                 <div className="w-[1px] h-[40px] bg-[#E2E8F0] shrink-0" aria-hidden="true" />
                 <div className="flex flex-col gap-[2px] min-w-0 flex-1">
-                  <h3 className={`font-bold text-[18px] leading-[28px] ${card.titleColor}`}>
+                  <h3 className={`t-subheading-2 ${card.titleColor}`}>
                     {card.category}
                   </h3>
-                  <div className="text-[16px] leading-[24px] text-[#475569]">
+                  <div className="t-content text-[#475569]">
                     {card.text}
                   </div>
                 </div>
@@ -188,7 +188,7 @@ function GuidelinesPage() {
 
           {/* Alternating 6-Step Infographic Diagram */}
           <div className="relative w-full overflow-x-auto pb-8 pt-4">
-            <div className="min-w-[1050px] xl:min-w-0 relative px-4 sm:px-8 py-14 sm:py-20">
+            <div className="min-w-[1100px] relative px-8 py-20">
               {/* Continuous Segmented Horizontal Baseline Bar */}
               <div className="absolute left-12 right-12 top-1/2 -translate-y-1/2 h-[18px] rounded-full overflow-hidden flex z-0 shadow-sm">
                 <div className="flex-1 bg-[#E85929]" />
@@ -200,7 +200,7 @@ function GuidelinesPage() {
               </div>
 
               {/* 6 Steps Grid Layout */}
-              <div className="relative grid grid-cols-6 z-10 gap-2">
+              <div className="relative grid grid-cols-6 z-10">
                 {/* ==================== STEP 01 (Down) ==================== */}
                 <div className="flex flex-col items-center">
                   {/* Upper Spacer */}
@@ -212,9 +212,9 @@ function GuidelinesPage() {
                   {/* Downward Connector Line */}
                   <div className="w-[3px] h-[75px] bg-[#E85929]" />
                   {/* Content Area (Ring Icon + Adjacent Text) */}
-                  <div className="flex items-start gap-2.5 w-full px-1">
+                  <div className="flex items-start gap-3 w-full px-2">
                     {/* Ring Icon Badge */}
-                    <div className="shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full border-[3.5px] border-[#E85929] bg-white shadow-sm flex items-center justify-center p-3.5 sm:p-4">
+                    <div className="shrink-0 w-20 h-20 rounded-full border-[3.5px] border-[#E85929] bg-white shadow-sm flex items-center justify-center p-4">
                       {/* Checklist / Clipboard SVG */}
                       <svg
                         className="w-full h-full text-[#E85929]"
@@ -233,7 +233,7 @@ function GuidelinesPage() {
                     </div>
                     {/* Text */}
                     <div className="flex-1 text-left pt-1">
-                      <h3 className="text-[#E85929] font-extrabold text-xs sm:text-sm uppercase leading-tight tracking-tight">
+                      <h3 className="text-[#E85929] font-extrabold text-sm uppercase leading-tight tracking-tight">
                         01 Check
                         <br />
                         Eligibility
@@ -248,9 +248,9 @@ function GuidelinesPage() {
                 {/* ==================== STEP 02 (Up) ==================== */}
                 <div className="flex flex-col items-center">
                   {/* Content Area (Ring Icon + Adjacent Text) */}
-                  <div className="flex items-center gap-2.5 w-full px-1">
+                  <div className="flex items-center gap-3 w-full px-2">
                     {/* Ring Icon Badge */}
-                    <div className="shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full border-[3.5px] border-[#F1A914] bg-white shadow-sm flex items-center justify-center p-3.5 sm:p-4">
+                    <div className="shrink-0 w-20 h-20 rounded-full border-[3.5px] border-[#F1A914] bg-white shadow-sm flex items-center justify-center p-4">
                       {/* Signpost / Directional Crossroad SVG */}
                       <svg
                         className="w-full h-full text-[#F1A914]"
@@ -274,7 +274,7 @@ function GuidelinesPage() {
                     </div>
                     {/* Text */}
                     <div className="flex-1 text-left">
-                      <h3 className="text-[#F1A914] font-extrabold text-xs sm:text-sm uppercase leading-tight tracking-tight">
+                      <h3 className="text-[#F1A914] font-extrabold text-sm uppercase leading-tight tracking-tight">
                         02 Select
                         <br />
                         Innovation Track
@@ -305,9 +305,9 @@ function GuidelinesPage() {
                   {/* Downward Connector Line */}
                   <div className="w-[3px] h-[75px] bg-[#76B82A]" />
                   {/* Content Area (Ring Icon + Adjacent Text) */}
-                  <div className="flex items-start gap-2.5 w-full px-1">
+                  <div className="flex items-start gap-3 w-full px-2">
                     {/* Ring Icon Badge */}
-                    <div className="shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full border-[3.5px] border-[#76B82A] bg-white shadow-sm flex items-center justify-center p-3.5 sm:p-4">
+                    <div className="shrink-0 w-20 h-20 rounded-full border-[3.5px] border-[#76B82A] bg-white shadow-sm flex items-center justify-center p-4">
                       {/* Lightbulb Theme SVG */}
                       <svg
                         className="w-full h-full text-[#76B82A]"
@@ -325,7 +325,7 @@ function GuidelinesPage() {
                     </div>
                     {/* Text */}
                     <div className="flex-1 text-left pt-1">
-                      <h3 className="text-[#76B82A] font-extrabold text-xs sm:text-sm uppercase leading-tight tracking-tight">
+                      <h3 className="text-[#76B82A] font-extrabold text-sm uppercase leading-tight tracking-tight">
                         03 Select
                         <br />
                         Theme
@@ -340,9 +340,9 @@ function GuidelinesPage() {
                 {/* ==================== STEP 04 (Up) ==================== */}
                 <div className="flex flex-col items-center">
                   {/* Content Area (Ring Icon + Adjacent Text) */}
-                  <div className="flex items-center gap-2.5 w-full px-1">
+                  <div className="flex items-center gap-3 w-full px-2">
                     {/* Ring Icon Badge */}
-                    <div className="shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full border-[3.5px] border-[#0FB5B3] bg-white shadow-sm flex items-center justify-center p-3.5 sm:p-4">
+                    <div className="shrink-0 w-20 h-20 rounded-full border-[3.5px] border-[#0FB5B3] bg-white shadow-sm flex items-center justify-center p-4">
                       {/* Document Search Problem Statement SVG */}
                       <svg
                         className="w-full h-full text-[#0FB5B3]"
@@ -361,7 +361,7 @@ function GuidelinesPage() {
                     </div>
                     {/* Text */}
                     <div className="flex-1 text-left">
-                      <h3 className="text-[#0FB5B3] font-extrabold text-xs sm:text-sm uppercase leading-tight tracking-tight">
+                      <h3 className="text-[#0FB5B3] font-extrabold text-sm uppercase leading-tight tracking-tight">
                         04 Select Problem
                         <br />
                         Statement
@@ -392,9 +392,9 @@ function GuidelinesPage() {
                   {/* Downward Connector Line */}
                   <div className="w-[3px] h-[75px] bg-[#2368B2]" />
                   {/* Content Area (Ring Icon + Adjacent Text) */}
-                  <div className="flex items-start gap-2.5 w-full px-1">
+                  <div className="flex items-start gap-3 w-full px-2">
                     {/* Ring Icon Badge */}
-                    <div className="shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full border-[3.5px] border-[#2368B2] bg-white shadow-sm flex items-center justify-center p-3.5 sm:p-4">
+                    <div className="shrink-0 w-20 h-20 rounded-full border-[3.5px] border-[#2368B2] bg-white shadow-sm flex items-center justify-center p-4">
                       {/* Group / Team SVG */}
                       <svg
                         className="w-full h-full text-[#2368B2]"
@@ -413,7 +413,7 @@ function GuidelinesPage() {
                     </div>
                     {/* Text */}
                     <div className="flex-1 text-left pt-1">
-                      <h3 className="text-[#2368B2] font-extrabold text-xs sm:text-sm uppercase leading-tight tracking-tight">
+                      <h3 className="text-[#2368B2] font-extrabold text-sm uppercase leading-tight tracking-tight">
                         05 Form Your
                         <br />
                         Team
@@ -428,9 +428,9 @@ function GuidelinesPage() {
                 {/* ==================== STEP 06 (Up) ==================== */}
                 <div className="flex flex-col items-center">
                   {/* Content Area (Ring Icon + Adjacent Text) */}
-                  <div className="flex items-center gap-2.5 w-full px-1">
+                  <div className="flex items-center gap-3 w-full px-2">
                     {/* Ring Icon Badge */}
-                    <div className="shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full border-[3.5px] border-[#6C2582] bg-white shadow-sm flex items-center justify-center p-3.5 sm:p-4">
+                    <div className="shrink-0 w-20 h-20 rounded-full border-[3.5px] border-[#6C2582] bg-white shadow-sm flex items-center justify-center p-4">
                       {/* Laptop / Proposal Submit SVG */}
                       <svg
                         className="w-full h-full text-[#6C2582]"
@@ -443,12 +443,13 @@ function GuidelinesPage() {
                       >
                         <rect width="18" height="12" x="3" y="4" rx="2" />
                         <line x1="2" x2="22" y1="20" y2="20" />
+                        {/* Mouse pointer on screen */}
                         <path d="m14 9-2 5 1.5-1 1.5 2 1-1-1.5-2L16 11z" fill="currentColor" stroke="none" />
                       </svg>
                     </div>
                     {/* Text */}
                     <div className="flex-1 text-left">
-                      <h3 className="text-[#6C2582] font-extrabold text-xs sm:text-sm uppercase leading-tight tracking-tight">
+                      <h3 className="text-[#6C2582] font-extrabold text-sm uppercase leading-tight tracking-tight">
                         06 Submit
                         <br />
                         Innovation Proposal
@@ -488,7 +489,7 @@ function GuidelinesPage() {
                   <div className="absolute top-0 right-0 w-3 h-3 bg-[#D93025] rounded-bl" />
                   <span className="text-[10px] font-black tracking-wider mt-1">PPT</span>
                 </div>
-                <h3 className="text-[15px] sm:text-[16px] font-bold text-[#112347]">
+                <h3 className="t-subheading-2 text-[#112347]">
                   National Theme Submission Format
                 </h3>
               </div>
@@ -512,7 +513,7 @@ function GuidelinesPage() {
                   <div className="absolute top-0 right-0 w-3 h-3 bg-[#D93025] rounded-bl" />
                   <span className="text-[10px] font-black tracking-wider mt-1">PPT</span>
                 </div>
-                <h3 className="text-[15px] sm:text-[16px] font-bold text-[#112347]">
+                <h3 className="t-subheading-2 text-[#112347]">
                   Regional Theme Submission Format
                 </h3>
               </div>
