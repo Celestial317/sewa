@@ -64,16 +64,16 @@ const eligibilityDetails = [
   },
 ];
 
-const sectionHeadingClass = "font-display text-4xl font-extrabold uppercase leading-none text-[#ff6668] sm:text-5xl";
+const sectionHeadingClass = "t-main-heading uppercase text-[#ff6668]";
 
 function GuidelinesPage() {
   return (
     <div className="min-h-screen bg-white text-gray-800">
       <Header activeNav="guidelines" />
 
-      <main className="site-shell max-w-[1200px] py-10 sm:py-16">
-        <section className="mb-12 sm:mb-16" aria-labelledby="eligibility-heading">
-          <h1 id="eligibility-heading" className={`${sectionHeadingClass} mb-7`}>Eligibility</h1>
+      <main className="t-section-stack site-shell max-w-[1200px] py-10 sm:py-16">
+        <section aria-labelledby="eligibility-heading">
+          <h1 id="eligibility-heading" className={sectionHeadingClass}>Eligibility</h1>
           <div className="overflow-hidden bg-white">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[760px] text-left text-[11px] leading-[1.35] sm:text-xs">
@@ -111,9 +111,9 @@ function GuidelinesPage() {
           </div>
         </section>
 
-        <section className="mb-12 sm:mb-16" aria-labelledby="participate-heading">
-          <h2 id="participate-heading" className={`${sectionHeadingClass} mb-5`}>How to participate</h2>
-          <p className="w-full text-justify text-sm leading-[1.35] text-black sm:text-base">
+        <section aria-labelledby="participate-heading">
+          <h2 id="participate-heading" className={sectionHeadingClass}>How to participate</h2>
+          <p className="t-content w-full text-justify text-black">
   Eligible participants can take part in the SEWA First RYIC 2026 through the structured registration journey, designed to guide them from identifying a challenge to presenting their innovation.<br />
   The registration process and key steps are outlined below:
 </p>
@@ -122,9 +122,9 @@ function GuidelinesPage() {
           </div>
         </section>
 
-        <section className="mb-12 sm:mb-16" aria-labelledby="submission-heading">
-          <h2 id="submission-heading" className={`${sectionHeadingClass} mb-6`}>Submission format</h2>
-          <p className="w-full text-justify text-sm leading-[1.35] text-black sm:text-base">Participants are required to submit their innovation proposal in the prescribed 15-slide presentation format. The presentation should be concise, structured and focused on demonstrating the journey from problem identification to innovation, prototype development and potential impact. The prescribed slide format is appended for reference</p>
+        <section aria-labelledby="submission-heading">
+          <h2 id="submission-heading" className={sectionHeadingClass}>Submission format</h2>
+          <p className="t-content w-full text-justify text-black">Participants are required to submit their innovation proposal in the prescribed 15-slide presentation format. The presentation should be concise, structured and focused on demonstrating the journey from problem identification to innovation, prototype development and potential impact. The prescribed slide format is appended for reference</p>
           <div className="mt-12 grid gap-8 text-base font-bold text-black sm:grid-cols-2 sm:gap-12 sm:pt-4">
             <h3>PPT FOR NATIONAL THEME</h3>
             <h3>PPT FOR REGIONAL THEME</h3>
@@ -132,8 +132,8 @@ function GuidelinesPage() {
         </section>
 
         <section aria-labelledby="execution-heading">
-          <h2 id="execution-heading" className={`${sectionHeadingClass} mb-7`}>Execution</h2>
-          <p className="w-full text-justify text-sm leading-[1.5] text-black sm:text-base"><strong>Delhi Technological University (DTU)</strong> is the designated Regional Coordinator for the Northern Region for the SEWA FIRST – Rashtriya Youth Innovation Challenge 2026. DTU will facilitate and coordinate participation, innovation activities and engagement of educational institutions, innovators, mentors and other stakeholders across the region, supporting the journey from problem identification and ideation to prototyping, validation and impact. Participants from <strong>Jammu &amp; Kashmir, Ladakh, Himachal Pradesh, Uttarakhand, Chandigarh, NCT of Delhi, Punjab, Haryana and Uttar Pradesh</strong> are eligible to participate under the Northern Region coordinated by DTU.</p>
+          <h2 id="execution-heading" className={sectionHeadingClass}>Execution</h2>
+          <p className="t-content w-full text-justify text-black"><strong>Delhi Technological University (DTU)</strong> is the designated Regional Coordinator for the Northern Region for the SEWA FIRST – Rashtriya Youth Innovation Challenge 2026. DTU will facilitate and coordinate participation, innovation activities and engagement of educational institutions, innovators, mentors and other stakeholders across the region, supporting the journey from problem identification and ideation to prototyping, validation and impact. Participants from <strong>Jammu &amp; Kashmir, Ladakh, Himachal Pradesh, Uttarakhand, Chandigarh, NCT of Delhi, Punjab, Haryana and Uttar Pradesh</strong> are eligible to participate under the Northern Region coordinated by DTU.</p>
         </section>
       </main>
 

@@ -105,7 +105,7 @@ const externalLinks = [
 ];
 
 const sectionHeadingClass =
-  "text-5xl sm:text-6xl md:text-7xl font-black uppercase leading-none tracking-tight text-primary";
+  "t-main-heading uppercase text-primary";
 
 export function AdditionalResourcesPage() {
   useEffect(() => {
@@ -118,7 +118,7 @@ export function AdditionalResourcesPage() {
         <Header activeNav="resources" />
 
         <main className="pt-10 sm:pt-16 pb-20 sm:pb-28">
-          <div className="site-shell max-w-5xl space-y-16 sm:space-y-24">
+          <div className="t-section-stack site-shell max-w-5xl">
             {/* ── Resources ── */}
             <section aria-labelledby="resources-heading">
               <h1 id="resources-heading" className={sectionHeadingClass}>
@@ -178,7 +178,7 @@ export function AdditionalResourcesPage() {
               <h2 id="playbook-heading" className={sectionHeadingClass}>
                 Innovation Playbook
               </h2>
-              <p className="mt-6 max-w-2xl text-sm sm:text-base leading-relaxed text-gray-700">
+              <p className="t-content mt-6 max-w-2xl text-gray-700">
                 A step-by-step field guide for teams moving from problem observation through
                 ideation, prototyping and validation — structured around the same 100-day journey
                 as the Challenge itself.
@@ -198,7 +198,7 @@ export function AdditionalResourcesPage() {
 
             {/* ── Technology Readiness Level (TRL) ── */}
             <section id="trl" aria-labelledby="trl-heading" className="scroll-mt-28">
-              <h2 id="trl-heading" className={`${sectionHeadingClass} leading-tight`}>
+              <h2 id="trl-heading" className={sectionHeadingClass}>
                 Technology Readiness
                 <br />
                 Level (TRL)

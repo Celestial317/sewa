@@ -487,28 +487,35 @@ export function Footer() {
         <div className="md:col-span-3">
           <h3 className="mb-4 text-base font-bold text-gray-900 tracking-tight">Navigation</h3>
 
-          <div className="space-y-2.5 text-sm text-gray-800 font-medium footer-options">
-            <Link className="block hover:text-primary transition-colors" to="/about">
-              About Challenge
+          {/*
+            Mirrors the primary navigation in <Header /> — same labels, same
+            order, same destinations. Keep the two lists in sync when either
+            navigation changes.
+          */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-gray-800 footer-options">
+            <Link className="footer-nav-link" to="/">
+              Home
             </Link>
-            <Link
-              className="block hover:text-primary transition-colors"
-              to="/problem-statements"
-              hash="national"
-            >
-              5 National Themes
+            <Link className="footer-nav-link" to="/about">
+              About
             </Link>
-            <Link className="block hover:text-primary transition-colors" to="/problem-statements">
+            <Link className="footer-nav-link" to="/guidelines">
+              Guidelines
+            </Link>
+            <Link className="footer-nav-link" to="/problem-statements">
               Problem Statements
             </Link>
-            <a className="block hover:text-primary transition-colors" href="/#steps">
-              100-Day Timeline
-            </a>
-            <Link className="block hover:text-primary transition-colors" to="/resources">
-              Additional Resources
+            <Link className="footer-nav-link" to="/events">
+              Events
             </Link>
-            <Link className="block hover:text-primary transition-colors" to="/signin">
-              Login
+            <Link className="footer-nav-link" to="/resources">
+              Resources
+            </Link>
+            <Link className="footer-nav-link" to="/faq">
+              FAQ
+            </Link>
+            <Link className="footer-nav-link" to="/contact">
+              Contact Us
             </Link>
           </div>
         </div>
@@ -1136,10 +1143,10 @@ export function VideoShowcaseSection() {
 
 export function StatisticsSection() {
   return (
-    <section id="statistics" className="py-16 sm:py-24 bg-white scroll-mt-20">
+    <section id="statistics" className="t-section-band bg-white scroll-mt-20">
       <div className="site-shell max-w-6xl">
         {/* Title */}
-        <h2 className="text-center text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase text-black mb-12 sm:mb-16">
+        <h2 className="t-main-heading uppercase text-black">
           STATISTICS
         </h2>
 
@@ -1153,8 +1160,8 @@ export function StatisticsSection() {
                 <User size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-black leading-none">9000</div>
-                <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase mt-1">
+                <div className="t-subheading-2 text-black">9000</div>
+                <div className="t-content font-semibold! text-gray-500 tracking-wider uppercase mt-1">
                   ENTRIES
                 </div>
               </div>
@@ -1166,8 +1173,8 @@ export function StatisticsSection() {
                 <MapPin size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-black leading-none">30+</div>
-                <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase mt-1">
+                <div className="t-subheading-2 text-black">30+</div>
+                <div className="t-content font-semibold! text-gray-500 tracking-wider uppercase mt-1">
                   SHORTLISTED
                 </div>
               </div>
@@ -1179,8 +1186,8 @@ export function StatisticsSection() {
                 <Server size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-black leading-none">1 lakh +</div>
-                <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase mt-1">
+                <div className="t-subheading-2 text-black">1 lakh +</div>
+                <div className="t-content font-semibold! text-gray-500 tracking-wider uppercase mt-1">
                   MENTORED
                 </div>
               </div>
@@ -1195,8 +1202,8 @@ export function StatisticsSection() {
                 <User size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-black leading-none">9000</div>
-                <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase mt-1">
+                <div className="t-subheading-2 text-black">9000</div>
+                <div className="t-content font-semibold! text-gray-500 tracking-wider uppercase mt-1">
                   PROTOTYPES
                 </div>
               </div>
@@ -1208,8 +1215,8 @@ export function StatisticsSection() {
                 <MapPin size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-black leading-none">30+</div>
-                <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase mt-1">
+                <div className="t-subheading-2 text-black">30+</div>
+                <div className="t-content font-semibold! text-gray-500 tracking-wider uppercase mt-1">
                   TESTED
                 </div>
               </div>
@@ -1221,8 +1228,8 @@ export function StatisticsSection() {
                 <Server size={20} strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-black text-black leading-none">1 lakh +</div>
-                <div className="text-xs font-semibold text-gray-500 tracking-wider uppercase mt-1">
+                <div className="t-subheading-2 text-black">1 lakh +</div>
+                <div className="t-content font-semibold! text-gray-500 tracking-wider uppercase mt-1">
                   VALIDATED
                 </div>
               </div>
@@ -1235,7 +1242,7 @@ export function StatisticsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
             {/* Card 1: Entries by Level */}
             <div className="rounded-2xl bg-white p-5 sm:p-6 border border-gray-200/90 shadow-2xs flex flex-col justify-between">
-              <h3 className="text-sm sm:text-base font-semibold text-gray-800">
+              <h3 className="t-subheading-2 text-gray-800">
                 Entries by Level
               </h3>
               <div className="py-4 flex flex-col items-center justify-center">
@@ -1263,7 +1270,7 @@ export function StatisticsSection() {
                   </div>
                 </div>
                 {/* Legend */}
-                <div className="flex items-center justify-center gap-5 text-xs text-gray-600 font-medium mt-3">
+                <div className="t-content flex items-center justify-center gap-5 text-gray-600 mt-3">
                   <div className="flex items-center gap-1.5">
                     <span className="size-2.5 rounded-full bg-[#2f70f2]" />
                     <span>National (50%)</span>
@@ -1278,7 +1285,7 @@ export function StatisticsSection() {
 
             {/* Card 2: Entries by Participant Category */}
             <div className="rounded-2xl bg-white p-5 sm:p-6 border border-gray-200/90 shadow-2xs flex flex-col justify-between">
-              <h3 className="text-sm sm:text-base font-semibold text-gray-800">
+              <h3 className="t-subheading-2 text-gray-800">
                 Entries by Participant Category
               </h3>
               <div className="py-4">
@@ -1316,7 +1323,7 @@ export function StatisticsSection() {
 
             {/* Card 3: Cumulative Entries */}
             <div className="rounded-2xl bg-white p-5 sm:p-6 border border-gray-200/90 shadow-2xs flex flex-col justify-between">
-              <h3 className="text-sm sm:text-base font-semibold text-gray-800">
+              <h3 className="t-subheading-2 text-gray-800">
                 Cumulative Entries
               </h3>
               <div className="py-4">
@@ -1397,7 +1404,7 @@ export function StatisticsSection() {
 
           {/* Bottom live portal badge */}
           <div className="mt-6 sm:mt-8 flex justify-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-lg bg-white border border-gray-200/90 text-[11px] sm:text-xs text-gray-500 font-medium shadow-2xs text-center">
+            <div className="t-content inline-flex items-center px-4 py-2 rounded-lg bg-white border border-gray-200/90 text-gray-500 shadow-2xs text-center">
               Numbers are live portal fields; charts update automatically as entries and stage results are received.
             </div>
           </div>
@@ -1518,18 +1525,18 @@ export function HomePage() {
         <section id="about" className="pt-36 sm:pt-[200px] pb-0">
           <div className="site-shell grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-16 items-start">
             {/* Heading */}
-            <h2 className="text-4xl font-extrabold leading-[1.15] uppercase tracking-tight">
+            <h2 className="t-subheading-1 uppercase">
               What
               <br />
               <span className="text-primary">is SEWA FIRST</span>
               <br />
-              <span className="text-xl font-bold text-muted-foreground leading-snug block mt-1 uppercase">Rashtriya Youth Innovation Challenge 2026?</span>
+              <span className="t-subheading-2 text-muted-foreground block mt-1 uppercase">Rashtriya Youth Innovation Challenge 2026?</span>
             </h2>
 
             {/* Description spans remaining 3 columns */}
-            <div className="lg:col-span-3 pt-2">
-              <p className="text-[0.95rem] sm:text-base leading-8 text-gray-700 font-medium">
-                <strong className="text-gray-900">SEWA FIRST – Rashtriya Youth Innovation Challenge (RYIC) 2026</strong> is a national platform that empowers India's youth to identify real problems in their own surroundings and transform them into sustainable, affordable and implementable solutions. Launched at Delhi Technological University on 19 September 2026, the 100-day Challenge brings together students, researchers, educational institutions, industry, government and mentors to take innovations from problem identification and ideation to design, prototyping, validation and implementation. Rooted in the spirit of Sewa First, RYIC seeks to nurture innovation, leadership and entrepreneurship while creating solutions that deliver meaningful impact for communities and the nation.
+            <div className="lg:col-span-3">
+              <p className="t-content text-gray-700 font-medium!">
+                <strong className="font-bold text-gray-900">SEWA FIRST – Rashtriya Youth Innovation Challenge (RYIC) 2026</strong> is a national platform that empowers India's youth to identify real problems in their own surroundings and transform them into sustainable, affordable and implementable solutions. Launched at Delhi Technological University on 19 September 2026, the 100-day Challenge brings together students, researchers, educational institutions, industry, government and mentors to take innovations from problem identification and ideation to design, prototyping, validation and implementation. Rooted in the spirit of Sewa First, RYIC seeks to nurture innovation, leadership and entrepreneurship while creating solutions that deliver meaningful impact for communities and the nation.
               </p>
             </div>
           </div>
@@ -1539,7 +1546,7 @@ export function HomePage() {
         </section>
 
         {/* ── Participation Benefits ── */}
-        <section id="benefits" className="py-12 sm:py-20 bg-white scroll-mt-20">
+        <section id="benefits" className="t-section-band bg-white scroll-mt-20">
           <div className="site-shell max-w-[1240px]">
             <div className="w-full flex items-center justify-center">
               <img
@@ -1552,17 +1559,17 @@ export function HomePage() {
         </section>
 
         {/* ── Themes Section ── */}
-        <section id="themes" className="py-16 sm:py-24 bg-[#ededed] scroll-mt-20">
+        <section id="themes" className="t-section-band [--section-gap:140] bg-white scroll-mt-20">
           <div className="site-shell max-w-5xl">
-            <h2 className="text-6xl sm:text-7xl md:text-8xl font-black text-black tracking-tight leading-none mb-5 sm:mb-6">
+            <h2 className="t-main-heading text-black">
               THEMES
             </h2>
 
-            <p className="text-base sm:text-lg md:text-[19px] font-semibold text-black mb-8 sm:mb-10 leading-snug">
+            <p className="t-subheading-2 text-black mb-8 sm:mb-10">
               The Rashtriya Youth Innovation Challenge 2026 focuses on two broad themes:
             </p>
 
-            <div className="space-y-7 sm:space-y-8 text-sm sm:text-base md:text-[16px] leading-relaxed sm:leading-[1.75] text-black">
+            <div className="t-content-block space-y-7 sm:space-y-8 text-black">
               <p id="national-themes" className="scroll-mt-28">
                 <strong className="font-bold text-black">National Level</strong> Innovations addressing critical national priorities in Defence, Space &amp; National Security, Disaster Management, AI, Robotics, Manufacturing, Energy, Environment, Infrastructure and Future Mobility
               </p>
@@ -1575,10 +1582,11 @@ export function HomePage() {
         </section>
 
         {/* ── Timeline of 100 Day Journey ── */}
-        <section id="timeline" className="py-12 sm:py-20 scroll-mt-20">
+        <section id="timeline" className="t-section-band scroll-mt-20">
           <div className="site-shell">
-            <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-black tracking-[0.15em] uppercase text-gray-900 mb-8 sm:mb-12">
-              Timeline of 100 Day Journey
+            <h2 className="t-main-heading text-gray-900">
+              <span className="uppercase">Timeline</span>
+              <span className="t-subheading-2 block">of 100 Day Journey</span>
             </h2>
             <div className="flex items-center justify-center">
               <img
@@ -1767,9 +1775,9 @@ export function HomePage() {
         )}
 
         {/* ── Organizing Committee ── */}
-        <section id="committee" className="py-20 sm:py-28 scroll-mt-20">
+        <section id="committee" className="t-section-band scroll-mt-20">
           <div className="site-shell">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-950 tracking-tight text-center mb-14 sm:mb-20 uppercase">
+            <h2 className="t-main-heading t-title-gap-wide text-gray-950 uppercase">
               Organizing Committee
             </h2>
 
@@ -1778,10 +1786,10 @@ export function HomePage() {
               {Array.from({ length: 12 }).map((_, idx) => (
                 <div key={idx} className="flex flex-col items-center text-center">
                   <div className="size-20 sm:size-24 md:size-28 rounded-full bg-[#d2d2d2] mb-3 sm:mb-3.5 transition-transform duration-200 hover:scale-105" />
-                  <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-tight">
+                  <h3 className="t-subheading-2 text-gray-900">
                     Name
                   </h3>
-                  <p className="text-xs sm:text-sm text-gray-500 font-medium leading-tight mt-1">
+                  <p className="t-content text-gray-500 mt-1">
                     Designation
                   </p>
                 </div>
@@ -2648,11 +2656,11 @@ export function EventsPage() {
         <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 border-b border-gray-100">
           <div className="site-shell grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-              <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-gray-900 tracking-tight leading-[1.12]">
+              <h1 className="t-main-heading text-gray-900">
                 Discover What&apos;s
                 <span className="block text-[#ff3b30] mt-1.5 sm:mt-2">Happening</span>
               </h1>
-              <p className="mt-5 sm:mt-6 text-sm sm:text-base text-gray-600 leading-relaxed max-w-lg font-normal">
+              <p className="t-content mt-5 sm:mt-6 text-gray-600 max-w-lg">
                 Discover the key events of the SEWA Youth Innovation Challenge - from the launch and
                 innovation showcase to mentoring, prototype development, regional demonstrations, and
                 the Grand Finale.
@@ -2688,7 +2696,7 @@ export function EventsPage() {
         </section>
 
         {/* Section 2: National Launch Event */}
-        <section id="launch-event" className="py-16 sm:py-24 bg-white scroll-mt-16 border-b border-gray-100">
+        <section id="launch-event" className="t-section-band bg-white scroll-mt-16 border-b border-gray-100">
           <div className="site-shell grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left: Model Photo card on soft backdrop with glow */}
             <div className="lg:col-span-6 order-2 lg:order-1">
@@ -2716,7 +2724,7 @@ export function EventsPage() {
               <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14] uppercase">
                 Kickstarting SEWA 2026<br />At Delhi Technological<br />University
               </h2>
-              <p className="mt-5 text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+              <p className="t-content mt-5 text-gray-600">
                 Join us on 19 September 2026 for the grand inaugural ceremony and National Innovation
                 Festival at DTU. The launch brings together leadership from ministries, academia, and
                 industry to unveil the national innovation portal, release the 50 flagship problem
@@ -2734,7 +2742,7 @@ export function EventsPage() {
         </section>
 
         {/* Section 3: Competition Roadmap */}
-        <section id="roadmap" className="py-16 sm:py-24 bg-white scroll-mt-16">
+        <section id="roadmap" className="t-section-band bg-white scroll-mt-16">
           <div className="site-shell">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               {/* Left Column: Heading & Description */}
@@ -2745,7 +2753,7 @@ export function EventsPage() {
                 <h2 className="mt-3 text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-gray-900 tracking-tight leading-[1.14] uppercase">
                   The 100-Day<br />Innovation Journey
                 </h2>
-                <p className="mt-5 text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+                <p className="t-content mt-5 text-gray-600">
                   Following the national launch, participants embark on a rigorous, milestone-driven
                   pathway from September to December 2026. Moving from initial problem identification
                   through regional mentoring, prototyping, and rigorous field testing, the challenge
@@ -3096,7 +3104,7 @@ export function ContactPage() {
         <Header activeNav="contact" />
         <main className="pt-10 sm:pt-14 pb-16 sm:pb-20">
           <div className="site-shell max-w-4xl">
-            <h1 className="text-2xl sm:text-3xl md:text-[32px] font-black text-center text-gray-950 tracking-tight mb-8 sm:mb-11 uppercase">
+            <h1 className="t-main-heading text-gray-950 uppercase">
               CONTACT US
             </h1>
 
@@ -3373,7 +3381,7 @@ export function ResourcesPage() {
             <h1 className="text-2xl sm:text-3xl md:text-[32px] font-black text-center text-gray-950 tracking-tight mb-3 uppercase">
               Additional Resources
             </h1>
-            <p className="text-center text-sm sm:text-[15px] text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12 font-normal leading-relaxed">
+            <p className="t-content text-center text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12">
               Reference documents and external links for SEWA 2026 participants.
             </p>
 
@@ -3470,10 +3478,10 @@ export function FaqPage() {
         <Header activeNav="faq" />
         <main className="pt-10 sm:pt-14 pb-20 sm:pb-24">
           <div className="site-shell max-w-[760px]">
-            <h1 className="text-3xl sm:text-4xl md:text-[40px] font-black text-center text-[#0e1726] tracking-tight mb-2.5 uppercase">
+            <h1 className="t-main-heading text-[#0e1726] uppercase">
               Frequently Asked Questions
             </h1>
-            <p className="text-center text-sm sm:text-[15px] md:text-base text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12 font-normal leading-relaxed">
+            <p className="t-content text-center text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12">
               Everything you need to know about participating, campus visits, support, and evaluation criteria.
             </p>
 
@@ -3499,7 +3507,7 @@ export function FaqPage() {
                     </div>
 
                     {isOpen && (
-                      <div className="mt-3.5 pt-3.5 border-t border-gray-200/60 text-xs sm:text-sm md:text-[14px] text-gray-600 leading-relaxed font-normal animate-fade-in">
+                      <div className="t-content mt-3.5 pt-3.5 border-t border-gray-200/60 text-gray-600 animate-fade-in">
                         {item.a}
                       </div>
                     )}
@@ -3526,16 +3534,16 @@ export function AboutPage() {
       <div>
         <Header activeNav="about" />
         <main className="pt-10 sm:pt-14 pb-20 sm:pb-28">
-          <div className="site-shell max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
+          <div className="t-section-stack site-shell max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* 1. VISION */}
             <section aria-labelledby="vision-heading">
               <h1
                 id="vision-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 VISION
               </h1>
-              <p className="text-base sm:text-lg md:text-[20px] leading-relaxed sm:leading-[1.75] text-gray-900 font-medium">
+              <p className="t-content text-gray-900 font-medium!">
                 Create a national culture in which young Indians transform real-world problems into practical innovations contributing to Viksit Bharat.
               </p>
             </section>
@@ -3544,11 +3552,11 @@ export function AboutPage() {
             <section aria-labelledby="mission-heading">
               <h2
                 id="mission-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 MISSION
               </h2>
-              <p className="text-base sm:text-lg md:text-[20px] leading-relaxed sm:leading-[1.75] text-gray-900 font-medium">
+              <p className="t-content text-gray-900 font-medium!">
                 Provide a structured 100-day pathway from problem identification to concept, design, prototype, validation, deployment and impact.
               </p>
             </section>
@@ -3557,12 +3565,12 @@ export function AboutPage() {
             <section aria-labelledby="philosophy-heading">
               <h2
                 id="philosophy-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 PHILOSOPHY
               </h2>
-              <div className="space-y-6 sm:space-y-7 text-base sm:text-lg md:text-[19px] leading-relaxed sm:leading-[1.75]">
-                <p className="font-semibold text-gray-900">
+              <div className="t-content-block space-y-6 sm:space-y-7">
+                <p className="font-semibold! text-gray-900">
                   &ldquo;The Challenge begins not with an idea, but with a problem observed by a young Indian in his or her own surroundings; and it does not end with an award, but with a solution that can reach the beneficiary.&rdquo;
                 </p>
                 <p className="text-gray-800 font-normal">
@@ -3582,15 +3590,15 @@ export function AboutPage() {
             <section aria-labelledby="aim-heading">
               <h2
                 id="aim-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 AIM
               </h2>
-              <div className="space-y-6 sm:space-y-7 text-base sm:text-lg md:text-[19px] leading-relaxed sm:leading-[1.75]">
+              <div className="t-content-block space-y-6 sm:space-y-7">
                 <p className="text-gray-800 font-normal">
                   To encourage the youth of India to observe and identify real problems in their own surroundings in their villages, towns, cities, districts and communities and to transform these problems into opportunities for innovation by developing sustainable, affordable and implementable solutions, culminating in the creation and demonstration of working prototypes.
                 </p>
-                <p className="font-semibold text-gray-900">
+                <p className="font-semibold! text-gray-900">
                   &ldquo;The Challenge begins not with an idea, but with a problem observed by a young Indian in his or her own surroundings; and it does not end with an award, but with a solution that can reach the beneficiary.&rdquo;
                 </p>
               </div>
@@ -3600,7 +3608,7 @@ export function AboutPage() {
             <section aria-labelledby="objectives-heading">
               <h2
                 id="objectives-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 OBJECTIVES
               </h2>
@@ -3617,16 +3625,13 @@ export function AboutPage() {
             <section aria-labelledby="unique-features-heading">
               <h2
                 id="unique-features-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 UNIQUE FEATURES
               </h2>
-              <div className="space-y-5 sm:space-y-6 text-base sm:text-lg md:text-[18.5px] leading-relaxed sm:leading-[1.75] text-gray-800 font-normal">
+              <div className="t-content-block space-y-5 sm:space-y-6 text-gray-800">
                 <p>
-                  The Challenge focuses on converting real, locally identified problems into sustainable, affordable and implementable solutions, rather than merely generating ideas or concepts.
-                </p>
-                <p>
-                  Its unique feature is the emphasis on taking an innovation from the problem stage to real-world impact. Participants are expected to understand the identified problem, develop an appropriate solution, build a working prototype and validate it in a relevant environment.
+                  The Challenge focuses on converting real, locally identified problems into sustainable, affordable and implementable solutions, rather than merely generating ideas or concepts. Its unique feature is the emphasis on taking an innovation from the problem stage to real-world impact: participants are expected to understand the identified problem, develop an appropriate solution, build a working prototype and validate it in a relevant environment.
                 </p>
                 <p>
                   The Challenge further emphasizes affordability, sustainability, field validation, user feedback and scalability, ensuring that successful innovations are not limited to prototypes but have a clear pathway towards adoption, replication and deployment for the intended beneficiaries.
@@ -3648,7 +3653,7 @@ export function AboutPage() {
             <section aria-labelledby="purpose-benefits-heading" className="min-h-[200px] sm:min-h-[280px]">
               <h2
                 id="purpose-benefits-heading"
-                className="text-5xl sm:text-6xl md:text-[68px] font-black text-primary tracking-tight uppercase leading-none mb-6 sm:mb-8"
+                className="t-main-heading text-primary uppercase"
               >
                 PURPOSE &amp; BENEFITS
               </h2>

@@ -2,6 +2,9 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Site-wide type scale. All text sizes are defined in this one file. */
+@import "./typography.css";
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -19,8 +22,8 @@
  */
 
 @theme inline {
-  --font-sans: "Manrope", sans-serif;
-  --font-display: "Sora", sans-serif;
+  --font-sans: "Google Sans Flex", system-ui, sans-serif;
+  --font-display: "Google Sans Flex", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -157,11 +160,40 @@
     overflow-x: hidden;
   }
 
+  /*
+   * Single-typeface rule: everything on the site renders in Google Sans Flex.
+   * Form controls and headings do not inherit the body font by default, so
+   * they are named explicitly here.
+   */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  input,
+  textarea,
+  select,
+  optgroup {
+    font-family: var(--font-sans);
+  }
+
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
     letter-spacing: 0;
+  }
+
+  /*
+   * Body copy is justified site-wide. Tailwind's text-* alignment utilities
+   * sit in a later cascade layer, so `text-center` / `text-right` still win
+   * wherever they are applied.
+   */
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
   }
 
   button,
@@ -267,8 +299,10 @@
   }
 
   .nav-link {
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
     color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
     transition: color 0.2s ease;
   }
 
@@ -280,18 +314,37 @@
   header nav,
   header nav a,
   header nav button {
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
+  }
+
+  /*
+   * Footer navigation column: same typography treatment as the primary nav
+   * so the two navigations read as one system.
+   */
+  .footer-nav-link {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+    color: var(--foreground);
+    transition: color 0.2s ease;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--primary);
   }
 
   .live-updates-bar {
     position: relative;
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .live-updates-label {
     position: relative;
     z-index: 2;
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .live-updates-ticker-wrap {
@@ -304,7 +357,7 @@
     min-width: max-content;
     will-change: transform;
     animation: ticker 32s linear infinite;
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .ticker span {
@@ -447,7 +500,7 @@
     padding: 0.45rem 1rem;
     font-size: 0.78rem;
     font-weight: 600;
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
     color: var(--foreground);
     transition: background 0.15s ease, color 0.15s ease;
   }
@@ -617,7 +670,7 @@
     margin: 0;
   }
 
-  /* Footer options styled with Google Sans Code matching screenshot */
+  /* Footer nav/options share the site font with the top navigation */
   footer,
   footer a,
   footer p,
@@ -628,7 +681,7 @@
   .footer-nav a,
   .footer-options,
   .footer-options a {
-    font-family: "Google Sans Code", monospace, sans-serif;
+    font-family: var(--font-sans);
   }
 
   .social {

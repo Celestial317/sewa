@@ -88,7 +88,7 @@ function CategoryTable({ categories }: { categories: Category[] }) {
               >
                 {category.numeral}
               </span>
-              <p className="border-l border-gray-300/70 pl-4 sm:pl-6 text-[13px] sm:text-[15px] font-medium leading-snug text-gray-900">
+              <p className="t-content border-l border-gray-300/70 pl-4 sm:pl-6 font-medium! text-gray-900">
                 <span className="sr-only">Category {category.numeral}: </span>
                 {category.label}
               </p>
@@ -112,15 +112,15 @@ export function ProblemStatementsPage() {
 
         <main className="pt-10 sm:pt-16 pb-20 sm:pb-28">
           <div className="site-shell max-w-5xl">
-            <h1 className="text-center text-5xl sm:text-6xl md:text-[86px] font-black uppercase leading-none tracking-tight text-primary">
+            <h1 className="t-main-heading uppercase text-primary">
               Problem Statements
             </h1>
-            <p className="mx-auto mt-5 sm:mt-6 max-w-2xl text-center text-sm sm:text-[15px] leading-relaxed text-gray-500">
+            <p className="t-content mx-auto mt-5 sm:mt-6 max-w-2xl text-center text-gray-500">
               The Rashtriya Youth Innovation Challenge 2026 invites solutions across two broad
               themes — national priorities and grassroots community needs.
             </p>
 
-            <div className="mt-10 sm:mt-14 space-y-8 sm:space-y-12">
+            <div className="t-section-stack mt-10 sm:mt-14">
               {THEMES.map((theme) => (
                 <section
                   key={theme.id}
@@ -137,7 +137,7 @@ export function ProblemStatementsPage() {
                   >
                     {theme.title}
                   </h2>
-                  <p className="mt-5 text-sm sm:text-[15px] leading-relaxed sm:leading-[1.8] text-gray-700 sm:text-justify">
+                  <p className="t-content mt-5 text-gray-700 sm:text-justify">
                     {theme.description}
                   </p>
 

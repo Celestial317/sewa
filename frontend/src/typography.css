@@ -1,0 +1,163 @@
+:root {
+ 
+  /* Viewport range over which sizes scale, in px. */
+  --vw-min: 380;
+  --vw-max: 1280;
+
+  /* MAIN HEADING — the big section titles (currently the 68px red caps). */
+  --main-heading-min: 52;
+  --main-heading-max: 96;
+  --main-heading-leading: 0.95;
+  --main-heading-weight: 600;
+  --main-heading-tracking: -0.02em;
+
+  /* SUBHEADING 1 */
+  --subheading-1-min: 34;
+  --subheading-1-max: 40;
+  --subheading-1-leading: 1.15;
+  --subheading-1-weight: 800;
+  --subheading-1-tracking: -0.01em;
+
+  /* SUBHEADING 2 */
+  --subheading-2-min: 26;
+  --subheading-2-max: 26;
+  --subheading-2-leading: 1.25;
+  --subheading-2-weight: 700;
+  --subheading-2-tracking: -0.005em;
+
+  /* SPACING — vertical rhythm, in the same pixel-style numbers.
+     --section-gap  = the gap between one section and the next.
+     --title-gap    = the gap between a heading and the content under it. */
+  --section-gap: 90;
+  --title-gap: 50;
+  /* Opt-in wider heading gap, via .t-title-gap-wide on the heading. */
+  --title-gap-wide: 110;
+
+  /* CONTENT — body copy, paragraphs, list text. */
+  --content-min: 19;
+  --content-max: 21;
+  --content-leading: 1.7;
+  --content-weight: 400;
+  --content-tracking: 0;
+  
+
+  --section-gap: 90;
+  --title-gap: 50;
+
+  --u: calc(1rem / 18);
+
+  --vw-progress: calc(
+    (100vw - (var(--vw-min) * 1px)) / (var(--vw-max) - var(--vw-min))
+  );
+
+  --fs-main-heading: clamp(
+    calc(var(--main-heading-min) * var(--u)),
+    calc(
+      var(--main-heading-min) * var(--u) +
+        (var(--main-heading-max) - var(--main-heading-min)) * var(--vw-progress)
+    ),
+    calc(var(--main-heading-max) * var(--u))
+  );
+
+  --fs-subheading-1: clamp(
+    calc(var(--subheading-1-min) * var(--u)),
+    calc(
+      var(--subheading-1-min) * var(--u) +
+        (var(--subheading-1-max) - var(--subheading-1-min)) * var(--vw-progress)
+    ),
+    calc(var(--subheading-1-max) * var(--u))
+  );
+
+  --fs-subheading-2: clamp(
+    calc(var(--subheading-2-min) * var(--u)),
+    calc(
+      var(--subheading-2-min) * var(--u) +
+        (var(--subheading-2-max) - var(--subheading-2-min)) * var(--vw-progress)
+    ),
+    calc(var(--subheading-2-max) * var(--u))
+  );
+
+  --fs-content: clamp(
+    calc(var(--content-min) * var(--u)),
+    calc(
+      var(--content-min) * var(--u) +
+        (var(--content-max) - var(--content-min)) * var(--vw-progress)
+    ),
+    calc(var(--content-max) * var(--u))
+  );
+}
+
+.t-main-heading {
+  font-size: var(--fs-main-heading);
+  line-height: var(--main-heading-leading);
+  font-weight: var(--main-heading-weight);
+  letter-spacing: var(--main-heading-tracking);
+  text-align: center;
+  margin-bottom: calc(var(--title-gap) * var(--u));
+}
+
+.t-subheading-1 {
+  font-size: var(--fs-subheading-1);
+  line-height: var(--subheading-1-leading);
+  font-weight: var(--subheading-1-weight);
+  letter-spacing: var(--subheading-1-tracking);
+}
+
+.t-subheading-2 {
+  font-size: var(--fs-subheading-2);
+  line-height: var(--subheading-2-leading);
+  font-weight: var(--subheading-2-weight);
+  letter-spacing: var(--subheading-2-tracking);
+}
+
+.t-content {
+  font-size: var(--fs-content);
+  line-height: var(--content-leading);
+  font-weight: var(--content-weight);
+  letter-spacing: var(--content-tracking);
+}
+
+.t-content-block :is(p, li) {
+  font-size: var(--fs-content);
+  line-height: var(--content-leading);
+  font-weight: var(--content-weight);
+  letter-spacing: var(--content-tracking);
+}
+
+/* --------------------------------------------------------------------------
+ * Section rhythm.
+ *
+ * .t-section-stack — put on a wrapper whose direct children are sections that
+ *   sit on the page background. Inserts --section-gap between them.
+ *
+ * .t-section-band — put on a section that owns its vertical padding. Padding
+ *   rather than margin, so a background colour keeps its full height. Each
+ *   band contributes half the gap, so two adjacent bands read as
+ *   --section-gap apart.
+ *
+ * PER-SECTION OVERRIDE
+ * --------------------
+ * Both rules read --section-gap at the element, so you can widen or tighten
+ * one section without touching the global number. In JSX, set it with a
+ * Tailwind arbitrary property on that section:
+ *
+ *   <section className="t-section-band [--section-gap:140]">
+ *
+ * That section then uses 140 while everything else stays on the global value.
+ * ------------------------------------------------------------------------ */
+
+.t-title-gap-wide {
+  margin-bottom: calc(var(--title-gap-wide) * var(--u));
+}
+
+.t-section-stack > * + * {
+  margin-top: calc(var(--section-gap) * var(--u));
+}
+
+/* Halved as a plain number first, then converted to a length once. Keeping
+   the arithmetic on unitless numbers avoids nesting a division inside a
+   calc() that already multiplies by a length. */
+.t-section-band {
+  --section-gap-half: calc(var(--section-gap) / 2);
+  padding-block: calc(var(--section-gap-half) * var(--u));
+}
