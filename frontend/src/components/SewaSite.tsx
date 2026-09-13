@@ -217,8 +217,8 @@ export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" |
       {/* Row 2: Sticky navigation bar that transforms on scroll with increased height */}
       <header
         className={`sticky top-0 z-50 bg-white border-b border-gray-200/80 transition-all duration-300 ${!isScrolled
-            ? "hidden lg:block shadow-sm py-2.5 sm:py-3"
-            : "block shadow-md py-3.5 sm:py-4 min-h-[64px] sm:min-h-[72px]"
+          ? "hidden lg:block shadow-sm py-2.5 sm:py-3"
+          : "block shadow-md py-3.5 sm:py-4 min-h-[64px] sm:min-h-[72px]"
           }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -260,7 +260,7 @@ export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" |
               </div>
             </div>
 
-                        {/* Guidelines dropdown */}
+            {/* Guidelines dropdown */}
             <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
               <Link to="/guidelines" className={`nav-link ${activeNav === "guidelines" ? "text-primary font-bold" : ""}`}>
                 Guidelines
@@ -1561,7 +1561,7 @@ export function HomePage() {
               THEMES
             </h2>
 
-            <p className="t-subheading-2 text-center text-primary mb-8 sm:mb-10">
+            <p className="t-subheading-2 text-center text-black mb-8 sm:mb-10">
               The Rashtriya Youth Innovation Challenge 2026 focuses on two broad themes:
             </p>
 
@@ -1584,7 +1584,7 @@ export function HomePage() {
           <div className="mx-auto w-[min(100%-2rem,1440px)]">
             <h2 className="t-main-heading">
               <span className="uppercase">Timeline</span>
-              <span className="t-subheading-2 block text-primary">of 100 Day Journey</span>
+              <span className="t-subheading-2 block text-black">OF 100 DAY SEWA FIRST RYIC 2026 JOURNEY Journey</span>
             </h2>
             <TimelineRoadmap />
           </div>
