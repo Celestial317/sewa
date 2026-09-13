@@ -3121,17 +3121,17 @@ export function ContactPage() {
               CONTACT US
             </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-[270px_1fr] gap-6 sm:gap-7 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[360px_1fr] gap-6 sm:gap-7 items-start">
               {/* Left Info Card */}
               <div className="rounded-[20px] bg-white border border-gray-200/80 p-5 sm:p-6 space-y-6">
                 {/* Norther Region Coordinator */}
                 <div className="flex items-start gap-3">
                   <MapPin size={17} className="text-[#ff4d4f] shrink-0 mt-0.5" strokeWidth={1.8} />
                   <div>
-                    <h3 className="font-bold text-xs sm:text-[13px] text-gray-900 leading-tight">
+                    <h3 className="text-[18px] font-bold leading-snug text-gray-900">
                       Norther Region Coordinator
                     </h3>
-                    <p className="mt-1 text-[11px] text-gray-500 leading-relaxed font-normal">
+                    <p className="mt-1 text-left text-[16px] leading-relaxed text-gray-500">
                       Delhi Technological University, Shahbad Daulatpur, Bawana Road, Rohini, Delhi-110042, India
                     </p>
                   </div>
@@ -3141,12 +3141,12 @@ export function ContactPage() {
                 <div className="flex items-start gap-3">
                   <Mail size={17} className="text-[#ff4d4f] shrink-0 mt-0.5" strokeWidth={1.8} />
                   <div>
-                    <h3 className="font-bold text-xs sm:text-[13px] text-gray-900 leading-tight">
+                    <h3 className="text-[18px] font-bold leading-snug text-gray-900">
                       For any queries, write to:
                     </h3>
                     <a
                       href="mailto:sewa2026@dtu.ac.in"
-                      className="mt-0.5 text-[11px] font-medium text-[#ff4d4f] hover:underline block"
+                      className="mt-0.5 block text-[16px] font-medium text-[#ff4d4f] hover:underline"
                     >
                       sewa2026@dtu.ac.in
                     </a>
@@ -3157,10 +3157,10 @@ export function ContactPage() {
                 <div className="flex items-start gap-3">
                   <Phone size={17} className="text-[#ff4d4f] shrink-0 mt-0.5" strokeWidth={1.8} />
                   <div>
-                    <h3 className="font-bold text-xs sm:text-[13px] text-gray-900 leading-tight">
+                    <h3 className="text-[18px] font-bold leading-snug text-gray-900">
                       Phone Lines:
                     </h3>
-                    <p className="mt-0.5 text-[11px] text-gray-500 leading-relaxed font-normal">
+                    <p className="mt-0.5 text-left text-[16px] leading-relaxed text-gray-500">
                       +91 11 27871018 (Ext: 442) / +91 11 27871020
                     </p>
                   </div>
@@ -3174,8 +3174,8 @@ export function ContactPage() {
                     <div className="size-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4">
                       <ShieldCheck size={32} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Message Received</h3>
-                    <p className="text-sm text-gray-600 mt-2 max-w-md mx-auto">
+                    <h3 className="t-subheading-2 font-bold! text-gray-900">Message Received</h3>
+                    <p className="t-content text-gray-600 mt-2 max-w-md mx-auto">
                       Thank you for contacting SEWA 2026. An automated receipt has been registered and our team will review your query within 24–48 hours.
                     </p>
                     <button
@@ -3192,7 +3192,7 @@ export function ContactPage() {
                         setFileName("");
                         setError("");
                       }}
-                      className="mt-6 inline-flex items-center px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors"
+                      className="t-content mt-6 inline-flex items-center px-5 py-2.5 rounded-xl bg-primary text-white font-bold! hover:bg-primary/90 transition-colors"
                     >
                       Submit Another Query
                     </button>
@@ -3201,14 +3201,14 @@ export function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     {/* SELECT QUERY CATEGORY */}
                     <div>
-                      <label className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-gray-600 mb-1.5">
+                      <label className="t-content block font-bold! uppercase tracking-wider text-gray-600 mb-1.5">
                         SELECT QUERY CATEGORY
                       </label>
                       <div className="relative">
                         <select
                           value={category}
                           onChange={(e) => setCategory(e.target.value as ContactCategory)}
-                          className="w-full h-10 px-3.5 pr-9 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] font-medium text-gray-800 focus:bg-white focus:border-red-400 outline-none appearance-none cursor-pointer transition-all"
+                          className="t-content w-full h-12 px-3.5 pr-9 rounded-lg bg-[#f8f9fa] border border-gray-200 font-medium! text-gray-800 focus:bg-white focus:border-red-400 outline-none appearance-none cursor-pointer transition-all"
                         >
                           {CONTACT_CATEGORIES.map((c) => (
                             <option key={c} value={c}>
@@ -3223,7 +3223,7 @@ export function ContactPage() {
                     {/* Full Name & Team ID */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                       <div>
-                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                        <label className="t-content block font-semibold! text-gray-800 mb-1">
                           Full Name *
                         </label>
                         <input
@@ -3232,20 +3232,20 @@ export function ContactPage() {
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           placeholder="e.g. Aarav Sharma"
-                          className="w-full h-9 sm:h-10 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                          className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-gray-800 mb-1">
-                          Team ID / Affiliation ID <span className="font-normal text-gray-400">(Optional)</span>
+                        <label className="t-content block font-semibold! text-gray-800 mb-1">
+                          Team ID / Affiliation ID <span className="t-content font-normal! text-gray-400">(Optional)</span>
                         </label>
                         <input
                           type="text"
                           value={teamId}
                           onChange={(e) => setTeamId(e.target.value)}
                           placeholder="e.g. 2K23/CO/145"
-                          className="w-full h-9 sm:h-10 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                          className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                         />
                       </div>
                     </div>
@@ -3253,7 +3253,7 @@ export function ContactPage() {
                     {/* Email & Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                       <div>
-                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                        <label className="t-content block font-semibold! text-gray-800 mb-1">
                           Registered Email *
                         </label>
                         <input
@@ -3262,12 +3262,12 @@ export function ContactPage() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="SEWA@dtu.ac.in"
-                          className="w-full h-9 sm:h-10 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                          className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                        <label className="t-content block font-semibold! text-gray-800 mb-1">
                           Contact Phone Number *
                         </label>
                         <input
@@ -3276,14 +3276,14 @@ export function ContactPage() {
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           placeholder="+91 98765 43210"
-                          className="w-full h-9 sm:h-10 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                          className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                         />
                       </div>
                     </div>
 
                     {/* Subject / Matter */}
                     <div>
-                      <label className="block text-xs font-semibold text-gray-800 mb-1">
+                      <label className="t-content block font-semibold! text-gray-800 mb-1">
                         Subject / Matter *
                       </label>
                       <input
@@ -3292,13 +3292,13 @@ export function ContactPage() {
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
                         placeholder="Brief summary of your query or grievance"
-                        className="w-full h-9 sm:h-10 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
+                        className="t-content w-full h-12 px-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all"
                       />
                     </div>
 
                     {/* Message / Grievance Description */}
                     <div>
-                      <label className="block text-xs font-semibold text-gray-800 mb-1">
+                      <label className="t-content block font-semibold! text-gray-800 mb-1">
                         Message / Grievance Description *
                       </label>
                       <textarea
@@ -3307,11 +3307,11 @@ export function ContactPage() {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Please provide detailed context regarding your question, prototype issue, or formal grievance..."
-                        className="w-full p-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 text-xs sm:text-[13px] placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all resize-y"
+                        className="t-content w-full p-3.5 rounded-lg bg-[#f8f9fa] border border-gray-200 placeholder:text-gray-400 focus:bg-white focus:border-red-400 outline-none transition-all resize-y"
                       />
                     </div>
                     {error && (
-                      <p role="alert" className="text-xs font-semibold text-[#ff4d4f]">
+                      <p role="alert" className="t-content font-semibold! text-[#ff4d4f]">
                         {error}
                       </p>
                     )}
@@ -3321,12 +3321,12 @@ export function ContactPage() {
                       <button
                         type="submit"
                         disabled={busy}
-                        className="w-full py-3 rounded-xl bg-[#ff4d4f] hover:bg-[#e03b40] text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="t-content w-full py-3.5 rounded-xl bg-[#ff4d4f] hover:bg-[#e03b40] text-white font-bold! transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {busy ? "Sending…" : "Submit Message / Grievance →"}
                       </button>
 
-                      <p className="mt-2 text-center text-[10px] sm:text-[10.5px] text-gray-400 font-normal">
+                      <p className="t-content mt-2 text-center text-gray-400 font-normal!">
                         Turnaround time: Official automated receipt within 5 minutes, review within 24–48 hours.
                       </p>
                     </div>
@@ -3508,7 +3508,7 @@ export function FaqPage() {
                     className="rounded-[18px] bg-[#fbfbfb] border border-[#eaecf0] px-6 sm:px-7 py-4 sm:py-4.5 transition-all cursor-pointer hover:border-gray-300 hover:shadow-2xs select-none"
                   >
                     <div className="flex items-center justify-between gap-4">
-                      <h3 className="font-bold text-sm sm:text-[15px] md:text-[16px] text-[#0e1726] leading-snug">
+                      <h3 className="t-content font-bold! text-[#0e1726]">
                         {item.q}
                       </h3>
                       <ChevronDown
