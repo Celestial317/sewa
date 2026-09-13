@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ResourcesPage } from "../components/SewaSite";
+import { AdditionalResourcesPage } from "../components/AdditionalResourcesPage";
 
 export const Route = createFileRoute("/resources")({
   head: () => ({
@@ -19,5 +19,5 @@ export const Route = createFileRoute("/resources")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: ResourcesPage,
+  component: AdditionalResourcesPage,
 });

@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as GuidelinesRouteImport } from './routes/guidelines'
 import { Route as ProblemStatementsRouteImport } from './routes/problem-statements'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SigninRouteImport } from './routes/signin'
@@ -51,6 +52,11 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidelinesRoute = GuidelinesRouteImport.update({
+  id: '/guidelines',
+  path: '/guidelines',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProblemStatementsRoute = ProblemStatementsRouteImport.update({
   id: '/problem-statements',
   path: '/problem-statements',
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/guidelines': typeof GuidelinesRoute
   '/problem-statements': typeof ProblemStatementsRoute
   '/resources': typeof ResourcesRoute
   '/signin': typeof SigninRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/guidelines': typeof GuidelinesRoute
   '/problem-statements': typeof ProblemStatementsRoute
   '/resources': typeof ResourcesRoute
   '/signin': typeof SigninRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/guidelines': typeof GuidelinesRoute
   '/problem-statements': typeof ProblemStatementsRoute
   '/resources': typeof ResourcesRoute
   '/signin': typeof SigninRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faq'
     | '/forgot-password'
+    | '/guidelines'
     | '/problem-statements'
     | '/resources'
     | '/signin'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faq'
     | '/forgot-password'
+    | '/guidelines'
     | '/problem-statements'
     | '/resources'
     | '/signin'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faq'
     | '/forgot-password'
+    | '/guidelines'
     | '/problem-statements'
     | '/resources'
     | '/signin'
@@ -166,6 +178,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   FaqRoute: typeof FaqRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
+  GuidelinesRoute: typeof GuidelinesRoute
   ProblemStatementsRoute: typeof ProblemStatementsRoute
   ResourcesRoute: typeof ResourcesRoute
   SigninRoute: typeof SigninRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guidelines': {
+      id: '/guidelines'
+      path: '/guidelines'
+      fullPath: '/guidelines'
+      preLoaderRoute: typeof GuidelinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/problem-statements': {
       id: '/problem-statements'
       path: '/problem-statements'
@@ -262,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   FaqRoute: FaqRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
+  GuidelinesRoute: GuidelinesRoute,
   ProblemStatementsRoute: ProblemStatementsRoute,
   ResourcesRoute: ResourcesRoute,
   SigninRoute: SigninRoute,

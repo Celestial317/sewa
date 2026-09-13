@@ -260,16 +260,17 @@ export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" |
               </div>
             </div>
 
-            {/* Guidelines dropdown */}
+                        {/* Guidelines dropdown */}
             <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
-              <a href="/#benefits" className={`nav-link ${activeNav === "guidelines" ? "text-primary font-bold" : ""}`}>
+              <Link to="/guidelines" className={`nav-link ${activeNav === "guidelines" ? "text-primary font-bold" : ""}`}>
                 Guidelines
-              </a>
+              </Link>
               <ChevronDown size={14} className="text-gray-500 mt-0.5" />
               <div className="nav-dropdown-menu">
+                <Link to="/guidelines">All Guidelines</Link>
+                <Link to="/guidelines" hash="eligibility-heading">Eligibility</Link>
+                <Link to="/guidelines" hash="submission-heading">Submission Format</Link>
                 <a href="/#benefits">Benefits</a>
-                <Link to="/faq">Eligibility</Link>
-                <Link to="/events" hash="stages">Submission Rules</Link>
               </div>
             </div>
 
@@ -804,7 +805,7 @@ export function VideoShowcaseSection() {
     {
       id: 1,
       title: "SEWA Youth Innovation Challenge",
-      date: "17 Sep",
+      date: "19 Sep",
       source: "DTU Youtube",
       image: studentsImage,
       videoUrl: "https://www.youtube.com/embed/KLuTLF3x9sA?si=Su4A0T5r-7cCGXmK",
@@ -2337,7 +2338,7 @@ const stagesData = [
   {
     number: "01",
     name: "IDEATE",
-    badge: "Days 1–15 • 17 Sep – 1 Oct 2026",
+    badge: "Days 1–15 • 19 Sep – 1 Oct 2026",
     description: "Launch of 50 National Problem Statements, online orientation, team registrations, and idea submissions.",
     icon: Lightbulb,
     color: "#ff6000",
