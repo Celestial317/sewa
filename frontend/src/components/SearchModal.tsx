@@ -42,24 +42,24 @@ export const SEARCH_ITEMS: SearchItem[] = [
     title: "Problem Statements & Themes",
     description: "Flagship national challenges and grassroots community innovation problem statements.",
     category: "Themes",
-    href: "/#themes",
+    href: "/problem-statements",
     keywords: ["themes", "problem statements", "udan", "challenges", "topics", "priorities"],
   },
   {
     id: "national-themes",
-    title: "National Level Priorities",
+    title: "Theme 1 - National Level Innovation",
     description: "Defence, Space & National Security, AI, Robotics, Manufacturing, Energy, Mobility.",
     category: "Themes",
-    href: "/#national-themes",
+    href: "/problem-statements#national",
     keywords: ["defence", "space", "security", "ai", "robotics", "energy", "infrastructure", "mobility", "manufacturing"],
   },
   {
     id: "community-themes",
-    title: "Local Community Innovations",
+    title: "Theme 2 - Local Community Innovations",
     description: "Agriculture, Healthcare, Rural Dev, Urban Issues, Women Safety, Tourism.",
     category: "Themes",
-    href: "/#community-themes",
-    keywords: ["agriculture", "rural", "healthcare", "urban", "water", "safety", "women", "tourism", "grassroots"],
+    href: "/problem-statements#community",
+    keywords: ["agriculture", "rural", "healthcare", "urban", "water", "safety", "women", "tourism", "grassroots", "sports", "khelo india", "employment", "livelihood", "miscellaneous"],
   },
   {
     id: "timeline",
@@ -198,6 +198,11 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
       window.open(item.href, "_blank", "noopener,noreferrer");
     } else if (item.href.startsWith("/#")) {
       window.location.href = item.href;
+    } else if (item.href.includes("#")) {
+      // Route + anchor, e.g. "/problem-statements#national" - TanStack Router
+      // needs these passed as separate `to` and `hash` values.
+      const [to, hash] = item.href.split("#");
+      navigate({ to, hash });
     } else {
       navigate({ to: item.href });
     }

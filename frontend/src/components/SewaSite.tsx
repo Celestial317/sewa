@@ -275,14 +275,18 @@ export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" |
 
             {/* Problem Statements dropdown */}
             <div className="nav-dropdown flex items-center gap-1 cursor-pointer">
-              <a href="/#themes" className={`nav-link ${activeNav === "problems" ? "text-primary font-bold" : ""}`}>
+              <Link
+                to="/problem-statements"
+                className={`nav-link ${activeNav === "problems" ? "text-primary font-bold" : ""}`}
+              >
                 Problem Statements
-              </a>
+              </Link>
               <ChevronDown size={14} className="text-gray-500 mt-0.5" />
               <div className="nav-dropdown-menu">
-                <a href="/#themes">All Themes</a>
-                <a href="/#national-themes">National Level Priorities</a>
-                <a href="/#community-themes">Local Community Challenges</a>
+                <Link to="/problem-statements">All Problem Statements</Link>
+                <Link to="/problem-statements" hash="national">National Level Innovation</Link>
+                <Link to="/problem-statements" hash="community">Local / Regional Innovation</Link>
+                <a href="/#themes">Themes Overview</a>
               </div>
             </div>
 
@@ -486,12 +490,16 @@ export function Footer() {
             <Link className="block hover:text-primary transition-colors" to="/about">
               About Challenge
             </Link>
-            <a className="block hover:text-primary transition-colors" href="/#steps">
+            <Link
+              className="block hover:text-primary transition-colors"
+              to="/problem-statements"
+              hash="national"
+            >
               5 National Themes
-            </a>
-            <a className="block hover:text-primary transition-colors" href="/#announcements">
-              Problem Statements (UDAN)
-            </a>
+            </Link>
+            <Link className="block hover:text-primary transition-colors" to="/problem-statements">
+              Problem Statements
+            </Link>
             <a className="block hover:text-primary transition-colors" href="/#steps">
               100-Day Timeline
             </a>
@@ -3326,8 +3334,8 @@ const resourcePages = [
   },
   {
     title: "Problem Statements",
-    description: "The full list of problem statements across all five themes.",
-    href: "/#themes",
+    description: "Category-wise problem statements across both national and community themes.",
+    href: "/problem-statements",
   },
   {
     title: "100-Day Timeline",
