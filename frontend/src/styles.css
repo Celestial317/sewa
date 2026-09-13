@@ -561,6 +561,33 @@
     justify-content: center;
   }
 
+  /* ------------------------------------------------------------------ *
+   * Objectives roadmap grid.
+   *
+   * All ten rows share one grid, so the card column is sized once against
+   * the longest description and every card comes out that width — rather
+   * than each card stretching to fill the container. minmax(0, max-content)
+   * lets the column shrink and wrap on narrow screens instead of
+   * overflowing.
+   * ------------------------------------------------------------------ */
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, max-content);
+    align-items: center;
+    justify-content: center;
+    column-gap: 14px;
+  }
+
+  @media (min-width: 640px) {
+    .objectives-grid {
+      column-gap: 20px;
+    }
+  }
+
+  .objectives-arrow {
+    grid-column: 1 / -1;
+  }
+
   /* Objectives roadmap: one card per step. */
   .roadmap-card {
     background-color: #ffffff;

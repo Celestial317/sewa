@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
 /**
  * Objectives — ten-step vertical roadmap.
@@ -208,7 +208,7 @@ const objectives: Objective[] = [
 ];
 
 const downArrow = (
-  <div aria-hidden="true" className="flex w-full justify-center py-1.5 pl-24 sm:pl-32">
+  <div aria-hidden="true" className="objectives-arrow flex w-full justify-center py-1.5 pl-24 sm:pl-32">
     <svg
       width={18}
       height={18}
@@ -227,50 +227,48 @@ const downArrow = (
 
 export function ObjectivesRoadmap() {
   return (
-    <div className="mx-auto flex w-full max-w-[860px] flex-col items-center">
+    <div className="objectives-grid w-full">
       {objectives.map((item, i) => (
-        <div key={item.number} className="w-full">
-          <div className="flex w-full items-center gap-3.5 sm:gap-5">
-            {/* Number badge */}
-            <div
-              className="flex shrink-0 items-center justify-center rounded-full"
-              style={{ width: BADGE, height: BADGE, backgroundColor: item.numberBg }}
+        <Fragment key={item.number}>
+          {/* Number badge */}
+          <div
+            className="flex shrink-0 items-center justify-center rounded-full"
+            style={{ width: BADGE, height: BADGE, backgroundColor: item.numberBg }}
+          >
+            <span
+              className="font-bold tracking-tight"
+              style={{ color: item.ink, fontSize: 19, lineHeight: 1 }}
             >
-              <span
-                className="font-bold tracking-tight"
-                style={{ color: item.ink, fontSize: 19, lineHeight: 1 }}
-              >
-                {item.number}
-              </span>
-            </div>
+              {item.number}
+            </span>
+          </div>
 
-            {/* Icon badge */}
-            <div
-              className="flex shrink-0 items-center justify-center rounded-full border"
-              style={{
-                width: BADGE,
-                height: BADGE,
-                backgroundColor: item.iconBg,
-                borderColor: item.numberBg,
-                color: item.ink,
-              }}
-            >
-              {item.icon}
-            </div>
+          {/* Icon badge */}
+          <div
+            className="flex shrink-0 items-center justify-center rounded-full border"
+            style={{
+              width: BADGE,
+              height: BADGE,
+              backgroundColor: item.iconBg,
+              borderColor: item.numberBg,
+              color: item.ink,
+            }}
+          >
+            {item.icon}
+          </div>
 
-            {/* Content card */}
-            <div className="roadmap-card flex-1 px-5 py-5 sm:px-6">
-              <h2 className="t-subheading-2 mb-2 text-left tracking-tight text-[#0f172a] [hyphens:none]">
-                {item.title}
-              </h2>
-              <p className="t-content text-left text-[#475569] [hyphens:none]">
-                {item.body}
-              </p>
-            </div>
+          {/* Content card */}
+          <div className="roadmap-card px-5 py-5 sm:px-6">
+            <h2 className="t-subheading-2 mb-2 text-left tracking-tight text-[#0f172a] [hyphens:none]">
+              {item.title}
+            </h2>
+            <p className="t-content text-left text-[#475569] [hyphens:none]">
+              {item.body}
+            </p>
           </div>
 
           {i < objectives.length - 1 && downArrow}
-        </div>
+        </Fragment>
       ))}
     </div>
   );

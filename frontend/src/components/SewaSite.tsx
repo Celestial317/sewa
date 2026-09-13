@@ -3602,7 +3602,12 @@ export function AboutPage() {
               >
                 OBJECTIVES
               </h2>
-              <ObjectivesRoadmap />
+              {/* Breaks out of the About page's max-w-5xl column. 1360px is
+                  the narrowest frame that still lets the longest objective
+                  description sit on one line at content size. */}
+              <div className="relative left-1/2 w-[min(100vw-2rem,1360px)] -translate-x-1/2">
+                <ObjectivesRoadmap />
+              </div>
             </section>
 
             {/* 6. UNIQUE FEATURES */}
