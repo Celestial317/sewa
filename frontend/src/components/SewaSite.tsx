@@ -49,12 +49,12 @@ import satymevjayteLogo from "../assets/satymevjayte.svg";
 import govtofnctLogo from "../assets/govtofnctdelhi.svg";
 import sewaLogo from "../assets/sewalogo.svg";
 import sewaWhiteLogo from "../assets/sewawhite.svg";
-import timelineImg from "../assets/timeline.jpg";
-import benefitsSvg from "../assets/benefits.svg";
-import philosophySvg from "../assets/philosophy.svg";
-import objectiveSvg from "../assets/objective.svg";
 import uniqueFeaturesSvg from "../assets/unique_features.svg";
+import { InnovationJourney } from "./InnovationJourney";
+import { ObjectivesRoadmap } from "./ObjectivesRoadmap";
+import { ParticipationBenefits } from "./ParticipationBenefits";
 import { SearchModal } from "./SearchModal";
+import { TimelineRoadmap } from "./TimelineRoadmap";
 
 const heroImages = [
   {
@@ -1146,7 +1146,7 @@ export function StatisticsSection() {
     <section id="statistics" className="t-section-band bg-white scroll-mt-20">
       <div className="site-shell max-w-6xl">
         {/* Title */}
-        <h2 className="t-main-heading uppercase text-black">
+        <h2 className="t-main-heading uppercase">
           STATISTICS
         </h2>
 
@@ -1238,7 +1238,7 @@ export function StatisticsSection() {
         </div>
 
         {/* Charts Container with light background */}
-        <div className="mt-14 sm:mt-18 rounded-2xl bg-[#f8fafc] border border-gray-200/70 p-4 sm:p-6 lg:p-8">
+        <div className="mt-14 sm:mt-18 rounded-2xl p-4 sm:p-6 lg:p-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
             {/* Card 1: Entries by Level */}
             <div className="rounded-2xl bg-white p-5 sm:p-6 border border-gray-200/90 shadow-2xs flex flex-col justify-between">
@@ -1547,25 +1547,21 @@ export function HomePage() {
 
         {/* ── Participation Benefits ── */}
         <section id="benefits" className="t-section-band bg-white scroll-mt-20">
-          <div className="site-shell max-w-[1240px]">
-            <div className="w-full flex items-center justify-center">
-              <img
-                src={benefitsSvg}
-                alt="Participation Benefits - SEWA FIRST RYIC 2026"
-                className="w-full h-auto object-contain max-w-[1200px] select-none"
-              />
-            </div>
+          {/* Wider than .site-shell (1200px) so the diagram renders larger.
+              Change the 1440px to resize it. */}
+          <div className="mx-auto w-[min(100%-2rem,1440px)]">
+            <ParticipationBenefits />
           </div>
         </section>
 
         {/* ── Themes Section ── */}
         <section id="themes" className="t-section-band [--section-gap:140] bg-white scroll-mt-20">
           <div className="site-shell max-w-5xl">
-            <h2 className="t-main-heading text-black">
+            <h2 className="t-main-heading">
               THEMES
             </h2>
 
-            <p className="t-subheading-2 text-black mb-8 sm:mb-10">
+            <p className="t-subheading-2 text-center text-primary mb-8 sm:mb-10">
               The Rashtriya Youth Innovation Challenge 2026 focuses on two broad themes:
             </p>
 
@@ -1583,18 +1579,14 @@ export function HomePage() {
 
         {/* ── Timeline of 100 Day Journey ── */}
         <section id="timeline" className="t-section-band scroll-mt-20">
-          <div className="site-shell">
-            <h2 className="t-main-heading text-gray-900">
+          {/* Wider than .site-shell so the 1400px roadmap renders near full
+              size. Change the 1440px to resize it. */}
+          <div className="mx-auto w-[min(100%-2rem,1440px)]">
+            <h2 className="t-main-heading">
               <span className="uppercase">Timeline</span>
-              <span className="t-subheading-2 block">of 100 Day Journey</span>
+              <span className="t-subheading-2 block text-primary">of 100 Day Journey</span>
             </h2>
-            <div className="flex items-center justify-center">
-              <img
-                src={timelineImg}
-                alt="Timeline of 100 Day Journey - SEWA FIRST RYIC 2026"
-                className="w-full max-w-5xl h-auto object-contain mix-blend-multiply"
-              />
-            </div>
+            <TimelineRoadmap />
           </div>
         </section>
 
@@ -1777,7 +1769,7 @@ export function HomePage() {
         {/* ── Organizing Committee ── */}
         <section id="committee" className="t-section-band scroll-mt-20">
           <div className="site-shell">
-            <h2 className="t-main-heading t-title-gap-wide text-gray-950 uppercase">
+            <h2 className="t-main-heading t-title-gap-wide uppercase">
               Organizing Committee
             </h2>
 
@@ -2656,7 +2648,7 @@ export function EventsPage() {
         <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 border-b border-gray-100">
           <div className="site-shell grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-              <h1 className="t-main-heading text-gray-900">
+              <h1 className="t-main-heading">
                 Discover What&apos;s
                 <span className="block text-[#ff3b30] mt-1.5 sm:mt-2">Happening</span>
               </h1>
@@ -3104,7 +3096,7 @@ export function ContactPage() {
         <Header activeNav="contact" />
         <main className="pt-10 sm:pt-14 pb-16 sm:pb-20">
           <div className="site-shell max-w-4xl">
-            <h1 className="t-main-heading text-gray-950 uppercase">
+            <h1 className="t-main-heading uppercase">
               CONTACT US
             </h1>
 
@@ -3478,7 +3470,7 @@ export function FaqPage() {
         <Header activeNav="faq" />
         <main className="pt-10 sm:pt-14 pb-20 sm:pb-24">
           <div className="site-shell max-w-[760px]">
-            <h1 className="t-main-heading text-[#0e1726] uppercase">
+            <h1 className="t-main-heading uppercase">
               Frequently Asked Questions
             </h1>
             <p className="t-content text-center text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12">
@@ -3539,7 +3531,7 @@ export function AboutPage() {
             <section aria-labelledby="vision-heading">
               <h1
                 id="vision-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 VISION
               </h1>
@@ -3552,7 +3544,7 @@ export function AboutPage() {
             <section aria-labelledby="mission-heading">
               <h2
                 id="mission-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 MISSION
               </h2>
@@ -3565,7 +3557,7 @@ export function AboutPage() {
             <section aria-labelledby="philosophy-heading">
               <h2
                 id="philosophy-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 PHILOSOPHY
               </h2>
@@ -3577,12 +3569,10 @@ export function AboutPage() {
                   The philosophy of SEWA FIRST – Rashtriya Youth Innovation Challenge 2026 is rooted in the belief that innovation should begin with service and end with impact. It encourages young Indians to observe real problems around them, understand the needs of people and communities, and transform these challenges into practical, affordable, sustainable and implementable solutions.
                 </p>
               </div>
-              <div className="mt-8 sm:mt-12 flex justify-center">
-                <img
-                  src={philosophySvg}
-                  alt="Philosophy 8-Step Pathway: Observe, Identify, Understand, Innovate, Create, Demonstrate, Implement, Benefit"
-                  className="w-full max-w-4xl h-auto object-contain select-none"
-                />
+              {/* Breaks out of the About page's max-w-5xl column so the eight
+                  step columns get room to breathe. */}
+              <div className="relative left-1/2 mt-8 w-[min(100vw-2rem,1280px)] -translate-x-1/2 sm:mt-12">
+                <InnovationJourney />
               </div>
             </section>
 
@@ -3590,7 +3580,7 @@ export function AboutPage() {
             <section aria-labelledby="aim-heading">
               <h2
                 id="aim-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 AIM
               </h2>
@@ -3608,24 +3598,18 @@ export function AboutPage() {
             <section aria-labelledby="objectives-heading">
               <h2
                 id="objectives-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 OBJECTIVES
               </h2>
-              <div className="mt-6 sm:mt-10 flex justify-center">
-                <img
-                  src={objectiveSvg}
-                  alt="10 Core Objectives of SEWA FIRST RYIC 2026"
-                  className="w-full max-w-4xl h-auto object-contain select-none"
-                />
-              </div>
+              <ObjectivesRoadmap />
             </section>
 
             {/* 6. UNIQUE FEATURES */}
             <section aria-labelledby="unique-features-heading">
               <h2
                 id="unique-features-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 UNIQUE FEATURES
               </h2>
@@ -3653,7 +3637,7 @@ export function AboutPage() {
             <section aria-labelledby="purpose-benefits-heading" className="min-h-[200px] sm:min-h-[280px]">
               <h2
                 id="purpose-benefits-heading"
-                className="t-main-heading text-primary uppercase"
+                className="t-main-heading uppercase"
               >
                 PURPOSE &amp; BENEFITS
               </h2>

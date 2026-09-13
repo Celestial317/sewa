@@ -64,7 +64,7 @@ const eligibilityDetails = [
   },
 ];
 
-const sectionHeadingClass = "t-main-heading uppercase text-[#ff6668]";
+const sectionHeadingClass = "t-main-heading uppercase";
 
 function GuidelinesPage() {
   return (

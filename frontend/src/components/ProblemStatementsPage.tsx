@@ -112,7 +112,7 @@ export function ProblemStatementsPage() {
 
         <main className="pt-10 sm:pt-16 pb-20 sm:pb-28">
           <div className="site-shell max-w-5xl">
-            <h1 className="t-main-heading uppercase text-primary">
+            <h1 className="t-main-heading uppercase">
               Problem Statements
             </h1>
             <p className="t-content mx-auto mt-5 sm:mt-6 max-w-2xl text-center text-gray-500">
