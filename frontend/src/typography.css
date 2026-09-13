@@ -100,6 +100,16 @@
   letter-spacing: var(--content-tracking);
 }
 
+/* Same scale as .t-content, dialled down a step. For bold/dense UI text
+   (table cells, pills, nav controls) where full content size reads too
+   large once weight is added. */
+.t-content-sm {
+  font-size: calc(var(--fs-content) * 0.82);
+  line-height: var(--content-leading);
+  font-weight: var(--content-weight);
+  letter-spacing: var(--content-tracking);
+}
+
 .t-content-block :is(p, li) {
   font-size: var(--fs-content);
   line-height: var(--content-leading);

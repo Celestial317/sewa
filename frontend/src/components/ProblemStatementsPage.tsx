@@ -4,7 +4,7 @@ import { Header, Footer } from "./SewaSite";
 /* ── Reusable Pagination ──────────────────────────────────────────── */
 function Pagination({ total = 24, current = 1 }: { total?: number; current?: number }) {
   const btnBase =
-    "inline-flex items-center justify-center h-9 min-w-[36px] rounded-xl border text-[14px] font-semibold transition-colors select-none cursor-pointer";
+    "t-content-sm font-semibold! inline-flex items-center justify-center h-9 min-w-[36px] rounded-xl border transition-colors select-none cursor-pointer";
   const activeCls = `${btnBase} bg-[#2368B2] border-[#2368B2] text-white shadow-[0px_2px_6px_rgba(35,104,178,0.3)]`;
   const inactiveCls = `${btnBase} bg-white border-[rgba(226,232,240,0.9)] text-[#374151] hover:bg-[#F1F5F9]`;
   const navCls = `${btnBase} px-4 gap-1.5 bg-white border-[rgba(226,232,240,0.9)] text-[#374151] hover:bg-[#F1F5F9]`;
@@ -33,7 +33,7 @@ function Pagination({ total = 24, current = 1 }: { total?: number; current?: num
       ))}
 
       {/* Ellipsis */}
-      <span className="inline-flex items-center justify-center h-9 w-9 text-[14px] text-[#9CA3AF] font-semibold">
+      <span className="t-content-sm inline-flex items-center justify-center h-9 w-9 text-[#9CA3AF] font-semibold!">
         …
       </span>
 
@@ -198,25 +198,25 @@ function TableCard({ categories }: { categories: Category[] }) {
             >
               {/* # */}
               <th className="w-[84px] px-6 py-4 text-center">
-                <span className="text-[13px] font-bold tracking-[0.65px] uppercase text-[#60718B]">
+                <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
                   #
                 </span>
               </th>
               {/* CATEGORY */}
               <th className="px-6 py-4 text-left" style={{ width: "38%" }}>
-                <span className="text-[13px] font-bold tracking-[0.65px] uppercase text-[#60718B]">
+                <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
                   Category
                 </span>
               </th>
               {/* PROBLEM STATEMENT */}
               <th className="px-6 py-4 text-left" style={{ width: "31%" }}>
-                <span className="text-[13px] font-bold tracking-[0.65px] uppercase text-[#60718B]">
+                <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
                   Problem Statement
                 </span>
               </th>
               {/* ID NUMBER */}
               <th className="px-6 py-4 text-center" style={{ width: "23%" }}>
-                <span className="text-[13px] font-bold tracking-[0.65px] uppercase text-[#60718B]">
+                <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
                   ID Number
                 </span>
               </th>
@@ -235,7 +235,7 @@ function TableCard({ categories }: { categories: Category[] }) {
                 {/* Number badge */}
                 <td className="w-[84px] px-6 py-[20.5px] text-center">
                   <span
-                    className="inline-flex items-center justify-center w-9 h-9 rounded-full text-[16px] font-bold leading-[24px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)]"
+                    className="t-content-sm font-bold! inline-flex items-center justify-center w-9 h-9 rounded-full shadow-[0px_1px_2px_rgba(0,0,0,0.05)]"
                     style={{ background: row.badgeBg, color: row.badgeText }}
                   >
                     {i + 1}
@@ -244,7 +244,7 @@ function TableCard({ categories }: { categories: Category[] }) {
 
                 {/* Category name */}
                 <td className="px-6 py-[27.5px]" style={{ width: "38%" }}>
-                  <span className="text-[15px] font-bold leading-[21px] tracking-[-0.375px] text-[#142340]">
+                  <span className="t-content-sm font-bold! tracking-[-0.375px] text-[#142340]">
                     {row.label}
                   </span>
                 </td>
@@ -261,7 +261,7 @@ function TableCard({ categories }: { categories: Category[] }) {
                     </span>
 
                     {/* Title */}
-                    <span className="text-[14px] font-bold leading-[21px] text-[#142340]">
+                    <span className="t-content-sm font-bold! text-[#142340]">
                       {row.psTitle}
                     </span>
 
@@ -278,7 +278,7 @@ function TableCard({ categories }: { categories: Category[] }) {
 
                 {/* ID pill */}
                 <td className="px-6 py-[24.5px] text-center" style={{ width: "23%" }}>
-                  <span className="inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#EAF1F8] text-[12px] font-semibold tracking-[0.3px] text-[#1E2F4D]">
+                  <span className="t-content-sm font-semibold! inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#EAF1F8] tracking-[0.3px] text-[#1E2F4D]">
                     {row.idNumber}
                   </span>
                 </td>
@@ -316,11 +316,11 @@ export function ProblemStatementsPage() {
               >
                 <h2
                   id="national-heading"
-                  className="font-extrabold text-[20px] sm:text-[24px] leading-[1.2] tracking-[-0.02em] text-[#112347] uppercase"
+                  className="t-subheading-2 text-[#112347] uppercase"
                 >
                   Theme 1: National Level Innovation
                 </h2>
-                <p className="mt-5 text-[15px] leading-[1.7] text-[#334155] sm:text-justify">
+                <p className="t-content mt-5 text-[#334155] sm:text-justify">
                   Participants will work on identified challenges and problem statements of national
                   significance, developing innovative, sustainable and scalable solutions with the
                   potential for adoption across India. Innovations should have a starting TRL of
@@ -344,12 +344,12 @@ export function ProblemStatementsPage() {
               >
                 <h2
                   id="community-heading"
-                  className="font-extrabold text-[20px] sm:text-[24px] leading-[1.2] tracking-[-0.02em] text-[#112347] uppercase"
+                  className="t-subheading-2 text-[#112347] uppercase"
                 >
                   Theme 2: Local Community Level Innovations –{" "}
                   Village / District / State
                 </h2>
-                <p className="mt-5 text-[15px] leading-[1.7] text-[#334155] sm:text-justify">
+                <p className="t-content mt-5 text-[#334155] sm:text-justify">
                   Participants will identify real problems and unmet needs within their own
                   villages, districts or states and develop locally relevant, affordable,
                   sustainable and implementable solutions that directly benefit the community and
