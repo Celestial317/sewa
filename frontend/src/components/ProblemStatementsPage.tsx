@@ -1,6 +1,58 @@
 import { useEffect } from "react";
 import { Header, Footer } from "./SewaSite";
 
+/* ── Reusable Pagination ──────────────────────────────────────────── */
+function Pagination({ total = 24, current = 1 }: { total?: number; current?: number }) {
+  const btnBase =
+    "inline-flex items-center justify-center h-9 min-w-[36px] rounded-xl border text-[14px] font-semibold transition-colors select-none cursor-pointer";
+  const activeCls = `${btnBase} bg-[#2368B2] border-[#2368B2] text-white shadow-[0px_2px_6px_rgba(35,104,178,0.3)]`;
+  const inactiveCls = `${btnBase} bg-white border-[rgba(226,232,240,0.9)] text-[#374151] hover:bg-[#F1F5F9]`;
+  const navCls = `${btnBase} px-4 gap-1.5 bg-white border-[rgba(226,232,240,0.9)] text-[#374151] hover:bg-[#F1F5F9]`;
+
+  // Show: 1 2 3 4 5 … 24
+  const pages = [1, 2, 3, 4, 5];
+
+  return (
+    <div className="mt-6 flex items-center justify-center gap-1.5 flex-wrap">
+      {/* Previous */}
+      <button type="button" className={navCls} aria-label="Previous page">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Previous
+      </button>
+
+      {/* Page numbers */}
+      {pages.map((p) => (
+        <button key={p} type="button" className={p === current ? activeCls : inactiveCls}
+          aria-current={p === current ? "page" : undefined}
+          style={{ padding: "0 12px" }}
+        >
+          {p}
+        </button>
+      ))}
+
+      {/* Ellipsis */}
+      <span className="inline-flex items-center justify-center h-9 w-9 text-[14px] text-[#9CA3AF] font-semibold">
+        …
+      </span>
+
+      {/* Last page */}
+      <button type="button" className={inactiveCls} style={{ padding: "0 12px" }}>
+        {total}
+      </button>
+
+      {/* Next */}
+      <button type="button" className={navCls} aria-label="Next page">
+        Next
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 type Category = {
   label: string;
   psTitle: string;
@@ -281,36 +333,7 @@ export function ProblemStatementsPage() {
                   <TableCard categories={NATIONAL_CATEGORIES} />
                 </div>
 
-                {/* ── Pagination ── */}
-                <div className="mt-6 flex items-center justify-center gap-2">
-                  {/* Page 1 — active */}
-                  <button
-                    type="button"
-                    aria-current="page"
-                    className="inline-flex items-center justify-center px-5 h-9 rounded-full bg-[#2368B2] text-white text-[14px] font-bold shadow-[0px_2px_6px_rgba(35,104,178,0.35)] hover:bg-[#1A4F8A] transition-colors"
-                  >
-                    Page 1
-                  </button>
-
-                  {/* Page 2 — inactive */}
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center px-5 h-9 rounded-full border border-[rgba(226,232,240,0.8)] bg-white text-[14px] font-bold text-[#334155] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] hover:bg-[#F8FAFC] transition-colors"
-                  >
-                    Page 2
-                  </button>
-
-                  {/* Next chevron */}
-                  <button
-                    type="button"
-                    aria-label="Next page"
-                    className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[rgba(226,232,240,0.8)] bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.05)] text-[#64748B] hover:bg-[#F8FAFC] transition-colors"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </button>
-                </div>
+                <Pagination total={24} current={1} />
               </section>
 
               {/* ── Theme 2 ── */}
@@ -340,36 +363,7 @@ export function ProblemStatementsPage() {
                   <TableCard categories={COMMUNITY_CATEGORIES} />
                 </div>
 
-                {/* ── Pagination ── */}
-                <div className="mt-6 flex items-center justify-center gap-2">
-                  {/* Page 1 — active */}
-                  <button
-                    type="button"
-                    aria-current="page"
-                    className="inline-flex items-center justify-center px-5 h-9 rounded-full bg-[#2368B2] text-white text-[14px] font-bold shadow-[0px_2px_6px_rgba(35,104,178,0.35)] hover:bg-[#1A4F8A] transition-colors"
-                  >
-                    Page 1
-                  </button>
-
-                  {/* Page 2 — inactive */}
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center px-5 h-9 rounded-full border border-[rgba(226,232,240,0.8)] bg-white text-[14px] font-bold text-[#334155] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] hover:bg-[#F8FAFC] transition-colors"
-                  >
-                    Page 2
-                  </button>
-
-                  {/* Next chevron */}
-                  <button
-                    type="button"
-                    aria-label="Next page"
-                    className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[rgba(226,232,240,0.8)] bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.05)] text-[#64748B] hover:bg-[#F8FAFC] transition-colors"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </button>
-                </div>
+                <Pagination total={24} current={1} />
               </section>
 
             </div>
