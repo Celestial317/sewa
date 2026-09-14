@@ -3156,28 +3156,52 @@ export function ResourcesPage() {
 
 const faqData = [
   {
-    q: "Who is eligible to participate in SEWA 2026?",
-    a: "The challenge is open to Indian youth across multiple categories: Category A for School Students (Classes 9th to 12th); Category B for Undergraduate & Postgraduate students from any recognized university, college, or technical institute; and Category C for Researchers, Faculty, Innovators, and Early-stage Startups (under 3 years of incorporation). Both individual and interdisciplinary teams are welcome.",
+    q: "What is SEWA FIRST – Rashtriya Youth Innovation Challenge 2026?",
+    a: "SEWA FIRST is a national youth innovation initiative that encourages young minds to identify real-world challenges and develop affordable, sustainable and implementable solutions for society and the nation.",
   },
   {
-    q: "How do I reach the DTU campus on the event day?",
-    a: "Delhi Technological University (DTU) is located at Shahbad Daulatpur, Bawana Road, Rohini, Delhi-110042. The nearest Metro stations are Samaypur Badli (Yellow Line) and Rithala (Red Line). Feeder buses and battery e-rickshaws operate continuously from Samaypur Badli station directly to the DTU main entrance. Registered participant vehicles can access designated parking at the DTU Sports Complex.",
+    q: "Who can participate in the Challenge?",
+    a: "Students, young innovators, researchers, technology teams, startups and eligible institutions can participate, subject to the eligibility criteria specified in the Challenge guidelines.",
+  },
+  {
+    q: "Who is the Regional Coordinator for the Northern Region?",
+    a: "Delhi Technological University (DTU) is the Regional Coordinator for the Northern Region. The region includes J&K, Ladakh, Himachal Pradesh, Uttarakhand, Chandigarh, Delhi, Punjab, Haryana and Uttar Pradesh.",
+  },
+  {
+    q: "Do I need a fully developed product to participate?",
+    a: "No. Participants can begin with an early-stage idea (TRL 1-3) for local/regional/state and TRL (4-6) for national level may participate and progressively develop it through the Challenge towards a functional prototype.",
+  },
+  {
+    q: "Can I propose a solution to a local problem?",
+    a: "Yes. Local and community-level problems are strongly encouraged. Solutions should be affordable, sustainable, practical and capable of being replicated or scaled. Broad area categories may be referred to in the Problem Statements page",
+  },
+  {
+    q: "How will the innovations be evaluated?",
+    a: "Evaluation will be done in stages by eminent jury members on the basis of rubrics.",
+  },
+  {
+    q: "Can interdisciplinary teams participate?",
+    a: "Yes. Interdisciplinary teams are encouraged to combine expertise through team members across from technology, engineering, design, entrepreneurship and other relevant domains to create stronger solutions.",
+  },
+  {
+    q: "Will participants receive mentorship?",
+    a: "Participants will get opportunities to interact with mentors, innovators, academia, industry, startups and government stakeholders for technical guidance and further development of their innovations.",
   },
   {
     q: "Can outside college students and inter-college teams register?",
-    a: "Yes! Inter-college and cross-institutional team formations are fully allowed and actively encouraged. Team members can represent different universities, colleges, departments, or even different states across India. One member should be designated as the Team Leader for all primary communications and submission tracking.",
+    a: "Yes. Students from different colleges can form an inter-college team, subject to the eligibility criteria and submission requirements specified in the Challenge guidelines. Teams should nominate one member as the designated team representative for communication and coordination.",
   },
   {
     q: "How can teams submit complaints or technical grievances regarding evaluation?",
-    a: "Teams can submit queries, evaluation appeals, or technical grievances through the dedicated Contact Us / Grievance form on the portal. Every submission receives an automated official acknowledgement within 5 minutes, and our expert jury and redressal committee reviews each matter within 24–48 hours.",
+    a: "Teams can submit their complaints or technical grievances through the \"Contact Us\" form on the official Challenge website or by emailing the designated grievance email address. All grievances should include the team details, issue description and relevant supporting information.",
   },
   {
-    q: "Are travel allowances or hostel accommodations provided for shortlisted participants?",
-    a: "Shortlisted finalists invited to the physical Grand Finale and National Prototype Showcase at DTU campus will be provided subsidized accommodation in the university guest house and student hostels. Details regarding travel allowances and reimbursements for eligible outstation teams will be issued along with the Regional Hub results circular.",
+    q: "How can I register for the Challenge?",
+    a: "Participants can register through the SEWA FIRST registration portal during the specified registration period. Applicants should provide the required participant, team and innovation details and complete the submission process.",
   },
   {
-    q: "Who can I contact for urgent event day assistance?",
-    a: "For immediate assistance, contact the Northern Region Coordinator Helpdesk at +91 11 27871018 (Ext: 442) or +91 11 27871020, or email sewa2026@dtu.ac.in. On-site physical helpdesk booths will also be stationed at the DTU Student Activity Centre (SAC) and main reception foyer throughout the event days.",
+    q: "How will I be notified about various updates?",
+    a: "Registered participants will receive important updates through their registered email address and official SEWA FIRST communication channels. Participants are advised to regularly check the official website and their email for announcements, deadlines and other updates.",
   },
 ];
 
