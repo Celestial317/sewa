@@ -55,19 +55,32 @@ function Pagination({ total = 24, current = 1 }: { total?: number; current?: num
 
 type Category = {
   label: string;
-  psTitle: string;
-  psUrl?: string;
   idNumber: string;
   badgeBg: string;
   badgeText: string;
 };
 
-/* ── National Level categories ─────────────────────────────────────── */
-export const NATIONAL_CATEGORIES: Category[] = [
+/*
+ * National Level: every category offers two options, not two separate rows —
+ * take the problem statement we've supplied, or propose your own within that
+ * category. Both live inside the ONE row for that category, as two stacked
+ * sub-entries in the Problem Statement and ID Number columns, so the table
+ * stays five rows (one per category) instead of ten.
+ */
+type NationalCategory = Category & {
+  psTitle: string;
+  psUrl?: string;
+  psId: string; // e.g. "NAT-001-PS"
+  openId: string; // e.g. "NAT-001-OP"
+};
+
+export const NATIONAL_CATEGORIES: NationalCategory[] = [
   {
     label: "Defence, Intelligence, Space & National Security",
     psTitle: "PS1 TITLE",
     idNumber: "NAT-001",
+    psId: "NAT-001-PS",
+    openId: "NAT-001-OP",
     badgeBg: "#FDE8E8",
     badgeText: "#E03137",
   },
@@ -75,6 +88,8 @@ export const NATIONAL_CATEGORIES: Category[] = [
     label: "Disaster Management & Resilience",
     psTitle: "PS2 TITLE",
     idNumber: "NAT-002",
+    psId: "NAT-002-PS",
+    openId: "NAT-002-OP",
     badgeBg: "#DBEAFE",
     badgeText: "#0284C7",
   },
@@ -82,6 +97,8 @@ export const NATIONAL_CATEGORIES: Category[] = [
     label: "Manufacturing & Electronics, AI, Robotics & Autonomous Systems",
     psTitle: "PS3 TITLE",
     idNumber: "NAT-003",
+    psId: "NAT-003-PS",
+    openId: "NAT-003-OP",
     badgeBg: "#DCFCE7",
     badgeText: "#16A34A",
   },
@@ -89,6 +106,8 @@ export const NATIONAL_CATEGORIES: Category[] = [
     label: "Energy & Sustainable Technology & Environment",
     psTitle: "PS4 TITLE",
     idNumber: "NAT-004",
+    psId: "NAT-004-PS",
+    openId: "NAT-004-OP",
     badgeBg: "#FEF3C7",
     badgeText: "#D97706",
   },
@@ -96,99 +115,52 @@ export const NATIONAL_CATEGORIES: Category[] = [
     label: "Advanced Engineering, Infrastructure, Future Mobility & Transportation",
     psTitle: "PS5 TITLE",
     idNumber: "NAT-005",
+    psId: "NAT-005-PS",
+    openId: "NAT-005-OP",
     badgeBg: "#EDE9FE",
     badgeText: "#7C3AED",
   },
 ];
 
-/* ── Community Level categories ─────────────────────────────────────── */
+/*
+ * Regional (Local Community Level): open to all, with no problem statements
+ * provided at all — every category is solved as an open proposal. There is
+ * only ever one option per row, and the table has no Problem Statement
+ * column since there is nothing to show in it.
+ */
 export const COMMUNITY_CATEGORIES: Category[] = [
-  {
-    label: "Village & Panchayat Development, Agriculture & Rural Economy",
-    psTitle: "PS1 TITLE",
-    idNumber: "REG-001",
-    badgeBg: "#FDE8E8",
-    badgeText: "#E03137",
-  },
-  {
-    label: "Education & Skill Development",
-    psTitle: "PS2 TITLE",
-    idNumber: "REG-002",
-    badgeBg: "#DBEAFE",
-    badgeText: "#0284C7",
-  },
-  {
-    label: "Healthcare & Community Well-being",
-    psTitle: "PS3 TITLE",
-    idNumber: "REG-003",
-    badgeBg: "#DCFCE7",
-    badgeText: "#16A34A",
-  },
-  {
-    label: "City & Urban Problems",
-    psTitle: "PS4 TITLE",
-    idNumber: "REG-004",
-    badgeBg: "#FEF3C7",
-    badgeText: "#D97706",
-  },
-  {
-    label: "Environment & Natural Resources",
-    psTitle: "PS5 TITLE",
-    idNumber: "REG-005",
-    badgeBg: "#EDE9FE",
-    badgeText: "#7C3AED",
-  },
-  {
-    label: "Sports (Khelo India)",
-    psTitle: "PS6 TITLE",
-    idNumber: "REG-006",
-    badgeBg: "#FDE8E8",
-    badgeText: "#E03137",
-  },
-  {
-    label: "Employment & Livelihood",
-    psTitle: "PS7 TITLE",
-    idNumber: "REG-007",
-    badgeBg: "#DBEAFE",
-    badgeText: "#0284C7",
-  },
-  {
-    label: "Women & Child Safety and Development",
-    psTitle: "PS8 TITLE",
-    idNumber: "REG-008",
-    badgeBg: "#DCFCE7",
-    badgeText: "#16A34A",
-  },
-  {
-    label: "Safety & Disaster Management",
-    psTitle: "PS9 TITLE",
-    idNumber: "REG-009",
-    badgeBg: "#FEF3C7",
-    badgeText: "#D97706",
-  },
-  {
-    label: "Transport, Energy & Tourism",
-    psTitle: "PS10 TITLE",
-    idNumber: "REG-010",
-    badgeBg: "#EDE9FE",
-    badgeText: "#7C3AED",
-  },
-  {
-    label: "Miscellaneous",
-    psTitle: "PS11 TITLE",
-    idNumber: "REG-011",
-    badgeBg: "#FDE8E8",
-    badgeText: "#E03137",
-  },
+  { label: "Village & Panchayat Development, Agriculture & Rural Economy", idNumber: "REG-001-OP", badgeBg: "#FDE8E8", badgeText: "#E03137" },
+  { label: "Education & Skill Development", idNumber: "REG-002-OP", badgeBg: "#DBEAFE", badgeText: "#0284C7" },
+  { label: "Healthcare & Community Well-being", idNumber: "REG-003-OP", badgeBg: "#DCFCE7", badgeText: "#16A34A" },
+  { label: "City & Urban Problems", idNumber: "REG-004-OP", badgeBg: "#FEF3C7", badgeText: "#D97706" },
+  { label: "Environment & Natural Resources", idNumber: "REG-005-OP", badgeBg: "#EDE9FE", badgeText: "#7C3AED" },
+  { label: "Sports (Khelo India)", idNumber: "REG-006-OP", badgeBg: "#FDE8E8", badgeText: "#E03137" },
+  { label: "Employment & Livelihood", idNumber: "REG-007-OP", badgeBg: "#DBEAFE", badgeText: "#0284C7" },
+  { label: "Women & Child Safety and Development", idNumber: "REG-008-OP", badgeBg: "#DCFCE7", badgeText: "#16A34A" },
+  { label: "Safety & Disaster Management", idNumber: "REG-009-OP", badgeBg: "#FEF3C7", badgeText: "#D97706" },
+  { label: "Transport, Energy & Tourism", idNumber: "REG-010-OP", badgeBg: "#EDE9FE", badgeText: "#7C3AED" },
+  { label: "Miscellaneous", idNumber: "REG-011-OP", badgeBg: "#FDE8E8", badgeText: "#E03137" },
 ];
 
-/* ── Table Card ─────────────────────────────────────────────────────── */
-function TableCard({ categories }: { categories: Category[] }) {
+/*
+ * ── Table Card ──────────────────────────────────────────────────────
+ * showPsColumn=true  (National): 4 columns — #, Category, Problem Statement,
+ *   ID Number. A row either shows the PS we've supplied (with PDF/link
+ *   icons) or, when row.psTitle is absent, an "Open — propose your own"
+ *   badge in its place.
+ * showPsColumn=false (Regional): 3 columns — #, Category, ID Number. There
+ *   is no Problem Statement column at all, since every regional entry is an
+ *   open proposal and there is nothing to show for it.
+ */
+function TableCard({ categories, showPsColumn }: { categories: Category[]; showPsColumn: boolean }) {
+  const categoryWidth = showPsColumn ? "38%" : "62%";
+  const idWidth = "23%";
+
   return (
     /* Outer card — white, rounded-[24px], soft border + shadow */
     <div className="w-full rounded-[24px] border border-[rgba(226,232,240,0.8)] shadow-[0px_4px_24px_rgba(0,0,0,0.03)] bg-white overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[780px] border-collapse">
+        <table className={`w-full border-collapse ${showPsColumn ? "min-w-[780px]" : "min-w-[560px]"}`}>
 
           {/* ── Header ── */}
           <thead>
@@ -203,19 +175,21 @@ function TableCard({ categories }: { categories: Category[] }) {
                 </span>
               </th>
               {/* CATEGORY */}
-              <th className="px-6 py-4 text-left" style={{ width: "38%" }}>
+              <th className="px-6 py-4 text-left" style={{ width: categoryWidth }}>
                 <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
                   Category
                 </span>
               </th>
-              {/* PROBLEM STATEMENT */}
-              <th className="px-6 py-4 text-left" style={{ width: "31%" }}>
-                <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
-                  Problem Statement
-                </span>
-              </th>
+              {/* PROBLEM STATEMENT — national only */}
+              {showPsColumn && (
+                <th className="px-6 py-4 text-left" style={{ width: "31%" }}>
+                  <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
+                    Problem Statement
+                  </span>
+                </th>
+              )}
               {/* ID NUMBER */}
-              <th className="px-6 py-4 text-center" style={{ width: "23%" }}>
+              <th className="px-6 py-4 text-center" style={{ width: idWidth }}>
                 <span className="t-content-sm font-bold! tracking-[0.65px] uppercase text-[#60718B]">
                   ID Number
                 </span>
@@ -225,65 +199,101 @@ function TableCard({ categories }: { categories: Category[] }) {
 
           {/* ── Body ── */}
           <tbody>
-            {categories.map((row, i) => (
-              <tr
-                key={row.idNumber}
-                className={`hover:bg-[#FAFBFD] transition-colors ${
-                  i > 0 ? "border-t border-[#F1F5F9]" : ""
-                }`}
-              >
-                {/* Number badge */}
-                <td className="w-[84px] px-6 py-[20.5px] text-center">
-                  <span
-                    className="t-content-sm font-bold! inline-flex items-center justify-center w-9 h-9 rounded-full shadow-[0px_1px_2px_rgba(0,0,0,0.05)]"
-                    style={{ background: row.badgeBg, color: row.badgeText }}
-                  >
-                    {i + 1}
-                  </span>
-                </td>
+            {categories.map((row, i) => {
+              // National rows carry psId/openId — two options for one
+              // category. Regional rows don't, since there's only ever one.
+              const national = row as Partial<NationalCategory>;
+              const hasTwoOptions = showPsColumn && national.psId !== undefined && national.openId !== undefined;
 
-                {/* Category name */}
-                <td className="px-6 py-[27.5px]" style={{ width: "38%" }}>
-                  <span className="t-content-sm font-bold! tracking-[-0.375px] text-[#142340]">
-                    {row.label}
-                  </span>
-                </td>
-
-                {/* Problem statement link */}
-                <td className="px-6 py-[22.5px]" style={{ width: "31%" }}>
-                  <div className="flex items-center gap-3">
-                    {/* PDF icon badge */}
-                    <span className="inline-flex items-center justify-center w-8 h-8 shrink-0 rounded-lg border border-[#FECACA] shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" style={{ background: "rgba(254,242,242,0.6)" }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                        <polyline points="14 2 14 8 20 8" />
-                      </svg>
+              return (
+                <tr
+                  key={row.idNumber}
+                  className={`hover:bg-[#FAFBFD] transition-colors ${
+                    i > 0 ? "border-t border-[#F1F5F9]" : ""
+                  }`}
+                >
+                  {/* Number badge */}
+                  <td className="w-[84px] px-6 py-[20.5px] text-center">
+                    <span
+                      className="t-content-sm font-bold! inline-flex items-center justify-center w-9 h-9 rounded-full shadow-[0px_1px_2px_rgba(0,0,0,0.05)]"
+                      style={{ background: row.badgeBg, color: row.badgeText }}
+                    >
+                      {i + 1}
                     </span>
+                  </td>
 
-                    {/* Title */}
-                    <span className="t-content-sm font-bold! text-[#142340]">
-                      {row.psTitle}
+                  {/* Category name */}
+                  <td className="px-6 py-[27.5px]" style={{ width: categoryWidth }}>
+                    <span className="t-content-sm font-bold! tracking-[-0.375px] text-[#142340]">
+                      {row.label}
                     </span>
+                  </td>
 
-                    {/* External link badge */}
-                    <span className="inline-flex items-center justify-center w-7 h-7 shrink-0 rounded-full bg-white border border-[rgba(226,232,240,0.8)] shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                    </span>
-                  </div>
-                </td>
+                  {/* Problem statement — national only, two stacked options */}
+                  {showPsColumn && (
+                    <td className="px-6 py-[22.5px]" style={{ width: "31%" }}>
+                      {hasTwoOptions ? (
+                        <div className="flex flex-col gap-2.5">
+                          <div className="flex items-center gap-3">
+                            {/* PDF icon badge */}
+                            <span className="inline-flex items-center justify-center w-8 h-8 shrink-0 rounded-lg border border-[#FECACA] shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" style={{ background: "rgba(254,242,242,0.6)" }}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                              </svg>
+                            </span>
+                            <span className="t-content-sm font-bold! text-[#142340]">
+                              {national.psTitle}
+                            </span>
+                            {/* External link badge */}
+                            <span className="inline-flex items-center justify-center w-7 h-7 shrink-0 rounded-full bg-white border border-[rgba(226,232,240,0.8)] shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            {/* Pencil/propose icon badge, distinct from the
+                                PDF icon so this option reads as different
+                                from the row above it at a glance. */}
+                            <span className="inline-flex items-center justify-center w-8 h-8 shrink-0 rounded-lg border border-[#BBE3D0] shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" style={{ background: "rgba(236,253,245,0.7)" }}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 20h9" />
+                                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                              </svg>
+                            </span>
+                            <span className="t-content-sm font-bold! text-[#16A34A]">
+                              OPEN
+                            </span>
+                          </div>
+                        </div>
+                      ) : null}
+                    </td>
+                  )}
 
-                {/* ID pill */}
-                <td className="px-6 py-[24.5px] text-center" style={{ width: "23%" }}>
-                  <span className="t-content-sm font-semibold! inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#EAF1F8] tracking-[0.3px] text-[#1E2F4D]">
-                    {row.idNumber}
-                  </span>
-                </td>
-              </tr>
-            ))}
+                  {/* ID pill(s) — national rows stack the PS and OPEN IDs to
+                      line up with their matching option above */}
+                  <td className="px-6 py-[24.5px] text-center" style={{ width: idWidth }}>
+                    {hasTwoOptions ? (
+                      <div className="flex flex-col gap-2.5">
+                        <span className="t-content-sm font-semibold! inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#EAF1F8] tracking-[0.3px] text-[#1E2F4D]">
+                          {national.psId}
+                        </span>
+                        <span className="t-content-sm font-semibold! inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#EAF1F8] tracking-[0.3px] text-[#1E2F4D]">
+                          {national.openId}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="t-content-sm font-semibold! inline-flex items-center justify-center px-5 py-1.5 rounded-full bg-[#EAF1F8] tracking-[0.3px] text-[#1E2F4D]">
+                        {row.idNumber}
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -329,11 +339,16 @@ export function ProblemStatementsPage() {
                   deployable solution.
                 </p>
 
+                <p className="t-content mt-4 text-[#334155]">
+                  For each theme, choose either the problem statement we&apos;ve provided, or
+                  propose and solve your own problem within that category.
+                </p>
+
                 <div className="mt-8">
-                  <TableCard categories={NATIONAL_CATEGORIES} />
+                  <TableCard categories={NATIONAL_CATEGORIES} showPsColumn />
                 </div>
 
-                <Pagination total={24} current={1} />
+                <Pagination total={NATIONAL_CATEGORIES.length} current={1} />
               </section>
 
               {/* ── Theme 2 ── */}
@@ -359,11 +374,16 @@ export function ProblemStatementsPage() {
                   concept or proof of concept to a validated and demonstrable solution.
                 </p>
 
+                <p className="t-content mt-4 text-[#334155]">
+                  This theme has no fixed problem statements — participants identify and propose
+                  their own problem within a chosen category.
+                </p>
+
                 <div className="mt-8">
-                  <TableCard categories={COMMUNITY_CATEGORIES} />
+                  <TableCard categories={COMMUNITY_CATEGORIES} showPsColumn={false} />
                 </div>
 
-                <Pagination total={24} current={1} />
+                <Pagination total={COMMUNITY_CATEGORIES.length} current={1} />
               </section>
 
             </div>

@@ -3206,6 +3206,46 @@ const faqData = [
     q: "How will I be notified about various updates?",
     a: "Registered participants will receive important updates through their registered email address and official SEWA FIRST communication channels. Participants are advised to regularly check the official website and their email for announcements, deadlines and other updates.",
   },
+  {
+    q: "What is SEWA FIRST – Rashtriya Youth Innovation Challenge 2026?",
+    a: "SEWA FIRST is a national youth innovation initiative that encourages young minds to identify real-world challenges and develop affordable, sustainable and implementable solutions for society and the nation.",
+  },
+  {
+    q: "Who can participate in the Challenge?",
+    a: "Students, young innovators, researchers, technology teams, startups and eligible institutions can participate, subject to the eligibility criteria specified in the Challenge guidelines.",
+  },
+  {
+    q: "Who is the Regional Coordinator for the Northern Region?",
+    a: "Delhi Technological University (DTU) is the Regional Coordinator for the Northern Region. The region includes J&K, Ladakh, Himachal Pradesh, Uttarakhand, Chandigarh, Delhi, Punjab, Haryana and Uttar Pradesh.",
+  },
+  {
+    q: "Do I need a fully developed product to participate?",
+    a: "No. Participants can begin with an early-stage idea (TRL 1-3) for local/regional/state and TRL (4-6) for national level may participate and progressively develop it through the Challenge towards a functional prototype.",
+  },
+  {
+    q: "Can I propose a solution to a local problem?",
+    a: "Yes. Local and community-level problems are strongly encouraged. Solutions should be affordable, sustainable, practical and capable of being replicated or scaled. Broad area categories may be referred to in the Problem Statements page.",
+  },
+  {
+    q: "How will the innovations be evaluated?",
+    a: "Evaluation will be done in stages by eminent jury members on the basis of rubrics.",
+  },
+  {
+    q: "Can interdisciplinary teams participate?",
+    a: "Yes. Interdisciplinary teams are encouraged to combine expertise from technology, engineering, design, entrepreneurship and other relevant domains to create stronger solutions.",
+  },
+  {
+    q: "Will participants receive mentorship?",
+    a: "Participants will get opportunities to interact with mentors, innovators, academia, industry, startups and government stakeholders for technical guidance and further development of their innovations.",
+  },
+  {
+    q: "How can I register for the Challenge?",
+    a: "Participants can register through the SEWA FIRST registration portal during the specified registration period. Applicants should provide the required participant, team and innovation details and complete the submission process.",
+  },
+  {
+    q: "How will I be notified about various updates?",
+    a: "Registered participants will receive important updates through their registered email address and official SEWA FIRST communication channels. Participants are advised to regularly check the official website and their email for announcements, deadlines and other updates.",
+  },
 ];
 
 export function FaqPage() {
