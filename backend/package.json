@@ -11,6 +11,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",
+    "prisma:seed": "tsx prisma/seed.ts",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -28,6 +29,9 @@
     "pino": "^9.5.0",
     "pino-http": "^10.3.0",
     "zod": "^3.24.1"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "overrides": {
     "qs": "^6.16.0",

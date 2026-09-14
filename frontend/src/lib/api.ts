@@ -251,3 +251,19 @@ export const contactApi = {
   submit: (input: ContactMessageInput) =>
     post<{ message: string }>("/api/contact", input),
 };
+
+// ─── Announcements ───────────────────────────────────────────────────────────
+
+export interface Announcement {
+  id: string;
+  category: string;
+  title: string;
+  summary: string;
+  detail?: string | null;
+  publishedAt: string;
+}
+
+export const announcementsApi = {
+  list: () => request<Announcement[]>("/api/announcements"),
+};
+

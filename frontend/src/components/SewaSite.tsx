@@ -31,7 +31,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import { ApiError, authApi, contactApi, CONTACT_CATEGORIES, type ContactCategory } from "../lib/api";
+import { ApiError, authApi, contactApi, announcementsApi, CONTACT_CATEGORIES, type ContactCategory, type Announcement } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import campusImage from "../assets/dtu-campus-aerial.jpeg";
 import campus2Image from "../assets/campus2.jpeg";
@@ -605,44 +605,7 @@ export function Footer() {
   );
 }
 
-const notices = [
-  [
-    "Problem Statements",
-    "Release of UDAN Phase 1 Problem Statements & Evaluation Rubrics",
-    "Detailed problem statements across five national themes are now available. Registered teams should review the official submission template and evaluation rubrics.",
-    "Problem statements span AgriTech, Clean Energy, Healthcare & Biomedical, Smart Mobility, and Industry 4.0. Teams can download the Phase 1 submission dossier from their dashboard.",
-  ],
-  [
-    "Mentorship",
-    "DTU Central Innovation Labs & Prototyping Workshop Schedule",
-    "Shortlisted teams receive access to prototyping machinery, testing facilities and dedicated faculty mentors across engineering departments.",
-    "Hands-on sessions will be held at DTU Central Fabrication Facilities including 5-axis CNC machining, laser cutting, PCB fabrication, and high-performance computing clusters.",
-  ],
-  [
-    "Guidelines",
-    "Inter-Disciplinary Team Registration & Eligibility Norms",
-    "Teams may comprise two to five members from accredited universities, polytechnics or eligible early-stage student startups.",
-    "Cross-departmental collaboration is strongly prioritized. Teams must submit institutional verification letters by 20 September 2026.",
-  ],
-  [
-    "Mentorship",
-    "Technical Webinar on Patent Filing & IP Protection for Innovators",
-    "Join leading patent attorneys and incubator directors for a practical masterclass on protecting your innovation prior to public exhibitions.",
-    "Key topics include patent prior-art searches, provisional patent filing procedures, copyright for embedded firmware, and commercialization licensing strategies.",
-  ],
-  [
-    "Evaluation",
-    "Regional Hub Screening Criteria & UDAN Milestone 1 Deliverables",
-    "Screening committees across five regional hubs will evaluate entries on technical novelty, feasibility, and grassroots deployment impact.",
-    "Evaluations follow a standardized 100-point rubric assessing problem-solution fit (30%), engineering feasibility (30%), scalability (20%), and execution roadmap (20%).",
-  ],
-  [
-    "Announcements",
-    "Seed Grant Allocation & Incubation Fast-Track for Top Finalists",
-    "Top 25 validated prototypes receive direct equity-free prototype grants and incubation incubation opportunities at DTU IIF.",
-    "Grants up to ₹5,00,000 per team alongside dedicated co-working spaces, cloud credits, and pilot deployment testing with institutional partners.",
-  ],
-];
+
 
 const LAUNCH_DATE = new Date("2026-09-19T00:00:00+05:30");
 
@@ -1431,14 +1394,22 @@ export function HomePage() {
     setCurrentSlide((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1));
   };
 
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+
+  useEffect(() => {
+    announcementsApi.list()
+      .then(setAnnouncements)
+      .catch(() => { }); // fail silently — section just stays empty
+  }, []);
+
   const filtered = useMemo(
     () =>
-      notices.filter(
+      announcements.filter(
         (n) =>
-          (category === "All" || category === "All Categories" || n[0] === category) &&
-          n.join(" ").toLowerCase().includes(query.toLowerCase()),
+          (category === "All" || category === "All Categories" || n.category === category) &&
+          [n.category, n.title, n.summary, n.detail ?? ""].join(" ").toLowerCase().includes(query.toLowerCase()),
       ),
-    [query, category],
+    [announcements, query, category],
   );
   return (
     <div>
@@ -1580,78 +1551,78 @@ export function HomePage() {
           <div className="mx-auto w-[min(100%-6rem,1180px)]">
             <h2 className="t-main-heading text-center">
               <span className="uppercase">Timeline</span>
-              <span className="t-subheading-2 block text-center text-black">of 100 Day Journey</span>
+              <span className="t-subheading-2 block text-center text-black">OF 100 DAY SEWA FIRST RYIC 2026 JOURNEY</span>
             </h2>
             <TimelineRoadmap />
           </div>
         </section>
 
-        {/* ── Statistics Section ── */}
-        <StatisticsSection />
-
-        {/* Live Announcements - hidden for now */}
-        {false && (
-          <section id="announcements" className="live-announcements pt-20 sm:pt-[100px] pb-0 scroll-mt-20">
-            <div className="site-shell">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                <div>
-                  <p className="eyebrow">Important Notices</p>
-                  <h2 className="section-title">Live Announcement</h2>
-                  <p className="section-subtitle">
-                    Stay updated with recent circulars, dates, and official notices.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-red-600 font-bold text-xs shadow-xs self-start sm:self-center select-none">
-                  <span>Live</span>
-                  <span className="relative flex size-2.5">
-                    <span className="animate-ping absolute inline-flex size-full rounded-full bg-red-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full size-2.5 bg-red-600" />
-                  </span>
-                </div>
+        {/* ── Live Announcements ── */}
+        <section id="announcements" className="live-announcements t-section-band scroll-mt-20">
+          <div className="site-shell">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+              <div>
+                <p className="eyebrow !text-base sm:!text-lg mb-2">Important Notices</p>
+                <h2 className="t-main-heading !text-left !mb-2">LIVE ANNOUNCEMENTS</h2>
+                <p className="t-subheading-2 text-black/60 font-normal">
+                  Stay updated with recent circulars, dates, and official notices.
+                </p>
               </div>
-              <div className="mt-8 grid gap-3 sm:grid-cols-[1fr_220px]">
-                <label className="flex min-h-[46px] items-center gap-2.5 rounded-xl bg-[#f1f3f5] px-4 text-gray-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#ff5a5f]/20 focus-within:border-[#ff5a5f] border border-transparent transition-all">
-                  <Search size={18} className="shrink-0 text-gray-400" />
-                  <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search announcements..." className="w-full bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none" />
-                </label>
-                <label className="flex min-h-[46px] items-center justify-between rounded-xl bg-[#f1f3f5] px-4 text-gray-700 cursor-pointer focus-within:bg-white focus-within:ring-2 focus-within:ring-[#ff5a5f]/20 focus-within:border-[#ff5a5f] border border-transparent transition-all">
-                  <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-transparent text-sm font-medium outline-none cursor-pointer">
-                    <option>All Categories</option>
-                    <option>Problem Statements</option>
-                    <option>Mentorship</option>
-                    <option>Guidelines</option>
-                    <option>Evaluation</option>
-                    <option>Announcements</option>
-                  </select>
-                  <ChevronDown size={18} className="shrink-0 text-gray-500 pointer-events-none" />
-                </label>
-              </div>
-              <div className="relative mt-7">
-                <div className="space-y-4 max-h-[540px] overflow-y-auto pb-16 pr-1.5 scrollbar-thin scrollbar-thumb-gray-300">
-                  {filtered.map((n, i) => (
-                    <article key={n[1]} className="rounded-2xl bg-[#f4f5f7] p-5 sm:p-6 transition-all duration-200 hover:bg-[#eceef2] hover:shadow-xs">
-                      <div className="flex items-start justify-between gap-4">
-                        <span className="text-xs text-gray-500 font-medium tracking-tight">12.Sept.2026 10:30 A.M. · {n[0]}</span>
-                        <button type="button" onClick={() => setOpen(open === i ? null : i)} className="flex items-center gap-1.5 text-xs font-bold text-[#ff5a5f] hover:text-[#e03b40] transition-colors cursor-pointer shrink-0 select-none">
-                          <span>{open === i ? "Hide Details" : "View Full Details"}</span>
-                          <ChevronDown size={14} className={`transition-transform duration-200 ${open === i ? "rotate-180" : ""}`} />
-                        </button>
-                      </div>
-                      <h3 className="mt-2 text-base sm:text-lg font-bold text-black tracking-tight leading-snug">{n[1]}</h3>
-                      <p className="mt-1.5 text-xs sm:text-sm text-gray-600 leading-relaxed max-w-3xl">{n[2]}</p>
-                      {open === i && (
-                        <div className="mt-4 pt-3.5 border-t border-gray-200/90 text-xs text-gray-700 leading-relaxed animate-fade-in">
-                          {n[3] || "Complete circulars, guidelines, and submission links are published through the official DTU SEWA portal."}
-                        </div>
-                      )}
-                    </article>
-                  ))}
-                </div>
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[26px] sm:h-[34px] bg-gradient-to-t from-gray-400/35 via-gray-300/20 to-transparent backdrop-blur-[2px] rounded-b-2xl" />
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-red-600 font-bold text-xs shadow-xs self-start sm:self-center select-none shrink-0">
+                <span>Live</span>
+                <span className="relative flex size-2.5">
+                  <span className="animate-ping absolute inline-flex size-full rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full size-2.5 bg-red-600" />
+                </span>
               </div>
             </div>
-          </section>
-        )}
+            <div className="grid gap-3 sm:grid-cols-[1fr_220px]">
+              <label className="flex min-h-[46px] items-center gap-2.5 rounded-xl bg-[#f1f3f5] px-4 text-gray-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-[#ff5a5f]/20 focus-within:border-[#ff5a5f] border border-transparent transition-all">
+                <Search size={18} className="shrink-0 text-gray-400" />
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search announcements..." className="t-content-sm w-full bg-transparent text-gray-900 placeholder-gray-400 outline-none" />
+              </label>
+              <label className="flex min-h-[46px] items-center justify-between rounded-xl bg-[#f1f3f5] px-4 text-gray-700 cursor-pointer focus-within:bg-white focus-within:ring-2 focus-within:ring-[#ff5a5f]/20 focus-within:border-[#ff5a5f] border border-transparent transition-all">
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="t-content-sm w-full bg-transparent font-medium outline-none cursor-pointer">
+                  <option>All Categories</option>
+                  <option>Problem Statements</option>
+                  <option>Mentorship</option>
+                  <option>Guidelines</option>
+                  <option>Evaluation</option>
+                  <option>Announcements</option>
+                </select>
+                <ChevronDown size={18} className="shrink-0 text-gray-500 pointer-events-none" />
+              </label>
+            </div>
+            <div className="relative mt-7">
+              <div className="space-y-4 max-h-[540px] overflow-y-auto pb-16 pr-1.5 scrollbar-thin scrollbar-thumb-gray-300">
+                {filtered.map((n, i) => (
+                  <article key={n.id} className="rounded-2xl bg-[#f4f5f7] p-5 sm:p-6 transition-all duration-200 hover:bg-[#eceef2] hover:shadow-xs">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="t-content-sm text-gray-500 font-medium tracking-tight">
+                        {new Date(n.publishedAt).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })} · {n.category}
+                      </span>
+                      <button type="button" onClick={() => setOpen(open === i ? null : i)} className="t-content-sm flex items-center gap-1.5 font-bold text-[#ff5a5f] hover:text-[#e03b40] transition-colors cursor-pointer shrink-0 select-none">
+                        <span>{open === i ? "Hide Details" : "View Full Details"}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-200 ${open === i ? "rotate-180" : ""}`} />
+                      </button>
+                    </div>
+                    <h3 className="t-subheading-2 mt-2 text-black tracking-tight">{n.title}</h3>
+                    <p className="t-content mt-2 text-gray-600 max-w-3xl">{n.summary}</p>
+                    {open === i && (
+                      <div className="t-content-sm mt-4 pt-3.5 border-t border-gray-200/90 text-gray-700 leading-relaxed animate-fade-in">
+                        {n.detail || "Complete circulars, guidelines, and submission links are published through the official DTU SEWA portal."}
+                      </div>
+                    )}
+                  </article>
+                ))}
+              </div>
+              <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[26px] sm:h-[34px] bg-gradient-to-t from-gray-400/35 via-gray-300/20 to-transparent backdrop-blur-[2px] rounded-b-2xl" />
+            </div>
+          </div>
+        </section>
+
+        {/* ── Statistics Section ── */}
+        <StatisticsSection />
         {/* Join The Challenge - hidden for now */}
         {false && (
           <section id="steps" className="pt-20 sm:pt-[100px] pb-20 sm:pb-[100px] overflow-hidden scroll-mt-20">

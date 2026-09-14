@@ -187,3 +187,21 @@ model ContactMessage {
   @@index([status, createdAt])
   @@map("contact_messages")
 }
+
+/**
+ * A public-facing notice/announcement item displayed on the homepage.
+ * Created by admins; read publicly without auth via GET /api/announcements.
+ */
+model Announcement {
+  id          String   @id @default(uuid())
+  category    String   @db.VarChar(60)
+  title       String   @unique @db.VarChar(200)
+  summary     String   @db.Text
+  detail      String?  @db.Text
+  publishedAt DateTime @default(now()) @map("published_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([publishedAt(sort: Desc)])
+  @@map("announcements")
+}
+
