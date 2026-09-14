@@ -112,6 +112,16 @@ export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" |
   const { user, isSignedIn, signOut } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [latestAnnouncement, setLatestAnnouncement] = useState<Announcement | null>(null);
+
+  useEffect(() => {
+    announcementsApi
+      .list()
+      .then((items) => setLatestAnnouncement(items[0] ?? null))
+      .catch(() => {
+        // Keep the ticker available even if the public announcements endpoint is unavailable.
+      });
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -354,17 +364,21 @@ export function Header({ activeNav = "home" }: { activeNav?: "home" | "events" |
       </header>
 
       {/* Row 3: Live updates ticker - scrolls away with the page */}
-      <div className="live-updates-bar flex h-10 overflow-hidden bg-[#e0e0e0] text-xs">
-        <div className="live-updates-label flex shrink-0 items-center bg-[#ff5d5d] px-6 font-bold text-white shadow-[2px_0_8px_rgba(0,0,0,0.12)] relative z-10">
+      <div className="live-updates-bar flex h-12 overflow-hidden bg-[#e0e0e0] text-sm">
+        <a
+          href="/#announcements"
+          className="live-updates-label flex shrink-0 items-center bg-[#ff5d5d] px-6 font-extrabold text-white text-sm sm:text-base shadow-[2px_0_8px_rgba(0,0,0,0.12)] relative z-10 cursor-pointer hover:bg-[#ef4f4f] transition-colors"
+          aria-label="Jump to live announcements"
+        >
           Live Updates
-        </div>
+        </a>
         <div className="live-updates-ticker-wrap min-w-0 flex-1 overflow-hidden">
-          <div className="ticker flex h-full items-center whitespace-nowrap font-medium text-gray-800">
+          <div className="ticker flex h-full items-center whitespace-nowrap font-bold text-sm sm:text-base text-gray-800">
             <span>
-              SEWA 2026 / SEWA Youth Innovation Challenge officially launched at Delhi Technological University on 19 September 2026.
+              {latestAnnouncement?.title ?? "Live announcements are loading..."}
             </span>
             <span aria-hidden="true">
-              SEWA 2026 / SEWA Youth Innovation Challenge officially launched at Delhi Technological University on 19 September 2026.
+              {latestAnnouncement?.title ?? "Live announcements are loading..."}
             </span>
           </div>
         </div>
@@ -2512,8 +2526,7 @@ export function EventsPage() {
         <section id="results" className="scroll-mt-16 text-center">
           <h2 className="t-main-heading uppercase">Result Announcement</h2>
           <p className="t-subheading-2 mt-3 text-gray-700">
-            Results and winner felicitation of all problem statements will be announced on 25th
-            December 2026.
+            Results and winner felicitation of all problem statements will be announced.
           </p>
           <p className="mt-6 text-[#ff3b30]" style={{ fontSize: 34, fontWeight: 800, lineHeight: 1.1 }}>
             Coming Soon
