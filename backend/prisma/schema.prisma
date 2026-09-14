@@ -194,6 +194,7 @@ model ContactMessage {
  */
 model Announcement {
   id          String   @id @default(uuid())
+  refNumber   String?  @map("ref_number") @db.VarChar(50)
   category    String   @db.VarChar(60)
   title       String   @unique @db.VarChar(200)
   summary     String   @db.Text

@@ -8,6 +8,7 @@ async function main() {
   // Upsert so running the seed multiple times is safe
   const announcements = [
     {
+      refNumber: "SEWA-CIR-01",
       category: "Problem Statements",
       title: "Release of UDAN Phase 1 Problem Statements & Evaluation Rubrics",
       summary:
@@ -16,6 +17,7 @@ async function main() {
         "Problem statements span AgriTech, Clean Energy, Healthcare & Biomedical, Smart Mobility, and Industry 4.0. Teams can download the Phase 1 submission dossier from their dashboard.",
     },
     {
+      refNumber: "SEWA-CIR-02",
       category: "Mentorship",
       title: "DTU Central Innovation Labs & Prototyping Workshop Schedule",
       summary:
@@ -24,6 +26,7 @@ async function main() {
         "Hands-on sessions will be held at DTU Central Fabrication Facilities including 5-axis CNC machining, laser cutting, PCB fabrication, and high-performance computing clusters.",
     },
     {
+      refNumber: "SEWA-CIR-03",
       category: "Guidelines",
       title: "Inter-Disciplinary Team Registration & Eligibility Norms",
       summary:
@@ -32,6 +35,7 @@ async function main() {
         "Cross-departmental collaboration is strongly prioritized. Teams must submit institutional verification letters by 20 September 2026.",
     },
     {
+      refNumber: "SEWA-CIR-04",
       category: "Mentorship",
       title: "Technical Webinar on Patent Filing & IP Protection for Innovators",
       summary:
@@ -40,6 +44,7 @@ async function main() {
         "Key topics include patent prior-art searches, provisional patent filing procedures, copyright for embedded firmware, and commercialization licensing strategies.",
     },
     {
+      refNumber: "SEWA-CIR-05",
       category: "Evaluation",
       title: "Regional Hub Screening Criteria & UDAN Milestone 1 Deliverables",
       summary:
@@ -48,6 +53,7 @@ async function main() {
         "Evaluations follow a standardized 100-point rubric assessing problem-solution fit (30%), engineering feasibility (30%), scalability (20%), and execution roadmap (20%).",
     },
     {
+      refNumber: "SEWA-CIR-06",
       category: "Announcements",
       title: "Seed Grant Allocation & Incubation Fast-Track for Top Finalists",
       summary:
@@ -60,7 +66,7 @@ async function main() {
   for (const a of announcements) {
     await prisma.announcement.upsert({
       where: { title: a.title },
-      update: { category: a.category, summary: a.summary, detail: a.detail },
+      update: { refNumber: a.refNumber, category: a.category, summary: a.summary, detail: a.detail },
       create: a,
     });
   }

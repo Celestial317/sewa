@@ -5,6 +5,7 @@ export async function listAnnouncements(_req: Request, res: Response) {
   const announcements = await prisma.announcement.findMany({
     select: {
       id: true,
+      refNumber: true,
       category: true,
       title: true,
       summary: true,

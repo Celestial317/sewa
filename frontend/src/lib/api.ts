@@ -256,6 +256,7 @@ export const contactApi = {
 
 export interface Announcement {
   id: string;
+  refNumber?: string | null;
   category: string;
   title: string;
   summary: string;

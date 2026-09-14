@@ -1404,11 +1404,13 @@ export function HomePage() {
 
   const filtered = useMemo(
     () =>
-      announcements.filter(
-        (n) =>
-          (category === "All" || category === "All Categories" || n.category === category) &&
-          [n.category, n.title, n.summary, n.detail ?? ""].join(" ").toLowerCase().includes(query.toLowerCase()),
-      ),
+      announcements
+        .filter(
+          (n) =>
+            (category === "All" || category === "All Categories" || n.category === category) &&
+            [n.category, n.title, n.summary, n.detail ?? ""].join(" ").toLowerCase().includes(query.toLowerCase()),
+        )
+        .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()),
     [announcements, query, category],
   );
   return (
@@ -1599,6 +1601,7 @@ export function HomePage() {
                   <article key={n.id} className="rounded-2xl bg-[#f4f5f7] p-5 sm:p-6 transition-all duration-200 hover:bg-[#eceef2] hover:shadow-xs">
                     <div className="flex items-start justify-between gap-4">
                       <span className="t-content-sm text-gray-500 font-medium tracking-tight">
+                        {n.refNumber ? `Ref: ${n.refNumber} · ` : ""}
                         {new Date(n.publishedAt).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })} · {n.category}
                       </span>
                       <button type="button" onClick={() => setOpen(open === i ? null : i)} className="t-content-sm flex items-center gap-1.5 font-bold text-[#ff5a5f] hover:text-[#e03b40] transition-colors cursor-pointer shrink-0 select-none">
